@@ -9,14 +9,24 @@ namespace AssetManager.Infrastructure.Data
 {
     public class EfRepository<T> : IAsyncRepository<T> where T : Entity
     {
-        public Task<T> AddAsync(T entity)
+        private AssetManagerContext _dbContext;
+
+        public EfRepository(AssetManagerContext dbContext)
         {
-            throw new NotImplementedException();
+            this._dbContext = dbContext;
         }
 
-        public Task DeleteAsync(T entity)
+        public async Task<T> AddAsync(T entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Set<T>().Add(entity);
+            await _dbContext.SaveChangesAsync();
+            return entity;
+        }
+
+        public async Task DeleteAsync(T entity)
+        {
+            _dbContext.Set<T>().Remove(entity);
+            await _dbContext.SaveChangesAsync();
         }
 
         public Task<T> GetByIdAsync(int id)

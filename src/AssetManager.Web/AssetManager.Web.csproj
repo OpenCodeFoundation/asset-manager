@@ -12,4 +12,9 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AssetManager.Core\AssetManager.Core.csproj" />
+    <ProjectReference Include="..\AssetManager.Infrastructure\AssetManager.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
