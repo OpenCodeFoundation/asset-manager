@@ -1,5 +1,6 @@
 ﻿using AssetManager.Core.Interfaces;
 using AssetManager.Core.SharedKernel;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -34,9 +35,9 @@ namespace AssetManager.Infrastructure.Data
             throw new NotImplementedException();
         }
 
-        public Task<List<T>> ListAllAsync()
+        public async Task<List<T>> ListAllAsync()
         {
-            throw new NotImplementedException();
+            return await _dbContext.Set<T>().ToListAsync();
         }
 
         public Task UpdateAsync(T entity)
