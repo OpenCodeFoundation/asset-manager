@@ -1,0 +1,59 @@
+﻿using AssetManager.Core.SharedKernel;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AssetManager.Core.Entities
+{
+    public class ActionLog: Entity
+    {
+
+
+        //[ForeignKey("UserId")]
+        //public int UserId { get; set; }
+        //public virtual User User { get; set; }
+
+        public string ActionType { get; set; }
+
+        public int TargetId { get; set; }
+
+        public string TargetType { get; set; }
+
+        [ForeignKey("LocationId")]
+        public int LocatonId { get; set; }
+        public virtual Location Location { get; set; }
+
+        public string Note { get; set; }
+
+        public string FileName { get; set; }
+
+        public string ItemType { get; set; }
+
+        public int ItemId { get; set; }
+
+        public DateTime ExpecteCheckIn { get; set; }
+
+        public int AcceptedId { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+
+        public DateTime UpdatedAt { get; set; }
+
+        public DateTime DeletedAt { get; set; }
+
+        //public int ThreadId { get; set; }
+        //Not clear
+
+        [ForeignKey("CompanyId")]
+        public int CompanyId { get; set; }
+        public virtual Company Company { get; set; }
+
+        public string AcceptSign { get; set; }
+
+        public string LogMeta { get; set; }
+    }
+}
