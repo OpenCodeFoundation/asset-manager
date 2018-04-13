@@ -12,7 +12,7 @@ namespace AssetManager.Web.Controllers
 {
     public class CompaniesController : Controller
     {
-        private IAsyncRepository<Company> _companyRepository;
+        private readonly IAsyncRepository<Company> _companyRepository;
 
         public CompaniesController(IAsyncRepository<Company> repository)
         {
