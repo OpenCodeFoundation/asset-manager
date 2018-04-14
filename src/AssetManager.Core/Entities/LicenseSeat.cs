@@ -12,9 +12,6 @@ namespace AssetManager.Core.Entities
 
     public class LicenseSeat : Entity
     {
-
-
-
         [ForeignKey("LicenseId")]
         public int LicenseId { get; set; }
         public virtual License License { get; set; }
@@ -34,10 +31,7 @@ namespace AssetManager.Core.Entities
         [ForeignKey("AssetId")]
         public int AssetId { get; set; }
         public virtual Asset Asset { get; set; }
-
-        //[ForeignKey("UserId")]
-        //public int UserId { get; set; }
-        //public virtual User Admin { get; set; }
+        public int UserId { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

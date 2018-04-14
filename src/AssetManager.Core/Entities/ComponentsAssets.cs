@@ -11,12 +11,7 @@ namespace AssetManager.Core.Entities
 {
     public class ComponentsAssets: Entity
     {
-
-
-        //[ForeignKey("UserId")]
-        //public int UserId { get; set; }
-        //public virtual User User { get; set; }
-
+        public int UserId { get; set; }
         public int AssignedQty { get; set; }
 
         [ForeignKey("ComponentId")]
@@ -26,9 +21,7 @@ namespace AssetManager.Core.Entities
         [ForeignKey("AssetId")]
         public int AssetId { get; set; }
         public virtual Asset Asset { get; set; }
-
         public DateTime CreatedAt { get; set; }
-
         public DateTime UpdatedAt { get; set; }
     }
 }

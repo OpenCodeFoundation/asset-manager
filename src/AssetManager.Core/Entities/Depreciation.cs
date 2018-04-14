@@ -11,22 +11,13 @@ namespace AssetManager.Core.Entities
 {
     public class Depreciation: Entity
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
         [Display(Name = "Depreciation Name")]
         public string Name { get; set; }
-
-
+   
         [Display(Name = "Number of Months")]
         public int Months { get; set; }
-
-
-        //[ForeignKey("UserId")]
-        //public int UserId { get; set; }
-        //public virtual User User { get; set; }
+        public int UserId { get; set; }
         public DateTime CreatedAt { get; set; }
-
         public DateTime UpdatedAt { get; set; }
 
 

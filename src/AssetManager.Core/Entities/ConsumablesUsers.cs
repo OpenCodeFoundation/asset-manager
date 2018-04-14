@@ -11,22 +11,13 @@ namespace AssetManager.Core.Entities
 {
     public class ConsumablesUsers: Entity
     {
-
-
-        //[ForeignKey("UserId")]
-        //public int UserId { get; set; }
-        //public virtual User User { get; set; }
+        public int UserId { get; set; }
 
         [ForeignKey("ConsumableId")]
         public int ConsumableId { get; set; }
         public virtual Consumable Consumable { get; set; }
-
-        [ForeignKey("AssignTo")]
         public int AssignTo { get; set; }
-        //public virtual User User { get; set; }
-
         public DateTime CreatedAt { get; set; }
-
         public DateTime UpdatedAt { get; set; }
     }
 }

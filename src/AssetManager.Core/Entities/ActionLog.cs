@@ -11,14 +11,9 @@ namespace AssetManager.Core.Entities
 {
     public class ActionLog: Entity
     {
-
-
-        //[ForeignKey("UserId")]
-        //public int UserId { get; set; }
-        //public virtual User User { get; set; }
-
+        public int UserId { get; set; }
         public string ActionType { get; set; }
-
+    
         public int TargetId { get; set; }
 
         public string TargetType { get; set; }
@@ -44,9 +39,6 @@ namespace AssetManager.Core.Entities
         public DateTime UpdatedAt { get; set; }
 
         public DateTime DeletedAt { get; set; }
-
-        //public int ThreadId { get; set; }
-        //Not clear
 
         [ForeignKey("CompanyId")]
         public int CompanyId { get; set; }

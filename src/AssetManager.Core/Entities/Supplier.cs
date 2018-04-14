@@ -12,7 +12,6 @@ namespace AssetManager.Core.Entities
     public class Supplier: Entity
     {
 
-
         [Display(Name ="Name")]
         public string Name { get; set; }
 
@@ -58,18 +57,8 @@ namespace AssetManager.Core.Entities
         public string Image { get; set; }
         public DateTime CreateAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-
-
-        //[ForeignKey("UserId")]
-        //public int UserId { get; set; }
-        //public virtual User User { get; set; }
-
+        public int UserId { get; set; }
         public DateTime DeletedAt { get; set; }
 
-
-
-        public virtual ICollection<Asset> Asset { get; set; }
-
-        public virtual ICollection<Accessory> Accessory { get; set; }
     }
 }

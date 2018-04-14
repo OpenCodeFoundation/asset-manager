@@ -11,13 +11,7 @@ namespace AssetManager.Core.Entities
 {
     public class AssetUploads: Entity
     {
-
-
-
-        //[ForeignKey("UserId")]
-        //public int UserId { get; set; }
-        //public virtual User Admin { get; set; }
-
+        public int UserId { get; set; }
         public string FileName { get; set; }
 
         [ForeignKey("AssetId")]

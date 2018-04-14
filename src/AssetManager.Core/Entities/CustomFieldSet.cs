@@ -9,19 +9,15 @@ namespace AssetManager.Core.Entities
 {
     public class CustomFieldSet: Entity
     {
-
-
         [Display(Name = "Name")]
         public string Name { get; set; }
-
-
         public string Format { get; set; }
         public string Element { get; set; }
         public DateTime CreatedAt { get; set; }
 
         public DateTime UpdateddAt { get; set; }
 
-        //public int UserId { get; set; }
+        public int UserId { get; set; }
 
         public string FieldValues { get; set; }
 

@@ -12,12 +12,7 @@ namespace AssetManager.Core.Entities
     public class AssetLog: Entity
     {
 
-
-        //[ForeignKey("UserId")]
-        //public int UserId { get; set; }
-        //public virtual User User { get; set; }
-   
-
+        public int UserId { get; set; }
         public string ActionType { get; set; }
 
         [ForeignKey("AssetId")]
@@ -58,8 +53,6 @@ namespace AssetManager.Core.Entities
         [ForeignKey("ConsumableId")]
         public int ConsumableId { get; set; }
         public virtual Consumable Consumable { get; set; }
-
-
 
         public DateTime ExpectedCheckin { get; set; }
 

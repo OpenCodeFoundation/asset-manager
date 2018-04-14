@@ -10,8 +10,7 @@ using System.Threading.Tasks;
 namespace AssetManager.Core.Entities
 {
     public class Components: Entity
-    {
-
+    { 
 
         [Display(Name = "Component Name")]
         public string Name { get; set; }
@@ -30,14 +29,7 @@ namespace AssetManager.Core.Entities
         [ForeignKey("CompanyId")]
         public int CompanyId { get; set; }
         public virtual Company Company { get; set; }
-
-        /// <summary>
-        /// get user id
-        /// </summary>
-        //[ForeignKey("UserId")]
-        //public int UserId { get; set; }
-        //public virtual User User { get; set; }
-
+        public int UserId { get; set; }
 
         [Display(Name ="Quantity")]
         public int Qty { get; set; }
@@ -50,7 +42,6 @@ namespace AssetManager.Core.Entities
 
         [Display(Name = "Purchase Cost")]
         public decimal PurchaseCost { get; set; }
-
 
         public DateTime CreatedAt { get; set; }
 

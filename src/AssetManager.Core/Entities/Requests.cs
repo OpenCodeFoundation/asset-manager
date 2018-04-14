@@ -11,9 +11,6 @@ namespace AssetManager.Core.Entities
 {
     public class Requests: Entity
     {
-
-
-
         [ForeignKey("AssetId")]
         public int AssetId { get; set; }
         public virtual Asset Asset { get; set; }
@@ -23,7 +20,6 @@ namespace AssetManager.Core.Entities
         public virtual User User { get; set; }
 
         public string RequestedCode { get; set; }
-
 
         public DateTime CreatedAt { get; set; }
 
