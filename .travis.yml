@@ -1,0 +1,14 @@
+language: csharp
+sudo: required
+dist: trusty
+
+mono: latest
+dotnet: 2.1.4
+
+env:
+  global:
+    - DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+    - DOTNET_CLI_TELEMETRY_OPTOUT: 1
+
+script:
+  - ./build.sh
