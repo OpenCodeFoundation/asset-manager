@@ -11,14 +11,7 @@ namespace AssetManager.Core.Entities
 {
     public class Throttle: Entity
     {
-
-
-
-
-        [ForeignKey("UserId")]
         public int UserId { get; set; }
-        // public virtual User User { get; set; }
-
         public string IpAddress { get; set; }
 
         public int Attemps { get; set; }

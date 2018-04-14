@@ -12,8 +12,6 @@ namespace AssetManager.Core.Entities
     public class Asset: Entity
     {
 
-
-
         [Required]
         [ForeignKey("CompanyId")]
         public int CompanyId { get; set; }
@@ -72,25 +70,9 @@ namespace AssetManager.Core.Entities
 
         [Display(Name = "Image")]
         public string Image { get; set; }
-
-       
-
-        //[Display(Name = "Checkout To")]
-        //[ForeignKey("UserId")]
-        //public int AssignedTo { get; set; }
-        //public virtual User User { get; set; }
-
-
-
-            /// <summary>
-            /// Checkout to User
-            /// </summary>
-
-
-        // [Display(Name ="Checkout To")]
-        // [ForeignKey("UserId")]
-        // public int AssignedTo { get; set; }
-        //public virtual User User { get; set; }
+        public int AssignedTo { get; set; }
+        public int CheckoutTo { get; set; }
+    
         public int CreatedBy { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
@@ -108,19 +90,9 @@ namespace AssetManager.Core.Entities
 
         public bool Depreciate { get; set; }
 
-        
-        
-
-        //public int RtdLocatonId { get; set; }
-        //public string _snipeit_mac_address_1 { get; set; }
-
         public bool Accepted { get; set; }
         public DateTime LastCheckout { get; set; }
-
         public DateTime ExpectedCheckin { get; set; }
-
-    
-        //should be user class
         public string AssignedType { get; set; }
         public DateTime LastAuditDate { get; set; }
         public DateTime NextAuditDate { get; set; }

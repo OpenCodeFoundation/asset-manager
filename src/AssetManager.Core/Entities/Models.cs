@@ -11,14 +11,7 @@ namespace AssetManager.Core.Entities
 {
     public class Models: Entity
     {
-
-
-
-        [Required]
-        [StringLength(150)]
-        [Display(Name ="Model Name")]
         public string Name { get; set; }
-
 
         [Display(Name = "Model Number")]
         public string ModelNumber { get; set; }
@@ -40,16 +33,7 @@ namespace AssetManager.Core.Entities
         [ForeignKey("DepreciationId")]
         public int DepreciationId { get; set; }
         public virtual Depreciation Depreciation { get; set; }
-
-        /// <summary>
-        /// get user Id
-        /// </summary>
-        //[ForeignKey("UserId")]
-        //public int UserId { get; set; }
-        //public virtual User User { get; set; }
-
-
-        //EOL stand End of Lease in month
+        public int UserId { get; set; }
 
         [Display(Name ="EOL")]
         public int Eol { get; set; }
@@ -57,17 +41,7 @@ namespace AssetManager.Core.Entities
         [Display(Name ="Image")]
         public string Image { get; set; }
 
-       // public bool DeprecatedMacAdress { get; set; }
-
-        
-
-        /// <summary>
-        /// No Need now custom Fieldset. Fieldsets allow you to create groups of custom fields that are frequently re-used used for specific asset model types.
-        /// </summary>
-        //[Display(Name ="")]
-        //[ForeignKey("FieldSetId")]
-        //public int FieldSetId { get; set; }
-        //public virtual CustomFields CustomFields { get; set; }
+        public bool DeprecatedMacAdress { get; set; }
 
         [Display(Name="Note")]
         public string Notes { get; set; }
@@ -80,7 +54,7 @@ namespace AssetManager.Core.Entities
         public DateTime UpdatedAt { get; set; }
 
         public DateTime DeletedAt { get; set; }
-        public virtual ICollection<Asset> Asset { get; set; }
+   
 
     }
 }

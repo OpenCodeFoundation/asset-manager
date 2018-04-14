@@ -11,21 +11,10 @@ namespace AssetManager.Core.Entities
 {
     public class Manufacturer: Entity
     {
-
-
-
         [Required]
         [Display(Name =("Manufacturer Name"))]
         public string Name { get; set; }
-
-
-
-        
-        //[ForeignKey("UserId")]
-        //public int UserId { get; set; }
-        //public virtual User User { get; set; }
-
- 
+        public int UserId { get; set; }
 
         [Display(Name =("Web Site"))]
         public string Url { get; set; }
@@ -48,9 +37,5 @@ namespace AssetManager.Core.Entities
 
         public DateTime DeletedAt { get; set; }
 
-        public virtual ICollection<Models> Model { get; set; }
-        public virtual ICollection<Accessory> Accessory { get; set; }
-
-        public virtual ICollection<Consumable> Consumable { get; set; }
     }
 }

@@ -12,26 +12,17 @@ namespace AssetManager.Core.Entities
     public class StatusLabel: Entity
     {
 
-
         [Display(Name ="Name")]
         public string Name { get; set; }
-
-        //[ForeignKey("UserId")]
-        //public int UserId { get; set; }
-        //public virtual User Admin { get; set; }
-
-
-
+        public int UserId { get; set; }
         public bool Deployable { get; set; }
 
         public bool Pending { get; set; }
         public bool Archived { get; set; }
 
         public string Notes { get; set; }
-
-        //public string Color { get; set; }
-
-        //public bool ShowInNav { get; set; }
+        public string Color { get; set; }
+        public bool ShowInNav { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

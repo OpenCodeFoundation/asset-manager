@@ -12,7 +12,6 @@ namespace AssetManager.Core.Entities
     public class CustomFields: Entity
     {
 
-
         [Display(Name = "Field Name")]
         public string Name { get; set; }
 
@@ -20,6 +19,6 @@ namespace AssetManager.Core.Entities
 
         public DateTime UpdatedAt { get; set; }
 
-        //public int UserId { get; set; }
+        public int UserId { get; set; }
     }
 }

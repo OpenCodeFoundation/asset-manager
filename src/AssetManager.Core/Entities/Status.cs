@@ -12,15 +12,9 @@ namespace AssetManager.Core.Entities
     public class Status: Entity
     {
 
-
         [Display(Name =("Name"))]
         public string Name { get; set; }
-
-        //[ForeignKey("UserId")]
-        //public int UserId { get; set; }
-        //public virtual User User { get; set; }
-
-
+        public int UserId { get; set; }
 
         public bool Deployable { get; set; }
 
@@ -33,16 +27,12 @@ namespace AssetManager.Core.Entities
         [Display(Name ="Note")]
         public string Notes { get; set; }
 
-        ///// <summary>
-        ///// get Color code
-        ///// </summary>
-        //public string Color { get; set; }
+        public string Color { get; set; }
 
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
         public DateTime DeletedAt { get; set; }
 
-        public virtual ICollection<Asset> Asset { get; set; }
     }
 }

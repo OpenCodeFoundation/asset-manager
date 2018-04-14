@@ -12,8 +12,6 @@ namespace AssetManager.Core.Entities
     public class AssetMaintenance: Entity
     {
 
-
-
         [ForeignKey("AssetId")]
         public int AssetId { get; set; }
         public virtual Asset Asset { get; set; }
@@ -22,9 +20,6 @@ namespace AssetManager.Core.Entities
         public int SupplierId { get; set; }
         public virtual Supplier Supplier { get; set; }
 
-        /// <summary>
-        /// Asset Maintanance type will be Maintance, repaire, upgrade
-        /// </summary>
         public string AssetMaintanceType { get; set; }
 
         public string Title { get; set; }

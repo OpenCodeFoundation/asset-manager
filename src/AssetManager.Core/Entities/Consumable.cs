@@ -11,8 +11,6 @@ namespace AssetManager.Core.Entities
 {
     public class Consumable: Entity
     {
-
-
         [Display(Name = "Consumable Name")]
         public string Name { get; set; }
 
@@ -25,18 +23,13 @@ namespace AssetManager.Core.Entities
         [ForeignKey("LocationId")]
         public int LocatonId { get; set; }
         public virtual Location Location { get; set; }
-
-        [ForeignKey("UserId")]
         public int UserId { get; set; }
-        //public virtual User User { get; set; }
-
 
         [Display(Name ="Qty")]
         public int Qty { get; set; }
 
         [Display(Name = "Requestable")]
         public bool Requestable { get; set; }
-
 
         [Display(Name = "Purchase Date")]
         public DateTime PurchaseDate { get; set; }
@@ -46,7 +39,6 @@ namespace AssetManager.Core.Entities
 
         [Display(Name = "Order Number")]
         public string OrderNumber { get; set; }
-
 
         [Display(Name = "Company")]
         [ForeignKey("CompanyId")]

@@ -12,7 +12,6 @@ namespace AssetManager.Core.Entities
     public class CheckoutRequest: Entity
     {
 
-
         [ForeignKey("UserId")]
         public int UserId { get; set; }
         public virtual User Admin { get; set; }

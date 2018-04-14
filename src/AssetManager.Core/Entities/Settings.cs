@@ -11,15 +11,10 @@ namespace AssetManager.Core.Entities
 {
     public class Settings: Entity
     {
-
-
-        //[ForeignKey("UserId")]
-        //public int UserId { get; set; }
-        //public virtual User Admin { get; set; }
-
+        public int UserId { get; set; }
         public int PerPage { get; set; }
 
-       // public string SiteName { get; set; }
+        public string SiteName { get; set; }
 
         public int QrCode { get; set; }
 
@@ -37,7 +32,7 @@ namespace AssetManager.Core.Entities
 
         public bool LoadRemote { get; set; }
 
-       // public string Logo { get; set; }
+        public string Logo { get; set; }
 
         public string HeaderColor { get; set; }
 
@@ -49,49 +44,49 @@ namespace AssetManager.Core.Entities
 
         public string BarcodeType { get; set; }
 
-        //public string SlackEndPoint { get; set; }
+        public string SlackEndPoint { get; set; }
 
-        //public string SlackChannel { get; set; }
+        public string SlackChannel { get; set; }
 
-        //public string SlackBotName { get; set; }
+        public string SlackBotName { get; set; }
 
-        //public string DefaultCurrency { get; set; }
+        public string DefaultCurrency { get; set; }
 
-        //public string CustomCss { get; set; }
+        public string CustomCss { get; set; }
 
-       // public bool Brand { get; set; }
+        public bool Brand { get; set; }
 
-        //public string LdapEnabled { get; set; }
+        public string LdapEnabled { get; set; }
 
-        //public string ladpServer { get; set; }
+        public string ladpServer { get; set; }
 
-        //public string LadpUName { get; set; }
+        public string LadpUName { get; set; }
 
-       // public string LdapPass { get; set; }
+        public string LdapPass { get; set; }
 
-       // public string LadpBaseDn { get; set; }
+        public string LadpBaseDn { get; set; }
 
-       // public string LdapFilter { get; set; }
+        public string LdapFilter { get; set; }
 
-      //  public string LdapUserNameField { get; set; }
+        public string LdapUserNameField { get; set; }
 
-       // public string ldapLNameField { get; set; }
+        public string ldapLNameField { get; set; }
 
-       // public string ldapFNameField { get; set; }
+        public string ldapFNameField { get; set; }
 
-      //  public string ldapAuthFilterQuery { get; set; }
+        public string ldapAuthFilterQuery { get; set; }
 
-       // public int ldapVersion { get; set; }
+        public int ldapVersion { get; set; }
 
-       // public string ldapActiveFlag { get; set; }
-      //  public string ldapEmpNum { get; set; }
-       // public string ldapEmail { get; set; }
+        public string ldapActiveFlag { get; set; }
+        public string ldapEmpNum { get; set; }
+        public string ldapEmail { get; set; }
 
-      //  public bool FullMultipleCompanySupport { get; set; }
+        public bool FullMultipleCompanySupport { get; set; }
 
-      //  public bool LdapCertIgnore { get; set; }
+        public bool LdapCertIgnore { get; set; }
 
-      //  public string Locale { get; set; }
+        public string Locale { get; set; }
 
         public bool LabelsPerPage { get; set; }
 

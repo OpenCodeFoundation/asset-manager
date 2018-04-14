@@ -10,8 +10,6 @@ namespace AssetManager.Core.Entities
 {
     public class User
     {
-
-
         public string Email { get; set; }
 
         public string Password { get; set; }
@@ -90,6 +88,5 @@ namespace AssetManager.Core.Entities
 
         public string Zip { get; set; }
 
-        public virtual ICollection<Asset> Asset { get; set; }
     }
 }

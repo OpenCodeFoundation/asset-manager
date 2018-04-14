@@ -21,14 +21,7 @@ namespace AssetManager.Core.Entities
         [ForeignKey("SupplierId")]
         public int SupplierId { get; set; }
         public virtual Supplier Supplier { get; set; }
-
-        ///// <summary>
-        ///// get user ID
-        ///// </summary>
-        //[ForeignKey("UserId")]
-        //public int UserId { get; set; }
-        //public virtual User User { get; set; }
-
+        public int UserId { get; set; }
 
         [Display(Name = "Quantity")]
         public int Qty { get; set; }
@@ -49,7 +42,6 @@ namespace AssetManager.Core.Entities
 
         [Display(Name = "Order Number")]
         public string OrderNumber { get; set; }
-
 
         [Display(Name = "Company")]
         [ForeignKey("CompanyId")]

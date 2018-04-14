@@ -12,8 +12,6 @@ namespace AssetManager.Core.Entities
     public class License: Entity
     {
 
-
-
         [Display(Name = "Software Name")]
         public string Name { get; set; }
 
@@ -36,25 +34,18 @@ namespace AssetManager.Core.Entities
         [Display(Name = "Notes")]
         public string Notes { get; set; }
 
-
-        //[ForeignKey("UserId")]
-        //public int UserId { get; set; }
-        //public virtual User User { get; set; }
+        public int UserId { get; set; }
 
         [Display(Name = "Depreciation")]
         [ForeignKey("DepreciationId")]
         public int DepreciationId { get; set; }
         public virtual Depreciation Depreciation { get; set; }
 
-
-
         [Display(Name = "Licensed to Name")]
         public string LicenseName { get; set; }
 
         [Display(Name = "Licensed to Email")]
         public string LicenseEmail { get; set; }
-
-       
 
         [Display(Name = "Supplier")]
         [ForeignKey("SupplierId")]
@@ -86,7 +77,7 @@ namespace AssetManager.Core.Entities
         public int ManufacturerId { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
 
-       // public bool Depreciate { get; set; }
+        public bool Depreciate { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

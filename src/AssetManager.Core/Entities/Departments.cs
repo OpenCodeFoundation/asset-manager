@@ -15,13 +15,7 @@ namespace AssetManager.Core.Entities
 
         [Display(Name = "Department Name")]
         public string Name { get; set; }
-
-        /// <summary>
-        /// get user id
-        /// </summary>
-        //[ForeignKey("UserId")]
-        //public int UserId { get; set; }
-        //public virtual User User { get; set; }
+        public int UserId { get; set; }
 
         [Display(Name = "Company")]
         [ForeignKey("CompanyId")]
@@ -34,13 +28,7 @@ namespace AssetManager.Core.Entities
         public int LocatonId { get; set; }
         public virtual Location Location { get; set; }
 
-
-        /// <summary>
-        /// get Manager of branch
-        /// </summary>
-        //[ForeignKey("ManagerId")]
-        //public int ManagerId { get; set; }
-        //public virtual User User { get; set; }
+        public int ManagerId { get; set; }
 
         [Display(Name = "Note")]
         public string Note { get; set; }
