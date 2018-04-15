@@ -37,7 +37,7 @@ namespace AssetManager.Core.Entities
         public int UserId { get; set; }
 
         [Display(Name = "Depreciation")]
-        [ForeignKey("DepreciationId")]
+        [ForeignKey("Depreciation")]
         public int DepreciationId { get; set; }
         public virtual Depreciation Depreciation { get; set; }
 
@@ -48,7 +48,7 @@ namespace AssetManager.Core.Entities
         public string LicenseEmail { get; set; }
 
         [Display(Name = "Supplier")]
-        [ForeignKey("SupplierId")]
+        [ForeignKey("Supplier")]
         public int SupplierId { get; set; }
         public virtual Supplier Supplier { get; set; }
 
@@ -68,12 +68,12 @@ namespace AssetManager.Core.Entities
         public bool Reassignable { get; set; }
 
         [Display(Name = "Company")]
-        [ForeignKey("CompanyId")]
+        [ForeignKey("Company")]
         public int CompanyId { get; set; }
         public virtual Company Company { get; set; }
 
         [Display(Name = "Manufacturer")]
-        [ForeignKey("ManufacturerId")]
+        [ForeignKey("Manufacturer")]
         public int ManufacturerId { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
 

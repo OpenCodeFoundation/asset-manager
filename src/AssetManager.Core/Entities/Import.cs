@@ -11,7 +11,6 @@ namespace AssetManager.Core.Entities
 {
     public class Import: Entity
     {
-
         public string Name { get; set; }
 
         public string FilePath { get; set; }

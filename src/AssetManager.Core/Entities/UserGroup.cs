@@ -10,11 +10,9 @@ namespace AssetManager.Core.Entities
 {
     public class UserGroup: Entity
     {
-        [ForeignKey("UserId")]
         public int UserId { get; set; }
-        public virtual User User { get; set; }
 
-        [ForeignKey("GroupId")]
+        [ForeignKey("Group")]
         public int GroupId { get; set; }
         public virtual Group Group { get; set; }
     }

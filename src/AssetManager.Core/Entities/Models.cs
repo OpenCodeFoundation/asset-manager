@@ -17,20 +17,20 @@ namespace AssetManager.Core.Entities
         public string ModelNumber { get; set; }
 
         [Required]
-        [ForeignKey("ManufacturerId")]
         [Display(Name = "Manufacturer Name")]
+        [ForeignKey("Manufacturer")]
         public int ManufacturerId { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
 
 
         [Required]
-        [ForeignKey("CategoryId")]
         [Display(Name = "Catagory Name")]
+        [ForeignKey("Category")]
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
 
         [Display(Name = "Depreciation")]
-        [ForeignKey("DepreciationId")]
+        [ForeignKey("Depreciation")]
         public int DepreciationId { get; set; }
         public virtual Depreciation Depreciation { get; set; }
         public int UserId { get; set; }

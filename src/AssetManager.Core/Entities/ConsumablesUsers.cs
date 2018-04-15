@@ -13,7 +13,7 @@ namespace AssetManager.Core.Entities
     {
         public int UserId { get; set; }
 
-        [ForeignKey("ConsumableId")]
+        [ForeignKey("Consumable")]
         public int ConsumableId { get; set; }
         public virtual Consumable Consumable { get; set; }
         public int AssignTo { get; set; }

@@ -14,11 +14,11 @@ namespace AssetManager.Core.Entities
         public int UserId { get; set; }
         public int AssignedQty { get; set; }
 
-        [ForeignKey("ComponentId")]
-        public int ComponentId { get; set; }
-        public virtual Components Component { get; set; }
+        [ForeignKey("Components")]
+        public int ComponentsId { get; set; }
+        public virtual Components Components { get; set; }
 
-        [ForeignKey("AssetId")]
+        [ForeignKey("Asset")]
         public int AssetId { get; set; }
         public virtual Asset Asset { get; set; }
         public DateTime CreatedAt { get; set; }

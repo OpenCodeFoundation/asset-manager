@@ -11,7 +11,7 @@ namespace AssetManager.Core.Entities
 {
     public class RequestedAsset: Entity
     {
-        [ForeignKey("AssetId")]
+        [ForeignKey("Asset")]
         public int AssetId { get; set; }
         public virtual Asset Asset { get; set; }
         public int UserId { get; set; }

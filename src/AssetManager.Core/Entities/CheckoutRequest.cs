@@ -11,14 +11,10 @@ namespace AssetManager.Core.Entities
 {
     public class CheckoutRequest: Entity
     {
-
-        [ForeignKey("UserId")]
         public int UserId { get; set; }
-        public virtual User Admin { get; set; }
 
-        [ForeignKey("RequestableId")]
+        [ForeignKey("Asset")]
         public int RequestableId { get; set; }
-        public virtual Asset Asset { get; set; }
 
         [ForeignKey("RequestableType")]
         public int RequestableType { get; set; }
@@ -28,5 +24,7 @@ namespace AssetManager.Core.Entities
         public DateTime CreatedAt { get; set; }
 
         public DateTime UpdatedAt { get; set; }
+
+        public virtual Asset Asset { get; set; }
     }
 }

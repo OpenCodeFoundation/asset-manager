@@ -15,18 +15,14 @@ namespace AssetManager.Core.Entities
         public int UserId { get; set; }
         public string ActionType { get; set; }
 
-        [ForeignKey("AssetId")]
+        [ForeignKey("Asset")]
         public int AssetId { get; set; }
-        public virtual Asset Asset { get; set; }
-   
-        [ForeignKey("CheckedoutTo")]
+
         public int CheckedoutTo { get; set; }
-        public virtual User CheckedoutToUser { get; set; }
 
-        [ForeignKey("LocationId")]
+        [ForeignKey("Location")]
         public int LocatonId { get; set; }
-        public virtual Location Location { get; set; }
-
+      
         public DateTime CreatedAt { get; set; }
 
         public DateTime UpdatedAt { get; set; }
@@ -42,22 +38,23 @@ namespace AssetManager.Core.Entities
 
         public DateTime AcceptedAt { get; set; }
 
-        [ForeignKey("AccessoryId")]
+        [ForeignKey("Accessory")]
         public int AccessoryId { get; set; }
-        public virtual Accessory Accessory { get; set; }
 
-        [ForeignKey("AcceptedId")]
         public int AcceptedId { get; set; }
-        public virtual User AcceptedBy { get; set; }
-
-        [ForeignKey("ConsumableId")]
+ 
+        [ForeignKey("Consumable")]
         public int ConsumableId { get; set; }
-        public virtual Consumable Consumable { get; set; }
 
         public DateTime ExpectedCheckin { get; set; }
 
-        [ForeignKey("ComponentId")]
-        public int ComponentId { get; set; }
-        public virtual Components Component { get; set; }
+        [ForeignKey("Components")]
+        public int ComponentsId { get; set; }
+
+        public virtual Components Components { get; set; }
+        public virtual Asset Asset { get; set; }
+        public virtual Consumable Consumable { get; set; }
+        public virtual Accessory Accessory { get; set; }
+        public virtual Location Location { get; set; }
     }
 }

@@ -13,24 +13,20 @@ namespace AssetManager.Core.Entities
     {
 
         [Required]
-        [ForeignKey("CompanyId")]
+        [ForeignKey("Company")]
         public int CompanyId { get; set; }
-        public virtual Company Company { get; set; }
-
+        
         [Required]
         public string AssetTag { get; set; }
-
+        
+        [Required]
+        [ForeignKey("Models")]
+        public int ModelsId { get; set; }
 
         [Required]
-        [ForeignKey("ModelId")]
-        public int ModelId { get; set; }
-        public virtual Models Model { get; set; }
-
-        [Required]
-        [ForeignKey("StatusId")]
+        [ForeignKey("Status")]
         public int StatusId { get; set; }
-        public virtual Status Status { get; set; }
-
+       
         [Display(Name = "Serial")]
         public string Serial { get; set; }
 
@@ -42,9 +38,9 @@ namespace AssetManager.Core.Entities
 
 
         [Required]
-        [ForeignKey("SupplierId")]
+        [ForeignKey("Supplier")]
         public int SupplierId { get; set; }
-        public virtual Supplier Supplier { get; set; }
+        
 
 
         [Display(Name ="Order Number")]
@@ -59,11 +55,8 @@ namespace AssetManager.Core.Entities
         [Display(Name = "Note")]
         public string Notes { get; set; }
 
-
-        [ForeignKey("LocationId")]
+        [ForeignKey("Location")]
         public int LocationId { get; set; }
-        public virtual Location Location { get; set; }
-
 
         [Display(Name = "Requestable")]
         public bool Requestable { get; set; }
@@ -81,12 +74,7 @@ namespace AssetManager.Core.Entities
         public byte Physical { get; set; }
 
         public DateTime DeletedAt { get; set; }
-
-       
-
         public bool Archived { get; set; }
-
-
 
         public bool Depreciate { get; set; }
 
@@ -97,20 +85,11 @@ namespace AssetManager.Core.Entities
         public DateTime LastAuditDate { get; set; }
         public DateTime NextAuditDate { get; set; }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        public virtual Company Company { get; set; }
+        public virtual Status Status { get; set; }
+        public virtual Models Models { get; set; }
+        public virtual Supplier Supplier { get; set; }
+        public virtual Location Location { get; set; }
 
     }
 }
