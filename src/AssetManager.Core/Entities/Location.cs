@@ -15,8 +15,8 @@ namespace AssetManager.Core.Entities
         public string Name { get; set; }
 
         [Display(Name = ("Parent"))]
-        [ForeignKey("ParentId")]
-        public int ParentId { get; set; }
+        [ForeignKey("Locations")]
+        public int LocationsId { get; set; }
         public virtual Location Locations { get; set; }
         public int Manager { get; set; }
 

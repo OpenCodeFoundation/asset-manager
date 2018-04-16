@@ -16,19 +16,17 @@ namespace AssetManager.Core.Entities
         public string Name { get; set; }
 
         [Display(Name = "Category")]
-        [ForeignKey("CategoryId")]
+        [ForeignKey("Category")]
         public int CategoryId { get; set; }
-        public virtual Category Category { get; set; }
 
         [Display(Name = "Location")]
-        [ForeignKey("LocationId")]
+        [ForeignKey("Location")]
         public int LocatonId { get; set; }
-        public virtual Location Location { get; set; }
 
         [Display(Name = "Company")]
-        [ForeignKey("CompanyId")]
+        [ForeignKey("Company")]
         public int CompanyId { get; set; }
-        public virtual Company Company { get; set; }
+        
         public int UserId { get; set; }
 
         [Display(Name ="Quantity")]
@@ -57,6 +55,8 @@ namespace AssetManager.Core.Entities
 
         [Display(Name = "Image")]
         public string Image { get; set; }
-
+        public virtual Category Category { get; set; }
+        public virtual Location Location { get; set; }
+        public virtual Company Company { get; set; }
     }
 }

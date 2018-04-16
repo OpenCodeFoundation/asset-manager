@@ -11,20 +11,18 @@ namespace AssetManager.Core.Entities
 {
     public class Departments: Entity
     {
-
-
         [Display(Name = "Department Name")]
         public string Name { get; set; }
         public int UserId { get; set; }
 
         [Display(Name = "Company")]
-        [ForeignKey("CompanyId")]
+        [ForeignKey("Company")]
         public int CompanyId { get; set; }
         public virtual Company Company { get; set; }
 
 
         [Display(Name = "Location")]
-        [ForeignKey("LocationId")]
+        [ForeignKey("Location")]
         public int LocatonId { get; set; }
         public virtual Location Location { get; set; }
 
@@ -41,8 +39,5 @@ namespace AssetManager.Core.Entities
         public DateTime UpdatedAt { get; set; }
 
         public DateTime DeletedAt { get; set; }
-
-        
-
     }
 }

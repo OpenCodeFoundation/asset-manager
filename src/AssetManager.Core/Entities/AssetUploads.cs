@@ -14,16 +14,13 @@ namespace AssetManager.Core.Entities
         public int UserId { get; set; }
         public string FileName { get; set; }
 
-        [ForeignKey("AssetId")]
+        [ForeignKey("Asset")]
         public int AssetId { get; set; }
-        public virtual Asset Asset { get; set; }
-
+        
         public string FileNotes { get; set; }
-
         public DateTime CreatedAt { get; set; }
-
         public DateTime UpdatedAt { get; set; }
-
         public DateTime DeletedAt { get; set; }
+        public virtual Asset Asset { get; set; }
     }
 }

@@ -7,7 +7,6 @@ namespace AssetManager.Core.Entities
 {
     public class Category : Entity
     {
-
         [Required]
         [Display(Name = ("Catagory Name"))]
         public string Name { get; set; }
@@ -31,14 +30,6 @@ namespace AssetManager.Core.Entities
         public DateTime ModifiedAt { get; set; }
 
         public DateTime DeletedAt { get; set; }
-
-        public virtual ICollection<Models> Model { get; set; }
-
-        public virtual ICollection<Components> Component { get; set; }
-
-        public virtual ICollection<Accessory> Accessory { get; set; }
-
-        public virtual ICollection<Consumable> Consumable { get; set; }
 
     }
 }

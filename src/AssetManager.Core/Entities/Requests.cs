@@ -11,14 +11,10 @@ namespace AssetManager.Core.Entities
 {
     public class Requests: Entity
     {
-        [ForeignKey("AssetId")]
+        [ForeignKey("Asset")]
         public int AssetId { get; set; }
         public virtual Asset Asset { get; set; }
-
-        [ForeignKey("UserId")]
         public int UserId { get; set; }
-        public virtual User User { get; set; }
-
         public string RequestedCode { get; set; }
 
         public DateTime CreatedAt { get; set; }

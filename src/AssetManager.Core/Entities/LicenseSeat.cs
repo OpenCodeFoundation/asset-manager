@@ -12,23 +12,15 @@ namespace AssetManager.Core.Entities
 
     public class LicenseSeat : Entity
     {
-        [ForeignKey("LicenseId")]
+        [ForeignKey("License")]
         public int LicenseId { get; set; }
         public virtual License License { get; set; }
-
-
-        [Display(Name = "User")]
-        [ForeignKey("AssignTo")]
         public int AssignTo { get; set; }
-        public virtual User AssignToUser { get; set; }
-
-
         [Display(Name = "Note")]
         public string Note { get; set; }
 
-        
         [Display(Name = "Asset")]
-        [ForeignKey("AssetId")]
+        [ForeignKey("Asset")]
         public int AssetId { get; set; }
         public virtual Asset Asset { get; set; }
         public int UserId { get; set; }
