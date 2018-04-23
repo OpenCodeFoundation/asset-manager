@@ -38,28 +38,23 @@ namespace AssetManager.Web.Controllers
         }
 
         // GET: Supplier/Create
-        public async Task<IActionResult> Create(Supplier supplier)
+        [HttpGet]
+        public IActionResult Create()
         {
-            try
-            {
-               await _supplierRepository.AddAsync(supplier);
-                return RedirectToAction("index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View();
             
         }
 
         // POST: Supplier/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(Supplier Supplier)
         {
             try
             {
                 // TODO: Add insert logic here
+
+                await _supplierRepository.AddAsync(Supplier);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -71,16 +66,19 @@ namespace AssetManager.Web.Controllers
 
         // GET: Supplier/Edit/5
         [HttpGet]
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            
-
-            return View();
+            var supplier = await _supplierRepository.GetByIdAsync(id);
+            if(supplier == null)
+            {
+                return NotFound();
+            }
+            return View(supplier);
         }
 
         // POST: Supplier/Edit/5
