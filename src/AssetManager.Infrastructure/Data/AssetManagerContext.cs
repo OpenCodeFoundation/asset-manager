@@ -11,5 +11,6 @@ namespace AssetManager.Infrastructure.Data
         public AssetManagerContext( DbContextOptions<AssetManagerContext> options) : base(options) { } 
 
         DbSet<Company> Companies { get; set; }
+        DbSet<Supplier> Suppliers { get; set; }
     }
 }
