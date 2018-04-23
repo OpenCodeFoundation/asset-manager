@@ -11,23 +11,29 @@ namespace AssetManager.Web.Controllers
 {
     public class SupplierController : Controller
     {
-        private readonly IAsyncRepository<Supplier> _companyRepository;
+        private readonly IAsyncRepository<Supplier> _supplierRepository;
         public SupplierController(IAsyncRepository<Supplier> repository)
         {
-            _companyRepository = repository;
+            _supplierRepository = repository;
         }
 
         // GET: Supplier
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var companies = await _companyRepository.ListAllAsync();
+            var companies = await _supplierRepository.ListAllAsync();
             return View(companies);
         }
 
         // GET: Supplier/Details/5
         public IActionResult Details(int id)
         {
+            if(id == null)
+            {
+                return NotFound();
+            }
+
+
             return View();
         }
 
@@ -36,7 +42,7 @@ namespace AssetManager.Web.Controllers
         {
             try
             {
-               await _companyRepository.AddAsync(supplier);
+               await _supplierRepository.AddAsync(supplier);
                 return RedirectToAction("index");
             }
             catch
@@ -65,8 +71,15 @@ namespace AssetManager.Web.Controllers
 
         // GET: Supplier/Edit/5
         [HttpGet]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            
+
             return View();
         }
 

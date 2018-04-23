@@ -30,9 +30,10 @@ namespace AssetManager.Infrastructure.Data
             await _dbContext.SaveChangesAsync();
         }
 
-        public Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            
+            return await _dbContext.Set<T>().FindAsync(id);
         }
 
         public async Task<List<T>> ListAllAsync()
@@ -40,9 +41,10 @@ namespace AssetManager.Infrastructure.Data
             return await _dbContext.Set<T>().ToListAsync();
         }
 
-        public Task UpdateAsync(T entity)
+        public async Task UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Entry(entity).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
