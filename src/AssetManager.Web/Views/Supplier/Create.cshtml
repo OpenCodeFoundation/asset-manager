@@ -14,7 +14,7 @@
             <div class="box-header with-border">
                 
             </div>
-            <form asp-action="Create" class="form-horizontal">
+            <form asp-controller="Supplier" asp-action="Create" method="post" class="form-horizontal">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Id" />
 

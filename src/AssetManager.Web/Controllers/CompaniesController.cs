@@ -42,7 +42,6 @@ namespace AssetManager.Web.Controllers
 
         // POST: Companies/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Company company)
         {
             try

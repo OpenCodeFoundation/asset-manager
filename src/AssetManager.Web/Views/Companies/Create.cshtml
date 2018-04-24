@@ -13,7 +13,7 @@
             <div class="box-header with-border">
 
             </div>
-            <form asp-action="Create" class="form-horizontal">
+            <form asp-controller="Companies"  method="post" class="form-horizontal">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Id" />
 
@@ -39,7 +39,7 @@
                     <div class="form-group">
                         <div class="col-sm-5"></div>
                         <div class="col-sm-5">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" asp-action="/Companies/Create" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
                 </div>
