@@ -17,6 +17,7 @@ namespace AssetManager.Web.Controllers
         public CompaniesController(IAsyncRepository<Company> repository)
         {
             this._companyRepository = repository;
+
         }
 
         // GET: Companies
@@ -46,8 +47,7 @@ namespace AssetManager.Web.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
-
+                
                 await _companyRepository.AddAsync(company);
 
                 return RedirectToAction(nameof(Index));
@@ -59,7 +59,7 @@ namespace AssetManager.Web.Controllers
         }
 
         // GET: Companies/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
             return View();
         }

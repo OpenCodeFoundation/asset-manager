@@ -12,7 +12,7 @@
     <div class="col-md-8 col-md-offset-2">
         <div class="box box-info">
             <div class="box-header with-border">
-                
+
             </div>
             <form asp-controller="Supplier" asp-action="Create" method="post" class="form-horizontal">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -141,12 +141,12 @@
                         </div>
                     </div>
                 </div>
-</form>
-        </div>
+            </form>
         </div>
     </div>
+</div>
     <div>
-        <a asp-action="Index">Back to List</a>
+        <a href="@Url.Action("Index","Supplier")">Back to List</a>
     </div>
 
     @section Scripts {
