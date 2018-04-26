@@ -28,11 +28,6 @@ namespace AssetManager.Web.Controllers
             return View(companies);
         }
 
-        // GET: Companies/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         // GET: Companies/Create
 
@@ -47,7 +42,8 @@ namespace AssetManager.Web.Controllers
         {
             try
             {
-                
+                company.CreateDate = DateTime.Now;
+                company.UpdateDate = DateTime.Now;
                 await _companyRepository.AddAsync(company);
 
                 return RedirectToAction(nameof(Index));
@@ -79,6 +75,22 @@ namespace AssetManager.Web.Controllers
             {
                 return View();
             }
+        }
+
+        // GET: Companies/Details/5
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var company = await _companyRepository.GetByIdAsync(id);
+            if (company == null)
+            {
+                return NotFound();
+            }
+            return View(company);
         }
 
         // GET: Companies/Delete/5

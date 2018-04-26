@@ -33,7 +33,7 @@ namespace AssetManager.Infrastructure.Data
         public async Task<T> GetByIdAsync(int id)
         {
             
-            return await _dbContext.Set<T>().FindAsync(id);
+            return await _dbContext.Set<T>().SingleOrDefaultAsync(m => m.Id == id);
         }
 
         public async Task<List<T>> ListAllAsync()
