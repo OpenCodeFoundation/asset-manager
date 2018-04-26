@@ -108,19 +108,31 @@ namespace AssetManager.Web.Controllers
         }
 
         // GET: Supplier/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var supplier = await _supplierRepository.GetByIdAsync(id);
+            if (supplier == null)
+            {
+                return NotFound();
+            }
+            return View(supplier);
         }
 
         // POST: Supplier/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> Delete(int id, Supplier supplier)
         {
             try
             {
-                // TODO: Add delete logic here
+                if (id == supplier.Id)
+                {
+                    await _supplierRepository.DeleteAsync(supplier);
+                }
 
                 return RedirectToAction(nameof(Index));
             }
