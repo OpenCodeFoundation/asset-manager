@@ -27,9 +27,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Address)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.AddressTwo)
-                    </th>
+
                     <th>
                         @Html.DisplayNameFor(model => model.City)
                     </th>
@@ -64,7 +62,7 @@
                         @Html.DisplayNameFor(model => model.Image)
                     </th>
 
-                    <th></th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -75,11 +73,10 @@
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Address)
-                        </td>
-                        <td>
+                            @Html.DisplayFor(modelItem => item.Address),
                             @Html.DisplayFor(modelItem => item.AddressTwo)
                         </td>
+
                         <td>
                             @Html.DisplayFor(modelItem => item.City)
                         </td>

@@ -74,11 +74,15 @@ namespace AssetManager.Web.Controllers
         // POST: Supplier/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, Supplier supplier)
         {
             try
             {
-                // TODO: Add update logic here
+                if (id == supplier.Id)
+                {
+                    supplier.UpdatedAt = DateTime.Now;
+                    await _supplierRepository.UpdateAsync(supplier);
+                }
 
                 return RedirectToAction(nameof(Index));
             }
