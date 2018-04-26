@@ -55,19 +55,32 @@ namespace AssetManager.Web.Controllers
         }
 
         // GET: Companies/Edit/5
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var company = await _companyRepository.GetByIdAsync(id);
+            if (company == null)
+            {
+                return NotFound();
+            }
+            return View(company);
         }
 
         // POST: Companies/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, Company company)
         {
             try
             {
-                // TODO: Add update logic here
+                if (id == company.Id)
+                {
+                    company.UpdateDate = DateTime.Now;
+                   await _companyRepository.UpdateAsync(company);
+                }
 
                 return RedirectToAction(nameof(Index));
             }
