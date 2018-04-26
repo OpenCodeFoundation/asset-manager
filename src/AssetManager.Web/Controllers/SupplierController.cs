@@ -25,17 +25,7 @@ namespace AssetManager.Web.Controllers
             return View(companies);
         }
 
-        // GET: Supplier/Details/5
-        public IActionResult Details(int id)
-        {
-            if(id == null)
-            {
-                return NotFound();
-            }
 
-
-            return View();
-        }
 
         // GET: Supplier/Create
         [HttpGet]
@@ -96,6 +86,21 @@ namespace AssetManager.Web.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var supplier = await _supplierRepository.GetByIdAsync(id);
+            if (supplier == null)
+            {
+                return NotFound();
+            }
+            return View(supplier);
         }
 
         // GET: Supplier/Delete/5
