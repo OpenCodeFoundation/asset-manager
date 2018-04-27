@@ -30,7 +30,7 @@ namespace AssetManager.Web.Controllers
 
 
         // GET: Companies/Create
-
+        [HttpGet]
         public  IActionResult Create()
         {
             return View();
@@ -55,16 +55,14 @@ namespace AssetManager.Web.Controllers
         }
 
         // GET: Companies/Edit/5
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+           
             var company = await _companyRepository.GetByIdAsync(id);
             if (company == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
             return View(company);
         }
@@ -94,29 +92,24 @@ namespace AssetManager.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            
             var company = await _companyRepository.GetByIdAsync(id);
             if (company == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
             return View(company);
         }
 
         // GET: Companies/Delete/5
+        [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+
             var company = await _companyRepository.GetByIdAsync(id);
             if (company == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
             return View(company);
         }
