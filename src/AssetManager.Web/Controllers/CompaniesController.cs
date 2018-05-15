@@ -122,7 +122,7 @@ namespace AssetManager.Web.Controllers
             return View(company);
         }
 
-        // POST: Companies/Delete/5
+      
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id, Company company)

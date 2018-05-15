@@ -102,16 +102,16 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            var supplier = await _supplierRepository.GetByIdAsync(id);
-            if (supplier == null)
+            var data = await _supplierRepository.GetByIdAsync(id);
+            if (data == null)
             {
                 return RedirectToAction(nameof(Index));
             }
-            return View(supplier);
+            return View(data);
         }
 
-        // GET: Supplier/Delete/5
-        public async Task<IActionResult> Delete(int id=0)
+     
+        public async Task<IActionResult> Delete(int id)
         {
             if (id <= 0)
             {
@@ -125,7 +125,7 @@ namespace AssetManager.Web.Controllers
             return View(supplier);
         }
 
-        // POST: Supplier/Delete/5
+    
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id, Supplier supplier)

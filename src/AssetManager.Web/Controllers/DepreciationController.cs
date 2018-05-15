@@ -19,14 +19,14 @@ namespace AssetManager.Web.Controllers
 
 
         [HttpGet]
-        public async Task<ActionResult> Index()
+        public async Task<IActionResult> Index()
         {
             var depreciation = await _depreciationRepository.ListAllAsync();
             return View(depreciation);
         }
 
         [HttpGet]
-        public async Task<ActionResult> Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
             if(id <= 0)
             {
@@ -42,7 +42,7 @@ namespace AssetManager.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -50,7 +50,7 @@ namespace AssetManager.Web.Controllers
 
         [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Insert(Depreciation item)
+        public async Task<IActionResult> Insert(Depreciation item)
         {
             if(item == null)
             {
@@ -71,7 +71,7 @@ namespace AssetManager.Web.Controllers
 
         
         [HttpGet]
-        public async Task<ActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
             if (id <= 0)
             {
@@ -90,7 +90,7 @@ namespace AssetManager.Web.Controllers
        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(int id, Depreciation obj)
+        public async Task<IActionResult> Edit(int id, Depreciation obj)
         {
           
             try
@@ -105,20 +105,30 @@ namespace AssetManager.Web.Controllers
             }
         }
 
-        
-        public ActionResult Delete(int id)
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            if(id <= 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            var deleteIteam = await _depreciationRepository.GetByIdAsync(id);
+            return View(deleteIteam);
         }
 
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> Delete(int id, Depreciation item)
         {
+            if(id != item.Id)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             try
             {
-                
+                await _depreciationRepository.DeleteAsync(item);
 
                 return RedirectToAction(nameof(Index));
             }
