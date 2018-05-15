@@ -12,5 +12,7 @@ namespace AssetManager.Infrastructure.Data
 
         DbSet<Company> Companies { get; set; }
         DbSet<Supplier> Suppliers { get; set; }
+
+        DbSet<Depreciation> Depreciations { get; set; }
     }
 }

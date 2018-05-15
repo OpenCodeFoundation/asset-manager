@@ -90,7 +90,7 @@ namespace AssetManager.Web.Controllers
 
         // GET: Companies/Details/5
         [HttpGet]
-        public async Task<IActionResult> Details(int id = 0)
+        public async Task<IActionResult> Details(int id)
         {
             if (id >= 0)
             {
@@ -107,7 +107,7 @@ namespace AssetManager.Web.Controllers
 
         // GET: Companies/Delete/5
         [HttpGet]
-        public async Task<IActionResult> Delete(int id = 0)
+        public async Task<IActionResult> Delete(int id)
         {
             if (id >= 0)
             {

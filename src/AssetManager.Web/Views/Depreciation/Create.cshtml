@@ -1,10 +1,11 @@
-﻿@model AssetManager.Core.Entities.Company
+﻿@model AssetManager.Core.Entities.Depreciation
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h2>Create Company</h2>
+<h2>Create Depreciation</h2>
+
 <hr />
 <div class="row">
     <!-- right column -->
@@ -13,14 +14,12 @@
             <div class="box-header with-border">
 
             </div>
-            <form asp-controller="Companies"  method="post" class="form-horizontal">
+            <form asp-controller="Depreciation" method="post" class="form-horizontal">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="Id" />
-
                 <div class="box-body">
-
+                    <input type="hidden" asp-for="Id" />
                     <div class="form-group">
-                        <label asp-for="Name" class="control-label col-md-3">Company Name</label>
+                        <label asp-for="Name" class="control-label col-md-3"></label>
                         <div class="col-md-7">
                             <input asp-for="Name" class="form-control" />
                             <span asp-validation-for="Name" class="text-danger"></span>
@@ -28,13 +27,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label asp-for="ImageUrl" class="control-label col-md-3">Upload Image</label>
+                        <label asp-for="Months" class="control-label col-md-3"></label>
                         <div class="col-md-7">
-                            <input type="file" asp-for="ImageUrl" class="form-control" />
-                            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                            <input asp-for="Months" class="form-control" />
+                            <span asp-validation-for="Months" class="text-danger"></span>
                         </div>
                     </div>
-
 
                     <div class="form-group">
                         <div class="col-sm-5"></div>
@@ -42,16 +40,15 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
-
                 </div>
             </form>
         </div>
     </div>
 </div>
-<div>
-    <a href="@Url.Action("Index","Companies")">Back to List</a>
-</div>
 
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

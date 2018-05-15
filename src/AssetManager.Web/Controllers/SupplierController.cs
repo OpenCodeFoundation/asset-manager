@@ -35,7 +35,7 @@ namespace AssetManager.Web.Controllers
             
         }
 
-        // POST: Supplier/Create
+    
         [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Insert(Supplier Supplier)
@@ -59,7 +59,7 @@ namespace AssetManager.Web.Controllers
 
         // GET: Supplier/Edit/5
         [HttpGet]
-        public async Task<IActionResult> Edit(int id = 0)
+        public async Task<IActionResult> Edit(int id)
         {
             if (id >= 0)
             {
@@ -96,7 +96,7 @@ namespace AssetManager.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details(int id=0)
+        public async Task<IActionResult> Details(int id)
         {
             if (id >= 0)
             {
