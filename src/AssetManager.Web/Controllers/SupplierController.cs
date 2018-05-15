@@ -36,13 +36,16 @@ namespace AssetManager.Web.Controllers
         }
 
         // POST: Supplier/Create
-        [HttpPost]
+        [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Supplier Supplier)
+        public async Task<IActionResult> Insert(Supplier Supplier)
         {
+            if(Supplier == null)
+            {
+                return RedirectToAction(nameof(Create));
+            }
             try
             {
-                // TODO: Add insert logic here
 
                 await _supplierRepository.AddAsync(Supplier);
 
@@ -56,11 +59,11 @@ namespace AssetManager.Web.Controllers
 
         // GET: Supplier/Edit/5
         [HttpGet]
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(int id = 0)
         {
-            if (id == null)
+            if (id >= 0)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
 
             var supplier = await _supplierRepository.GetByIdAsync(id);
@@ -93,39 +96,39 @@ namespace AssetManager.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int id=0)
         {
-            if (id == null)
+            if (id >= 0)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
             var supplier = await _supplierRepository.GetByIdAsync(id);
             if (supplier == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
             return View(supplier);
         }
 
         // GET: Supplier/Delete/5
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id=0)
         {
-            if (id == null)
+            if (id >= 0)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
             var supplier = await _supplierRepository.GetByIdAsync(id);
             if (supplier == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
             return View(supplier);
         }
 
         // POST: Supplier/Delete/5
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, Supplier supplier)
+        public async Task<IActionResult> DeleteConfirmed(int id, Supplier supplier)
         {
             try
             {
