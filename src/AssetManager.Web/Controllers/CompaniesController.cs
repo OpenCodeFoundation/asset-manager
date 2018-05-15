@@ -90,8 +90,12 @@ namespace AssetManager.Web.Controllers
 
         // GET: Companies/Details/5
         [HttpGet]
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int id = 0)
         {
+            if (id >= 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             
             var company = await _companyRepository.GetByIdAsync(id);
             if (company == null)
@@ -103,8 +107,12 @@ namespace AssetManager.Web.Controllers
 
         // GET: Companies/Delete/5
         [HttpGet]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id = 0)
         {
+            if (id >= 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
 
             var company = await _companyRepository.GetByIdAsync(id);
             if (company == null)
@@ -115,14 +123,14 @@ namespace AssetManager.Web.Controllers
         }
 
         // POST: Companies/Delete/5
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, Company company)
+        public async Task<IActionResult> DeleteConfirmed(int id, Company company)
         {
            
             try
             {
-                // TODO: Add delete logic here
+                
                 if (id == company.Id)
                 {
                     await _companyRepository.DeleteAsync(company);
