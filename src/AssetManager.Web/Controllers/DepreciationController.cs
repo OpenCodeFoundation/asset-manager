@@ -28,12 +28,12 @@ namespace AssetManager.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> Details(int id)
         {
-            if(id >= 0)
+            if(id <= 0)
             {
                 return RedirectToAction(nameof(Index));
             }
 
-            var depIteam = _depreciationRepository.GetByIdAsync(id);
+            var depIteam = await _depreciationRepository.GetByIdAsync(id);
             if(depIteam == null)
             {
                 return RedirectToAction(nameof(Index));
@@ -73,12 +73,12 @@ namespace AssetManager.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> Edit(int id)
         {
-            if (id >= 0)
+            if (id <= 0)
             {
                 return RedirectToAction(nameof(Index));
             }
 
-            var dep = _depreciationRepository.GetByIdAsync(id);
+            var dep = await _depreciationRepository.GetByIdAsync(id);
             if(dep == null)
             {
                 return RedirectToAction(nameof(Index));
@@ -92,10 +92,7 @@ namespace AssetManager.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(int id, Depreciation obj)
         {
-            if(id != obj.Id)
-            {
-                return RedirectToAction(nameof(Index));
-            }
+          
             try
             {
                await _depreciationRepository.UpdateAsync(obj);
@@ -108,20 +105,20 @@ namespace AssetManager.Web.Controllers
             }
         }
 
-        // GET: Depreciation/Delete/5
+        
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Depreciation/Delete/5
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
+                
 
                 return RedirectToAction(nameof(Index));
             }

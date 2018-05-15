@@ -61,7 +61,7 @@ namespace AssetManager.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            if (id >= 0)
+            if (id <= 0)
             {
                 return RedirectToAction(nameof(Index));
             }
@@ -98,7 +98,7 @@ namespace AssetManager.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            if (id >= 0)
+            if (id <= 0)
             {
                 return RedirectToAction(nameof(Index));
             }
@@ -113,7 +113,7 @@ namespace AssetManager.Web.Controllers
         // GET: Supplier/Delete/5
         public async Task<IActionResult> Delete(int id=0)
         {
-            if (id >= 0)
+            if (id <= 0)
             {
                 return RedirectToAction(nameof(Index));
             }
