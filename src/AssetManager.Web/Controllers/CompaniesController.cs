@@ -17,36 +17,33 @@ namespace AssetManager.Web.Controllers
         public CompaniesController(IAsyncRepository<Company> repository)
         {
             this._companyRepository = repository;
+
         }
 
         // GET: Companies
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var companies = await _companyRepository.ListAllAsync();
             return View(companies);
         }
 
-        // GET: Companies/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         // GET: Companies/Create
-        public ActionResult Create()
+        [HttpGet]
+        public  IActionResult Create()
         {
             return View();
         }
 
         // POST: Companies/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Company company)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                company.CreateDate = DateTime.Now;
+                company.UpdateDate = DateTime.Now;
                 await _companyRepository.AddAsync(company);
 
                 return RedirectToAction(nameof(Index));
@@ -58,19 +55,30 @@ namespace AssetManager.Web.Controllers
         }
 
         // GET: Companies/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+           
+            var company = await _companyRepository.GetByIdAsync(id);
+            if (company == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View(company);
         }
 
         // POST: Companies/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, Company company)
         {
             try
             {
-                // TODO: Add update logic here
+                if (id == company.Id)
+                {
+                    company.UpdateDate = DateTime.Now;
+                   await _companyRepository.UpdateAsync(company);
+                }
 
                 return RedirectToAction(nameof(Index));
             }
@@ -80,20 +88,53 @@ namespace AssetManager.Web.Controllers
             }
         }
 
-        // GET: Companies/Delete/5
-        public ActionResult Delete(int id)
+        // GET: Companies/Details/5
+        [HttpGet]
+        public async Task<IActionResult> Details(int id = 0)
         {
-            return View();
+            if (id >= 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            
+            var company = await _companyRepository.GetByIdAsync(id);
+            if (company == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View(company);
+        }
+
+        // GET: Companies/Delete/5
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id = 0)
+        {
+            if (id >= 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            var company = await _companyRepository.GetByIdAsync(id);
+            if (company == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View(company);
         }
 
         // POST: Companies/Delete/5
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> DeleteConfirmed(int id, Company company)
         {
+           
             try
             {
-                // TODO: Add delete logic here
+                
+                if (id == company.Id)
+                {
+                    await _companyRepository.DeleteAsync(company);
+                }
 
                 return RedirectToAction(nameof(Index));
             }

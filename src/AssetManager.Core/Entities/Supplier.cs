@@ -15,7 +15,7 @@ namespace AssetManager.Core.Entities
         [Display(Name ="Name")]
         public string Name { get; set; }
 
-        [Display(Name = "Name")]
+        [Display(Name = "Address")]
         public string Address { get; set; }
 
         [Display(Name = " ")]
@@ -42,10 +42,8 @@ namespace AssetManager.Core.Entities
         [Display(Name = "Contact")]
         public string Contact { get; set; }
 
-
         [Display(Name = "Note")]
         public string Notes { get; set; }
-
 
         [Display(Name = "Zip")]
         public string Zip { get; set; }
@@ -55,9 +53,9 @@ namespace AssetManager.Core.Entities
 
         [Display(Name = "Image")]
         public string Image { get; set; }
+
         public DateTime CreateAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        public int UserId { get; set; }
         public DateTime DeletedAt { get; set; }
 
     }
