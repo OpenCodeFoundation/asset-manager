@@ -1,0 +1,82 @@
+﻿@model AssetManager.Core.Entities.Category
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Category</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label col-md-3"></label>
+                <div class="col-md-7">
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Type" class="control-label col-md-3"></label>
+                <div class="col-md-7">
+                    <input asp-for="Type" class="form-control" />
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EulaText" class="control-label col-md-3"></label>
+                <div class="col-md-7">
+                    <textarea asp-for="EulaText" class="form-control" />
+                    <span asp-validation-for="EulaText" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label class="control-label col-md-3">
+                        <input asp-for="DefaultEula" /> @Html.DisplayNameFor(model => model.DefaultEula)
+                    </label>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label class="control-label col-md-3">
+                        <input asp-for="CheckInEmail" /> @Html.DisplayNameFor(model => model.CheckInEmail)
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Image" class="control-label col-md-3"></label>
+                <div class="col-md-7">
+                    <input asp-for="Image" class="form-control" />
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-5"></div>
+                <div class="col-sm-5">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
