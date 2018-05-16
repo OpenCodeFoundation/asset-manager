@@ -11,8 +11,9 @@ namespace AssetManager.Core.Entities
 {
     public class Manufacturer: Entity
     {
-        [Required]
+        
         [Display(Name =("Manufacturer Name"))]
+        [Required]
         public string Name { get; set; }
         
         [Display(Name =("Web Site"))]

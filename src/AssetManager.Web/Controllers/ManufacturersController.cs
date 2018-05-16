@@ -18,6 +18,7 @@ namespace AssetManager.Web.Controllers
             _manufacturerRepository = repository;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var allManufaturer = await _manufacturerRepository.ListAllAsync();
@@ -25,13 +26,22 @@ namespace AssetManager.Web.Controllers
         }
 
         // GET: Manufacturers/Details/5
-        public ActionResult Details(int id)
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            if(id <= 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            var item = await _manufacturerRepository.GetByIdAsync(id);
+
+            return View(item);
         }
 
         // GET: Manufacturers/Create
-        public ActionResult Create()
+        [HttpGet]
+        public  IActionResult Create()
         {
             return View();
         }
@@ -39,13 +49,20 @@ namespace AssetManager.Web.Controllers
         // POST: Manufacturers/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(Manufacturer manufacturer)
         {
+            if(!ModelState.IsValid)
+            {
+                return RedirectToAction(nameof(Create));
+            }
             try
             {
                 
-
+                await _manufacturerRepository.AddAsync(manufacturer);
+                
                 return RedirectToAction(nameof(Index));
+                
+
             }
             catch
             {
