@@ -10,9 +10,11 @@ namespace AssetManager.Infrastructure.Data
     {
         public AssetManagerContext( DbContextOptions<AssetManagerContext> options) : base(options) { } 
 
-        DbSet<Company> Companies { get; set; }
-        DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
 
-        DbSet<Depreciation> Depreciations { get; set; }
+        public DbSet<Depreciation> Depreciations { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
     }
 }

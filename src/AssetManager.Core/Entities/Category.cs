@@ -17,7 +17,8 @@ namespace AssetManager.Core.Entities
         [Display(Name = ("Use the primary default EULA instead. "))]
         public bool DefaultEula { get; set; }
 
-        public string CategoryType { get; set; }
+        [Display(Name = "Category Type")]
+        public CatagoryType Type { get; set; }
 
         [Display(Name = ("Send email to user on checkin."))]
         public bool CheckInEmail { get; set; }
@@ -31,5 +32,19 @@ namespace AssetManager.Core.Entities
 
         public DateTime DeletedAt { get; set; }
 
+        
+    }
+    public enum CatagoryType
+    {
+        [Display(Name = "Asset")]
+        Asset = 0,
+        [Display(Name = "Component")]
+        Component = 1,
+        [Display(Name = "Accessory")]
+        Accessory = 2,
+        [Display(Name = "Consumable")]
+        Consumable = 3
     }
 }
+
+
