@@ -109,19 +109,33 @@ namespace AssetManager.Web.Controllers
         }
 
         // GET: Categories/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            if (id <=0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            var deleteItem = await _categoryRepository.GetByIdAsync(id);
+            if(deleteItem == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View(deleteItem);
         }
 
         // POST: Categories/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> Delete(int id, Category cateItem)
         {
+            if(cateItem == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             try
             {
                 
+               await _categoryRepository.DeleteAsync(cateItem);
 
                 return RedirectToAction(nameof(Index));
             }
