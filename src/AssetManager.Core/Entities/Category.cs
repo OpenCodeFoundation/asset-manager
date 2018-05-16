@@ -32,8 +32,8 @@ namespace AssetManager.Core.Entities
 
         public DateTime DeletedAt { get; set; }
 
+        
     }
-
     public enum CatagoryType
     {
         [Display(Name = "Asset")]
@@ -46,3 +46,5 @@ namespace AssetManager.Core.Entities
         Consumable = 3
     }
 }
+
+

@@ -70,19 +70,35 @@ namespace AssetManager.Web.Controllers
         }
 
         // GET: Categories/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            if (id <= 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            var obj = await _categoryRepository.GetByIdAsync(id);
+
+            if(obj == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(obj);
         }
 
         // POST: Categories/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, Category collection)
         {
+            if(id != collection.Id)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             try
             {
-                
+               await _categoryRepository.UpdateAsync(collection); 
 
                 return RedirectToAction(nameof(Index));
             }
