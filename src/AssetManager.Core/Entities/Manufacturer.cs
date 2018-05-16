@@ -14,18 +14,21 @@ namespace AssetManager.Core.Entities
         [Required]
         [Display(Name =("Manufacturer Name"))]
         public string Name { get; set; }
-        public int UserId { get; set; }
-
+        
         [Display(Name =("Web Site"))]
+        [DataType(DataType.Url)]
         public string Url { get; set; }
 
         [Display(Name =("Support URL"))]
+        [DataType(DataType.Url)]
         public string SupportUrl { get; set; }
 
         [Display(Name="Support Phone")]
+        [DataType(DataType.PhoneNumber)]
         public string SupportPhone { get; set; }
 
         [Display(Name =("Support Email"))]
+        [DataType(DataType.EmailAddress)]
         public string SupportEmail { get; set; }
 
         [Display(Name ="Image")]
