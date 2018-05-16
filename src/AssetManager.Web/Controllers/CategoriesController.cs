@@ -51,12 +51,16 @@ namespace AssetManager.Web.Controllers
         // POST: Categories/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(Category category)
         {
+            if(category == null)
+            {
+                return RedirectToAction(nameof(Create));
+            }
             try
             {
-                
 
+                await _categoryRepository.AddAsync(category);
                 return RedirectToAction(nameof(Index));
             }
             catch
