@@ -90,9 +90,9 @@ namespace AssetManager.Web.Controllers
 
         // GET: Companies/Details/5
         [HttpGet]
-        public async Task<IActionResult> Details(int id = 0)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id >= 0)
+            if (id <= 0)
             {
                 return RedirectToAction(nameof(Index));
             }
@@ -107,9 +107,9 @@ namespace AssetManager.Web.Controllers
 
         // GET: Companies/Delete/5
         [HttpGet]
-        public async Task<IActionResult> Delete(int id = 0)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id >= 0)
+            if (id <= 0)
             {
                 return RedirectToAction(nameof(Index));
             }
@@ -122,7 +122,7 @@ namespace AssetManager.Web.Controllers
             return View(company);
         }
 
-        // POST: Companies/Delete/5
+      
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id, Company company)
