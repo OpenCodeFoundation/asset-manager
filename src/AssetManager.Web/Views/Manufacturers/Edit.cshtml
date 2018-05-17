@@ -1,10 +1,10 @@
 ﻿@model AssetManager.Core.Entities.Manufacturer
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h2>Create</h2>
+<h2>Edit</h2>
 
 <h4>Manufacturer</h4>
 <hr />
@@ -17,46 +17,44 @@
             </div>
             <form asp-controller="Manufacturers" method="post" class="form-horizontal">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                
+
                 <div class="box-body">
                     <input type="hidden" asp-for="Id" />
                     <div class="form-group">
                         <label asp-for="Name" class="control-label col-md-3"></label>
                         <div class="col-md-7">
-                            <input type="text" asp-for="Name" class="form-control" />
+                            <input asp-for="Name" class="form-control" />
                             <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label asp-for="Url" class="control-label col-md-3"></label>
                         <div class="col-md-7">
-                            <input type="url" asp-for="Url" class="form-control" />
+                            <input asp-for="Url" class="form-control" />
                             <span asp-validation-for="Url" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label asp-for="SupportUrl" class="control-label col-md-3"></label>
                         <div class="col-md-7">
-                            <input type="url" asp-for="SupportUrl" class="form-control" />
+                            <input asp-for="SupportUrl" class="form-control" />
                             <span asp-validation-for="SupportUrl" class="text-danger"></span>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label asp-for="SupportPhone" class="control-label col-md-3"></label>
                         <div class="col-md-7">
-                            <input type="text" asp-for="SupportPhone" class="form-control" />
+                            <input asp-for="SupportPhone" class="form-control" />
                             <span asp-validation-for="SupportPhone" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label asp-for="SupportEmail" class="control-label col-md-3"></label>
                         <div class="col-md-7">
-                            <input type="email" asp-for="SupportEmail" class="form-control" />
+                            <input asp-for="SupportEmail" class="form-control" />
                             <span asp-validation-for="SupportEmail" class="text-danger"></span>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label asp-for="Image" class="control-label col-md-3"></label>
                         <div class="col-md-7">
@@ -71,7 +69,7 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
-                </div>
+                    </div>
             </form>
         </div>
     </div>

@@ -51,13 +51,11 @@ namespace AssetManager.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Manufacturer manufacturer)
         {
-            if(!ModelState.IsValid)
-            {
-                return RedirectToAction(nameof(Create));
-            }
+
             try
             {
-                
+                manufacturer.CreatedAt = DateTime.Now;
+                manufacturer.UpdatedAt = DateTime.Now;
                 await _manufacturerRepository.AddAsync(manufacturer);
                 
                 return RedirectToAction(nameof(Index));
@@ -71,19 +69,38 @@ namespace AssetManager.Web.Controllers
         }
 
         // GET: Manufacturers/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            if (id <= 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            var manufacturer = await _manufacturerRepository.GetByIdAsync(id);
+
+            if(manufacturer == null)
+            {
+                return RedirectToAction(nameof(Index));
+            
+            }
+
+
+            return View(manufacturer);
         }
 
         // POST: Manufacturers/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, Manufacturer data)
         {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             try
             {
-               
+               await _manufacturerRepository.UpdateAsync(data);
 
                 return RedirectToAction(nameof(Index));
             }
