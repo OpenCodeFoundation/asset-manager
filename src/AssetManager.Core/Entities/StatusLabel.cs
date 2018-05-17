@@ -11,23 +11,28 @@ namespace AssetManager.Core.Entities
 {
     public class StatusLabel: Entity
     {
-
+        [Required]
         [Display(Name ="Name")]
         public string Name { get; set; }
-        public int UserId { get; set; }
-        public bool Deployable { get; set; }
-
-        public bool Pending { get; set; }
-        public bool Archived { get; set; }
-
+        public StatusType Type { get; set; }
         public string Notes { get; set; }
-        public string Color { get; set; }
         public bool ShowInNav { get; set; }
-
         public DateTime CreatedAt { get; set; }
 
         public DateTime UpdatedAt { get; set; }
 
         public DateTime DeletedAt { get; set; }
+    }
+
+    public enum StatusType
+    {
+        [Display(Name = "Deployable")]
+        Deployable = 0,
+        [Display(Name = "Pending")]
+        Pending = 1,
+        [Display(Name = "Undeployable")]
+        Undeployable = 2,
+        [Display(Name = "Archived")]
+        Archived = 3
     }
 }
