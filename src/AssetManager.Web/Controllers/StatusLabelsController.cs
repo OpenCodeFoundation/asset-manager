@@ -26,13 +26,21 @@ namespace AssetManager.Web.Controllers
         }
 
         // GET: StatusLabels/Details/5
-        public ActionResult Details(int id)
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            if(id <= 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            var statusItem = await _statusRepository.GetByIdAsync(id); 
+
+            return View(statusItem);
         }
 
         // GET: StatusLabels/Create
-        public ActionResult Create()
+        [HttpGet]
+        public IActionResult Create()
         {
             return View();
         }
@@ -40,13 +48,14 @@ namespace AssetManager.Web.Controllers
         // POST: StatusLabels/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(StatusLabel label)
         {
+            
             try
             {
-                
 
-                return RedirectToAction(nameof(Index));
+                await _statusRepository.AddAsync(label);
+                 return RedirectToAction(nameof(Index));
             }
             catch
             {
