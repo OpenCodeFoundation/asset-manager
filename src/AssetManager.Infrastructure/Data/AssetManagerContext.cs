@@ -16,5 +16,7 @@ namespace AssetManager.Infrastructure.Data
         public DbSet<Depreciation> Depreciations { get; set; }
 
         public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Manufacturer> Manufacturers { get; set; }
     }
 }

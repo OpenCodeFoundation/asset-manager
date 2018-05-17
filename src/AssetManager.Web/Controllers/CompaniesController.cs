@@ -97,12 +97,12 @@ namespace AssetManager.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
             
-            var company = await _companyRepository.GetByIdAsync(id);
-            if (company == null)
+            var companyItem = await _companyRepository.GetByIdAsync(id);
+            if (companyItem == null)
             {
                 return RedirectToAction(nameof(Index));
             }
-            return View(company);
+            return View(companyItem);
         }
 
         // GET: Companies/Delete/5
