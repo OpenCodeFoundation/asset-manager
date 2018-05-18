@@ -18,5 +18,6 @@ namespace AssetManager.Infrastructure.Data
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<Manufacturer> Manufacturers { get; set; }
+        public DbSet<StatusLabel> StatusLabel { get; set; }
     }
 }

@@ -41,7 +41,7 @@ namespace AssetManager.Web.Controllers
             return View(catdetail);
         }
 
-        
+        [HttpGet]
         public  IActionResult Create()
         {
 
