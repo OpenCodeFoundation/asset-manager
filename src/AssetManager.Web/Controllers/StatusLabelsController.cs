@@ -63,20 +63,29 @@ namespace AssetManager.Web.Controllers
             }
         }
 
-        // GET: StatusLabels/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            if (id <= 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            var statusLabel = await _statusRepository.GetByIdAsync(id);
+            if (statusLabel == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View(statusLabel);
         }
 
         // POST: StatusLabels/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, StatusLabel label)
         {
             try
             {
-                
+                await _statusRepository.UpdateAsync(label);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -87,20 +96,29 @@ namespace AssetManager.Web.Controllers
         }
 
         // GET: StatusLabels/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            if(id <= 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            var statuslabel = await _statusRepository.GetByIdAsync(id);
+            if (statuslabel == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View(statuslabel);
         }
 
         // POST: StatusLabels/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> Delete(int id, StatusLabel statusObject)
         {
             try
             {
-               
-
+                await _statusRepository.DeleteAsync(statusObject);
+                
                 return RedirectToAction(nameof(Index));
             }
             catch
