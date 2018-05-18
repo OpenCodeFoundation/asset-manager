@@ -19,5 +19,7 @@ namespace AssetManager.Infrastructure.Data
 
         public DbSet<Manufacturer> Manufacturers { get; set; }
         public DbSet<StatusLabel> StatusLabel { get; set; }
+
+        public DbSet<CustomFields> CustomFields { get; set; }
     }
 }
