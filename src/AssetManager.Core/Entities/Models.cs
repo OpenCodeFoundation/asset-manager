@@ -11,10 +11,9 @@ namespace AssetManager.Core.Entities
 {
     public class Models: Entity
     {
+        [Required]
+        [Display(Name = "Asset Model Name")]
         public string Name { get; set; }
-
-        [Display(Name = "Model Number")]
-        public string ModelNumber { get; set; }
 
         [Required]
         [Display(Name = "Manufacturer Name")]
@@ -22,18 +21,20 @@ namespace AssetManager.Core.Entities
         public int ManufacturerId { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
 
-
         [Required]
         [Display(Name = "Catagory Name")]
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
 
+        [Display(Name = "Model Number")]
+        public string ModelNumber { get; set; }
+
         [Display(Name = "Depreciation")]
         [ForeignKey("Depreciation")]
         public int DepreciationId { get; set; }
         public virtual Depreciation Depreciation { get; set; }
-        public int UserId { get; set; }
+
 
         [Display(Name ="EOL")]
         public int Eol { get; set; }
@@ -46,7 +47,7 @@ namespace AssetManager.Core.Entities
         [Display(Name="Note")]
         public string Notes { get; set; }
 
-        [Display(Name = "Requestable")]
+        [Display(Name = "Users may request this model")]
         public bool Requestable { get; set; }
 
         public DateTime CreatedAt { get; set; }
