@@ -52,7 +52,7 @@ namespace AssetManager.Web.Controllers
         public async Task<IActionResult> Create(Manufacturer manufacturer)
         {
 
-            try
+            if(ModelState.IsValid)
             {
                 manufacturer.CreatedAt = DateTime.Now;
                 manufacturer.UpdatedAt = DateTime.Now;
@@ -62,10 +62,9 @@ namespace AssetManager.Web.Controllers
                 
 
             }
-            catch
-            {
+            
                 return View();
-            }
+            
         }
 
         // GET: Manufacturers/Edit/5

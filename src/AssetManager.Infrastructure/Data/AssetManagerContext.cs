@@ -21,6 +21,6 @@ namespace AssetManager.Infrastructure.Data
         public DbSet<StatusLabel> StatusLabel { get; set; }
 
         public DbSet<CustomFields> CustomFields { get; set; }
-        public DbSet<Models> Models { get; set; }
+        public DbSet<AssetModels> AssetModels { get; set; }
     }
 }

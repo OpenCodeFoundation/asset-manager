@@ -41,16 +41,15 @@ namespace AssetManager.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CustomFields fields)
         {
-            try
+            if(ModelState.IsValid)
             {
                 await _customFieldsRepository.AddAsync(fields);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            
+            return View();
+            
         }
 
 

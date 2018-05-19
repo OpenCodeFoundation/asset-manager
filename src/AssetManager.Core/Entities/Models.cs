@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AssetManager.Core.Entities
 {
-    public class Models: Entity
+    public class AssetModels: Entity
     {
         [Required]
         [Display(Name = "Asset Model Name")]

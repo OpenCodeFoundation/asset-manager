@@ -1,28 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AssetManager.Core.Entities;
+using AssetManager.Core.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace AssetManager.Web.Controllers
 {
     public class ModelsController : Controller
     {
-        // GET: Models
-        public ActionResult Index()
+        private readonly IAsyncRepository<AssetModels> modelsRepository;
+
+        public ModelsController(IAsyncRepository<AssetModels> repository)
         {
-            return View();
+            this.modelsRepository = repository;
+        }
+        public async Task<IActionResult> Index()
+        {
+            var allModels = await modelsRepository.ListAllAsync();
+            return View(allModels);
         }
 
         // GET: Models/Details/5
-        public ActionResult Details(int id)
+        public IActionResult Details(int id)
         {
             return View();
         }
 
         // GET: Models/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -30,7 +35,7 @@ namespace AssetManager.Web.Controllers
         // POST: Models/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult Create(IFormCollection collection)
         {
             try
             {
@@ -45,7 +50,7 @@ namespace AssetManager.Web.Controllers
         }
 
         // GET: Models/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
             return View();
         }
@@ -53,7 +58,7 @@ namespace AssetManager.Web.Controllers
         // POST: Models/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public IActionResult Edit(int id, IFormCollection collection)
         {
             try
             {
@@ -76,7 +81,7 @@ namespace AssetManager.Web.Controllers
         // POST: Models/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public IActionResult Delete(int id, IFormCollection collection)
         {
             try
             {

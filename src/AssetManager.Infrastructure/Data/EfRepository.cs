@@ -10,7 +10,7 @@ namespace AssetManager.Infrastructure.Data
 {
     public class EfRepository<T> : IAsyncRepository<T> where T : Entity
     {
-        private AssetManagerContext _dbContext;
+        private readonly AssetManagerContext _dbContext;
 
         public EfRepository(AssetManagerContext dbContext)
         {

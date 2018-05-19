@@ -51,16 +51,15 @@ namespace AssetManager.Web.Controllers
         public async Task<IActionResult> Create(StatusLabel label)
         {
             
-            try
+            if(ModelState.IsValid)
             {
 
                 await _statusRepository.AddAsync(label);
                  return RedirectToAction(nameof(Index));
             }
-            catch
-            {
+            
                 return View();
-            }
+            
         }
 
         [HttpGet]

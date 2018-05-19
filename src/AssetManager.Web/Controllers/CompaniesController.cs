@@ -38,20 +38,19 @@ namespace AssetManager.Web.Controllers
 
         // POST: Companies/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Company company)
         {
-            try
-            {
+            if (ModelState.IsValid) { 
                 company.CreateDate = DateTime.Now;
                 company.UpdateDate = DateTime.Now;
                 await _companyRepository.AddAsync(company);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+
+            return View();
+            
         }
 
         // GET: Companies/Edit/5
