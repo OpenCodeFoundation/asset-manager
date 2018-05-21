@@ -52,21 +52,14 @@ namespace AssetManager.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Insert(Depreciation item)
         {
-            if(item == null)
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Create));
-            }
-            try
-            {
-
                 await _depreciationRepository.AddAsync(item);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
                 return View();
-            }
+            
         }
 
         

@@ -87,7 +87,7 @@ namespace AssetManager.Core.Entities
 
         public virtual Company Company { get; set; }
         public virtual Status Status { get; set; }
-        public virtual Models Models { get; set; }
+        public virtual AssetModels Models { get; set; }
         public virtual Supplier Supplier { get; set; }
         public virtual Location Location { get; set; }
 

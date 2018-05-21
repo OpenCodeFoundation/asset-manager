@@ -53,20 +53,17 @@ namespace AssetManager.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Category category)
         {
-            if(category == null)
+            if(ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Create));
-            }
-            try
-            {
-
+                category.CreatedAt = DateTime.Now;
+                
                 await _categoryRepository.AddAsync(category);
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
+            
+            
                 return View();
-            }
+            
         }
 
         // GET: Categories/Edit/5

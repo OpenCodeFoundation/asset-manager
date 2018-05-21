@@ -1,0 +1,106 @@
+﻿@model AssetManager.Core.Entities.AssetModels
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>AssetModels</h4>
+<hr />
+<div class="row">
+    <!-- right column -->
+    <div class="col-md-8 col-md-offset-2">
+        <div class="box box-info">
+            <div class="box-header with-border">
+
+            </div>
+            <form asp-action="Edit" method="post" class="form-horizontal">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+               
+
+                <div class="box-body">
+                    <div class="form-group">
+                        <label asp-for="Name" class="col-md-3 control-label"></label>
+                        <div class="col-md-7">
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ManufacturerId" class="col-md-3 control-label"></label>
+                        <div class="col-md-7">
+                            <select asp-for="ManufacturerId" class="form-control" asp-items="@(new SelectList(@ViewBag.manufacturer, "Id", "Name"))"></select>
+                            <span asp-validation-for="ManufacturerId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CategoryId" class="col-md-3 control-label"></label>
+                        <div class="col-md-7">
+                            <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(@ViewBag.category, "Id", "Name"))"></select>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ModelNumber" class="col-md-3 control-label"></label>
+                        <div class="col-md-7">
+                            <input asp-for="ModelNumber" class="form-control" />
+                            <span asp-validation-for="ModelNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DepreciationId" class="col-md-3 control-label"></label>
+                        <div class="col-md-7">
+                            <select asp-for="DepreciationId" class="form-control" asp-items="@(new SelectList(@ViewBag.depreciation, "Id", "Name"))"></select>
+                            <span asp-validation-for="DepreciationId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Eol" class="col-md-3 control-label"></label>
+                        <div class="col-md-7">
+                            <input asp-for="Eol" class="form-control" />
+                            <span asp-validation-for="Eol" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Image" class="col-md-3 control-label"></label>
+                        <div class="col-md-7">
+                            <input asp-for="Image" class="form-control" />
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Notes" class="col-md-3 control-label"></label>
+                        <div class="col-md-7">
+                            <input asp-for="Notes" class="form-control" />
+                            <span asp-validation-for="Notes" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label col-md-3"></div>
+                        <div class="col-md-7">
+                            <input type="checkbox" asp-for="Requestable" /><label asp-for="Requestable" class="control-label"></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-5"></div>
+                        <div class="col-sm-5">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

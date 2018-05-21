@@ -40,21 +40,16 @@ namespace AssetManager.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Insert(Supplier Supplier)
         {
-            if(Supplier == null)
+            if(ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Create));
-            }
-            try
-            {
-
+             
                 await _supplierRepository.AddAsync(Supplier);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
+            
                 return View();
-            }
+            
         }
 
         // GET: Supplier/Edit/5

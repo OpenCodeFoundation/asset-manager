@@ -6,6 +6,6 @@ namespace AssetManager.Core.SharedKernel
 {
     public class Entity 
     {
-        public Int64 Id { get; set; }
+        public int Id { get; set; }
     }
 }

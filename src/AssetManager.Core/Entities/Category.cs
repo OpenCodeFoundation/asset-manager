@@ -32,7 +32,7 @@ namespace AssetManager.Core.Entities
 
         public DateTime DeletedAt { get; set; }
 
-        
+        public virtual ICollection<AssetModels> Models { get; set; }
     }
     public enum CatagoryType
     {
