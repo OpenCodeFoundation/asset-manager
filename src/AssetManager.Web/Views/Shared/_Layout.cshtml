@@ -35,16 +35,9 @@
     <div class="wrapper">
         <!-- Main Header -->
         <header class="main-header">
-            <!-- Logo -->
-            <a href="#" class="logo">
-                <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b>A</b>LT</span>
-                <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Asset</b> Manager</span>
-            </a>
+            
             <!-- Header Navbar -->
             <nav class="navbar navbar-static-top" role="navigation">
-                <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                     <span class="sr-only">Toggle navigation</span>
                 </a>
@@ -205,48 +198,22 @@
         <aside class="main-sidebar">
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
-                <!-- Sidebar user panel
-                <div class="user-panel">
-                    <div class="pull-left image">
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                    </div>
-                    <div class="pull-left info">
-                        <p>Alexander Pierce</p>
-                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                    </div>
-                </div>
-
-                     -->
-                <!-- search form -->
-                <form action="#" method="get" class="sidebar-form">
-                    <div class="input-group">
-                        <input type="text" name="q" class="form-control" placeholder="Search...">
-                        <span class="input-group-btn">
-                            <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </span>
-                    </div>
-                </form>
-                <!-- /.search form -->
+               
+                
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
-                    <li class="header">MAIN NAVIGATION</li>
-                    <li class="active treeview">
-                        <a href="#">
+                    <!--<li class="header">MAIN NAVIGATION</li>-->
+                    <li class="active">
+                        <a class="active">
                             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
                         </a>
-
                     </li>
 
 
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-pie-chart"></i>
-                            <span>Charts</span>
+                            <i class="fa fa-barcode"></i>
+                            <span>Asset</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
@@ -255,44 +222,48 @@
                     </li>
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-laptop"></i>
-                            <span>UI Elements</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
+                            <i class="fa fa-floppy-o"></i>
+                            <span>Licenses</span>
+                            
                         </a>
 
                     </li>
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-edit"></i> <span>Forms</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
+                            <i class="fa fa-keyboard-o"></i> <span>Accessories</span>
+                           
                         </a>
 
                     </li>
 
-                    <li>
+                    <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-calendar"></i> <span>Calendar</span>
-                            <span class="pull-right-container">
-                                <small class="label pull-right bg-red">3</small>
-                                <small class="label pull-right bg-blue">17</small>
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-envelope"></i> <span>Mailbox</span>
-                            <span class="pull-right-container">
-                                <small class="label pull-right bg-yellow">12</small>
-                                <small class="label pull-right bg-green">16</small>
-                                <small class="label pull-right bg-red">5</small>
-                            </span>
+                            <i class="fa fa-tint"></i>
+                            <span>Consumables</span>
+                            
                         </a>
                     </li>
 
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-hdd-o"></i>
+                            <span>Components</span>
+                            
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-users"></i> <span>People</span>
+                            
+                        </a>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-cloud-download"></i> <span>Import</span>
+                            
+                        </a>
+                    </li>
                     <!--Seetings Start-->
                     <li class="treeview">
                         <a href="#">
@@ -303,17 +274,32 @@
                         </a>
 
                         <ul class="treeview-menu">
-                            <li><a href="@Url.Action("Index","Companies")"><i class="fa fa-circle-o"></i> Company</a></li>
-                            <li><a href="@Url.Action("Index","Supplier")"><i class="fa fa-circle-o"></i> Supplier</a></li>
-                            <li><a href="@Url.Action("Index","Categories")"><i class="fa fa-circle-o"></i> Categories</a></li>
-                            <li><a href="@Url.Action("Index","Depreciation")"><i class="fa fa-circle-o"></i> Depreciation</a></li>
-                            <li><a href="@Url.Action("Index","Manufacturers")"><i class="fa fa-circle-o"></i> Manufacturers</a></li>
-                            <li><a href="@Url.Action("Index","StatusLabels")"><i class="fa fa-circle-o"></i>Status Label</a></li>
-                            <li><a href="@Url.Action("Index","Fields")"><i class="fa fa-circle-o"></i>Custom Fields</a></li>
+                            <li><a href="@Url.Action("Index","Companies")"> Company</a></li>
+                            <li><a href="@Url.Action("Index","Supplier")">Supplier</a></li>
+                            <li><a href="@Url.Action("Index","Categories")">Categories</a></li>
+                            <li><a href="@Url.Action("Index","Depreciation")">Depreciation</a></li>
+                            <li><a href="@Url.Action("Index","Manufacturers")">Manufacturers</a></li>
+                            <li><a href="@Url.Action("Index","StatusLabels")">Status Label</a></li>
+                            <li><a href="@Url.Action("Index","Fields")">Custom Fields</a></li>
+                            <li><a href="@Url.Action("Index","Models")">Model</a></li>
                         </ul>
                     </li>
                     <!--Seetings End-->
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-bar-chart"></i> <span>Report</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
 
+                            </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-laptop"></i> <span>Requestable</span>
+                        </a>
+                    </li>
                 </ul>
             </section>
             <!-- /.sidebar -->
