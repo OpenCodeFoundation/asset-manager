@@ -31,9 +31,16 @@ namespace AssetManager.Web.Controllers
         }
 
         // GET: Models/Details/5
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            if(id <= 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            var assetModel = await modelsRepository.GetByIdAsync(id);
+
+            return View(assetModel);
         }
 
         // GET: Models/Create
@@ -100,26 +107,34 @@ namespace AssetManager.Web.Controllers
         }
 
         // GET: Models/Delete/5
-        public ActionResult Delete(int id)
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            if (id <= 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            var deletemodel = await modelsRepository.GetByIdAsync(id);
+            if(deletemodel == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View(deletemodel);
         }
 
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> Delete(int id, AssetModels modelcollection)
         {
-            try
+            if(ModelState.IsValid)
             {
-                
 
+                await modelsRepository.DeleteAsync(modelcollection);
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
                 return View();
-            }
+            
         }
     }
 }
