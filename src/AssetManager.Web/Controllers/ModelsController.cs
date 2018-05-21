@@ -62,31 +62,41 @@ namespace AssetManager.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
             
-                return View();
+                return View(model);
             
         }
 
-        // GET: Models/Edit/5
-        public IActionResult Edit(int id)
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            if (id <= 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            var model = await modelsRepository.GetByIdAsync(id);
+            if(model == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            ViewBag.manufacturer = await _menurepository.ListAllAsync();
+            ViewBag.category = await _caterepository.ListAllAsync();
+            ViewBag.depreciation = await _depcaterepository.ListAllAsync();
+            return View(model);
         }
 
-        // POST: Models/Edit/5
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, AssetModels collection)
         {
-            try
+            if (ModelState.IsValid)
             {
-                
+                await modelsRepository.UpdateAsync(collection);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(collection);
         }
 
         // GET: Models/Delete/5
@@ -95,7 +105,7 @@ namespace AssetManager.Web.Controllers
             return View();
         }
 
-        // POST: Models/Delete/5
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int id, IFormCollection collection)
