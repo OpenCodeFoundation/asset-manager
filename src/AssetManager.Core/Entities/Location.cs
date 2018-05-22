@@ -18,7 +18,8 @@ namespace AssetManager.Core.Entities
         [ForeignKey("Locations")]
         public int LocationsId { get; set; }
         public virtual Location Locations { get; set; }
-        public int Manager { get; set; }
+
+        public string Manager { get; set; }
 
         [Display(Name = "Address")]
         public string Address { get; set; }
@@ -33,16 +34,12 @@ namespace AssetManager.Core.Entities
 
         [Display(Name ="Country")]
         public string Country { get; set; }
-        public int UserId { get; set; }
+        
 
         [Display(Name ="Zip Code")]
         public int Zip { get; set; }
 
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
-        public DateTime DeletedAt { get; set; }
-
-
+       
         [Display(Name ="Image")]
         public string Image { get; set; }
 
