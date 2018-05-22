@@ -67,26 +67,40 @@ namespace AssetManager.Web.Controllers
         }
 
         // GET: Locations/Edit/5
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            if (id <= 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            var locations = await _asyncRepository.GetByIdAsync(id);
+            if(locations == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            ViewBag.CountryList = AllCountry.getCountry();
+            ViewBag.ParentList = await _asyncRepository.ListAllAsync();
+
+            return View(locations);
         }
 
         // POST: Locations/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, Location location)
         {
-            try
+            if(ModelState.IsValid)
             {
-               
+                await _asyncRepository.UpdateAsync(location);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+
+            ViewBag.CountryList = AllCountry.getCountry();
+            ViewBag.ParentList = await _asyncRepository.ListAllAsync();
+            return View(location);
+            
         }
 
         // GET: Locations/Delete/5
