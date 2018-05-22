@@ -43,7 +43,7 @@ namespace AssetManager.Core.Entities
         [Display(Name ="Image")]
         public string Image { get; set; }
 
-       
+        public ICollection<Departments> Departments { get; set; }
 
     }
 }

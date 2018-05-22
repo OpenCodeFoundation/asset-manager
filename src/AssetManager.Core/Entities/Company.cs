@@ -12,5 +12,7 @@ namespace AssetManager.Core.Entities
         public DateTime UpdateDate { get; set; }
         public string ImageUrl { get; set; }
 
+        public ICollection<Departments> Departments { get; set; }
+
     }
 }
