@@ -26,32 +26,44 @@ namespace AssetManager.Web.Controllers
         }
 
         // GET: Locations/Details/5
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            if (id <= 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            var location = await _asyncRepository.GetByIdAsync(id);
+            if(location == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View(location);
         }
 
         // GET: Locations/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            ViewBag.CountryList =  AllCountry.getCountry();
+            ViewBag.ParentList = await _asyncRepository.ListAllAsync();
             return View();
         }
 
         // POST: Locations/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(Location collection)
         {
-            try
+            if(ModelState.IsValid)
             {
-                
+                await _asyncRepository.AddAsync(collection);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+
+            ViewBag.CountryList = AllCountry.getCountry();
+            ViewBag.ParentList = await _asyncRepository.ListAllAsync();
+            return View(collection);
+            
         }
 
         // GET: Locations/Edit/5
