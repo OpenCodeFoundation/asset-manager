@@ -66,7 +66,7 @@ namespace AssetManager.Web.Controllers
             
         }
 
-        // GET: Locations/Edit/5
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             if (id <= 0)
@@ -103,27 +103,36 @@ namespace AssetManager.Web.Controllers
             
         }
 
-        // GET: Locations/Delete/5
-        public IActionResult Delete(int id)
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            if (id <= 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            var dellocation = await _asyncRepository.GetByIdAsync(id);
+            if (dellocation == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View(dellocation);
         }
 
         // POST: Locations/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> Delete(int id, Location dellocation)
         {
-            try
+            if(ModelState.IsValid)
             {
-                
+                await _asyncRepository.DeleteAsync(dellocation);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            
+                return RedirectToAction(nameof(Index));
+
         }
     }
 }
