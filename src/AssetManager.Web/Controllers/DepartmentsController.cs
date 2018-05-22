@@ -12,44 +12,62 @@ namespace AssetManager.Web.Controllers
     public class DepartmentsController : Controller
     {
         private readonly IAsyncRepository<Departments> _asyncRepository;
-        public DepartmentsController(IAsyncRepository<Departments> asyncRepository)
+        private readonly IAsyncRepository<Location> _locRepository;
+        private readonly IAsyncRepository<Company> _companyRepository;
+        public DepartmentsController(
+            IAsyncRepository<Departments> asyncRepository, 
+            IAsyncRepository<Location> locRepository, 
+            IAsyncRepository<Company> companyRepository)
         {
             this._asyncRepository = asyncRepository;
+            this._companyRepository = companyRepository;
+            this._locRepository = locRepository;
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var departmentall = await _asyncRepository.ListAllAsync();
+            return View(departmentall);
         }
 
-        // GET: Departments/Details/5
-        public IActionResult Details(int id)
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            if (id <= 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            var department = await _asyncRepository.GetByIdAsync(id);
+            if(department == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View(department);
         }
 
-        // GET: Departments/Create
-        public ActionResult Create()
+        [HttpGet]
+        public async Task<ActionResult> Create()
         {
+            ViewBag.Locations = await _locRepository.ListAllAsync();
+            ViewBag.Companies = await _companyRepository.ListAllAsync();
             return View();
         }
 
         // POST: Departments/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(Departments departments)
         {
-            try
+            if(ModelState.IsValid)
             {
-                
+                await _asyncRepository.AddAsync(departments);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            
+                return View(departments);
+            
         }
 
         // GET: Departments/Edit/5
