@@ -14,7 +14,7 @@ namespace AssetManager.Web.Controllers
         private readonly IAsyncRepository<Supplier> _supplierRepository;
         public SupplierController(IAsyncRepository<Supplier> repository)
         {
-            _supplierRepository = repository;
+            this._supplierRepository = repository;
         }
 
         // GET: Supplier

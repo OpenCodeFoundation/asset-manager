@@ -15,7 +15,7 @@ namespace AssetManager.Web.Controllers
 
         public FieldsController(IAsyncRepository<CustomFields> fieldsRepository)
         {
-            _customFieldsRepository = fieldsRepository;
+            this._customFieldsRepository = fieldsRepository;
         }
         public async Task<IActionResult> Index()
         {

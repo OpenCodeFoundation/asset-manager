@@ -15,7 +15,7 @@ namespace AssetManager.Web.Controllers
 
         public LocationsController(IAsyncRepository<Location> asyncRepository)
         {
-            _asyncRepository = asyncRepository;
+            this._asyncRepository = asyncRepository;
         }
 
         [HttpGet]

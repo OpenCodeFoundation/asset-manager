@@ -15,7 +15,7 @@ namespace AssetManager.Web.Controllers
 
         public ManufacturersController(IAsyncRepository<Manufacturer> repository)
         {
-            _manufacturerRepository = repository;
+            this._manufacturerRepository = repository;
         }
 
         [HttpGet]

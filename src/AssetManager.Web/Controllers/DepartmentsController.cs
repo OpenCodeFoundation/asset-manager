@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AssetManager.Core.Entities;
+using AssetManager.Core.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,14 +11,20 @@ namespace AssetManager.Web.Controllers
 {
     public class DepartmentsController : Controller
     {
-        // GET: Departments
-        public ActionResult Index()
+        private readonly IAsyncRepository<Departments> _asyncRepository;
+        public DepartmentsController(IAsyncRepository<Departments> asyncRepository)
+        {
+            this._asyncRepository = asyncRepository;
+        }
+
+        [HttpGet]
+        public IActionResult Index()
         {
             return View();
         }
 
         // GET: Departments/Details/5
-        public ActionResult Details(int id)
+        public IActionResult Details(int id)
         {
             return View();
         }
@@ -34,7 +42,7 @@ namespace AssetManager.Web.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                
 
                 return RedirectToAction(nameof(Index));
             }
@@ -57,7 +65,7 @@ namespace AssetManager.Web.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                
 
                 return RedirectToAction(nameof(Index));
             }
@@ -80,7 +88,7 @@ namespace AssetManager.Web.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                
 
                 return RedirectToAction(nameof(Index));
             }
