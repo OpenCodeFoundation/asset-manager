@@ -70,27 +70,38 @@ namespace AssetManager.Web.Controllers
             
         }
 
-        // GET: Departments/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            if (id <= 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            var department = await _asyncRepository.GetByIdAsync(id);
+            if (department == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            ViewBag.Locations = await _locRepository.ListAllAsync();
+            ViewBag.Companies = await _companyRepository.ListAllAsync();
+            return View(department);
         }
 
         // POST: Departments/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, Departments collection)
         {
-            try
+            if (ModelState.IsValid)
             {
-                
+                await _asyncRepository.UpdateAsync(collection);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+
+            ViewBag.Locations = await _locRepository.ListAllAsync();
+            ViewBag.Companies = await _companyRepository.ListAllAsync();
+            return View(collection);
         }
 
         // GET: Departments/Delete/5

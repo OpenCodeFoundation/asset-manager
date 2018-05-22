@@ -1,10 +1,10 @@
 ﻿@model AssetManager.Core.Entities.Departments
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h2>Create</h2>
+<h2>Edit</h2>
 
 <h4>Departments</h4>
 <hr />
@@ -15,7 +15,7 @@
             <div class="box-header with-border">
 
             </div>
-            <form asp-action="Create" method="post" class="form-horizontal">
+            <form asp-action="Edit" method="post" class="form-horizontal">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="box-body">
                     <div class="form-group">
@@ -61,8 +61,8 @@
                             <span asp-validation-for="Image" class="text-danger"></span>
                         </div>
                     </div>
-                   
-                   
+
+
                     <div class="form-group">
                         <div class="col-sm-5"></div>
                         <div class="col-sm-5">
