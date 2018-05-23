@@ -13,7 +13,7 @@ namespace AssetManager.Core.Entities
     {
         [Display(Name = "Department Name")]
         public string Name { get; set; }
-        public int UserId { get; set; }
+
 
         [Display(Name = "Company")]
         [ForeignKey("Company")]
@@ -26,7 +26,7 @@ namespace AssetManager.Core.Entities
         public int LocatonId { get; set; }
         public virtual Location Location { get; set; }
 
-        public int ManagerId { get; set; }
+        public string ManagerId { get; set; }
 
         [Display(Name = "Note")]
         public string Note { get; set; }

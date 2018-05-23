@@ -23,5 +23,6 @@ namespace AssetManager.Infrastructure.Data
         public DbSet<CustomFields> CustomFields { get; set; }
         public DbSet<AssetModels> AssetModels { get; set; }
         public DbSet<Location> Location { get; set; }
+        public DbSet<Departments> Departments { get; set; }
     }
 }

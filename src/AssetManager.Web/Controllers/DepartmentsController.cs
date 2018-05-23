@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AssetManager.Core.Entities;
+using AssetManager.Core.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,85 +11,130 @@ namespace AssetManager.Web.Controllers
 {
     public class DepartmentsController : Controller
     {
-        // GET: Departments
-        public ActionResult Index()
+        private readonly IAsyncRepository<Departments> _asyncRepository;
+        private readonly IAsyncRepository<Location> _locRepository;
+        private readonly IAsyncRepository<Company> _companyRepository;
+        public DepartmentsController(
+            IAsyncRepository<Departments> asyncRepository, 
+            IAsyncRepository<Location> locRepository, 
+            IAsyncRepository<Company> companyRepository)
         {
-            return View();
+            this._asyncRepository = asyncRepository;
+            this._companyRepository = companyRepository;
+            this._locRepository = locRepository;
         }
 
-        // GET: Departments/Details/5
-        public ActionResult Details(int id)
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var departmentall = await _asyncRepository.ListAllAsync();
+            return View(departmentall);
         }
 
-        // GET: Departments/Create
-        public ActionResult Create()
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
         {
+            if (id <= 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            var department = await _asyncRepository.GetByIdAsync(id);
+            if(department == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View(department);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Create()
+        {
+            ViewBag.Locations = await _locRepository.ListAllAsync();
+            ViewBag.Companies = await _companyRepository.ListAllAsync();
             return View();
         }
 
         // POST: Departments/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(Departments departments)
         {
-            try
+            if(ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                await _asyncRepository.AddAsync(departments);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            
+                return View(departments);
+            
         }
 
-        // GET: Departments/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            if (id <= 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            var department = await _asyncRepository.GetByIdAsync(id);
+            if (department == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            ViewBag.Locations = await _locRepository.ListAllAsync();
+            ViewBag.Companies = await _companyRepository.ListAllAsync();
+            return View(department);
         }
 
         // POST: Departments/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, Departments collection)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
+                await _asyncRepository.UpdateAsync(collection);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+
+            ViewBag.Locations = await _locRepository.ListAllAsync();
+            ViewBag.Companies = await _companyRepository.ListAllAsync();
+            return View(collection);
         }
 
-        // GET: Departments/Delete/5
-        public ActionResult Delete(int id)
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            if (id <= 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            var deleteDept = await _asyncRepository.GetByIdAsync(id);
+            if(deleteDept == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(deleteDept);
         }
 
         // POST: Departments/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> Delete(int id, Departments collection)
         {
-            try
+            if(ModelState.IsValid)
             {
-                // TODO: Add delete logic here
+                await _asyncRepository.DeleteAsync(collection);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+
+            return RedirectToAction(nameof(Index));
+
         }
     }
 }

@@ -15,7 +15,11 @@ namespace AssetManager.Web.Controllers
         private readonly IAsyncRepository<Depreciation> _depcaterepository;
 
 
-        public ModelsController(IAsyncRepository<AssetModels> repository, IAsyncRepository<Manufacturer> manufacturer, IAsyncRepository<Category> cateRepo, IAsyncRepository<Depreciation> deprepos)
+        public ModelsController(
+            IAsyncRepository<AssetModels> repository, 
+            IAsyncRepository<Manufacturer> manufacturer, 
+            IAsyncRepository<Category> cateRepo, 
+            IAsyncRepository<Depreciation> deprepos)
         {
             this.modelsRepository = repository;
             this._menurepository = manufacturer;
@@ -47,9 +51,8 @@ namespace AssetManager.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var allmanufecturer = await _menurepository.ListAllAsync();
-            
-            ViewBag.manufacturer = allmanufecturer;
+                       
+            ViewBag.manufacturer = await _menurepository.ListAllAsync();
             ViewBag.category = await _caterepository.ListAllAsync();
             ViewBag.depreciation = await _depcaterepository.ListAllAsync();
             return View();

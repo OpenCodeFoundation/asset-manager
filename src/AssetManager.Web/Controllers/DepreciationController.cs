@@ -14,7 +14,7 @@ namespace AssetManager.Web.Controllers
         private readonly IAsyncRepository<Depreciation> _depreciationRepository;
         public DepreciationController(IAsyncRepository<Depreciation> repository)
         {
-            _depreciationRepository = repository;
+            this._depreciationRepository = repository;
         }
 
 

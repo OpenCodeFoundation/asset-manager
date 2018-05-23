@@ -15,7 +15,7 @@ namespace AssetManager.Web.Controllers
 
         public StatusLabelsController(IAsyncRepository<StatusLabel> repository)
         {
-            _statusRepository = repository;
+            this._statusRepository = repository;
         }
 
         [HttpGet]

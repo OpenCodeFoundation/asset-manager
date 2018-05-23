@@ -15,7 +15,7 @@ namespace AssetManager.Web.Controllers
 
         public CategoriesController(IAsyncRepository<Category> repository)
         {
-            _categoryRepository = repository;
+            this._categoryRepository = repository;
         }
 
         [HttpGet]
