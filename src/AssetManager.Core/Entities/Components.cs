@@ -27,7 +27,6 @@ namespace AssetManager.Core.Entities
         [ForeignKey("Company")]
         public int CompanyId { get; set; }
         
-        public int UserId { get; set; }
 
         [Display(Name ="Quantity")]
         public int Qty { get; set; }
