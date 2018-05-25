@@ -17,5 +17,12 @@ namespace AssetManager.Web.Controllers
         {
             this._accessoriesRepository = repository;
         }
+
+        public async Task<IActionResult> Index()
+        {
+            var allaccessories = await _accessoriesRepository.ListAllAsync();
+
+            return View(allaccessories);
+        }
     }
 }
