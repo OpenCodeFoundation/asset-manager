@@ -1,0 +1,222 @@
+﻿@model IEnumerable<AssetManager.Core.Entities.Asset>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>All Assets</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="box">
+    <div class="box-header">
+        <div class="fixed-table-toolbar">
+
+        </div>
+    </div>
+    <div class="box-body">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CompanyId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AssetTag)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ModelsId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StatusId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Serial)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PurchaseDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SupplierId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OrderNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PurchaseCost)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WarrantyMonths)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Notes)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LocationId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Requestable)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Image)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AssignedTo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CheckoutTo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedBy)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedAt)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UpdatedAt)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Physical)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DeletedAt)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Archived)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Depreciate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Accepted)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LastCheckout)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ExpectedCheckin)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AssignedType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LastAuditDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NextAuditDate)
+                    </th>
+                    
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CompanyId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AssetTag)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ModelsId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StatusId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Serial)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PurchaseDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SupplierId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PurchaseCost)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WarrantyMonths)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Notes)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LocationId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Requestable)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Image)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AssignedTo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CheckoutTo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedBy)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedAt)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpdatedAt)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Physical)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DeletedAt)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Archived)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Depreciate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Accepted)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastCheckout)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ExpectedCheckin)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AssignedType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastAuditDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NextAuditDate)
+                        </td>
+                        
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new {id=item.Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -24,5 +24,6 @@ namespace AssetManager.Infrastructure.Data
         public DbSet<AssetModels> AssetModels { get; set; }
         public DbSet<Location> Location { get; set; }
         public DbSet<Departments> Departments { get; set; }
+        public DbSet<Asset> Asset { get; set; }
     }
 }

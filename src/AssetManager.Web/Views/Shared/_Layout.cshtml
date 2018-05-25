@@ -29,6 +29,7 @@
     <!-- Google Font -->
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -216,9 +217,24 @@
                             <span>Asset</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
+
                             </span>
                         </a>
 
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("Index","Hardware")">List All</a></li>
+                            <li><a><i class="fa fa-circle-o text-blue"></i> All Deployed Assets</a></li>
+                            <li><a><i class="fa fa-circle-o text-green"></i> All Ready to Deploy</a></li>
+                            <li><a><i class="fa fa-circle-o text-orange"></i> All Pending</a></li>
+                            <li><a><i class="fa fa-times text-red"></i> All Un-deployable</a></li>
+                            <li><a><i class="fa fa-times text-red"></i> All Archived</a></li>
+                            <li><a><i class="fa fa-check text-blue"></i>Requestable</a></li>
+                            <li><a>Bulk Checkout</a></li>
+                            <li><a>Requested</a></li>
+                            <li><a>Deleted</a></li>
+                            <li><a>Import History</a></li>
+                            <li><a>Bulk Audit</a></li>
+                        </ul>
                     </li>
                     <li class="treeview">
                         <a href="#">
