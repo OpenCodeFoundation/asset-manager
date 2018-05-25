@@ -9,7 +9,7 @@ namespace AssetManager.Core.Entities
     public class Accessory: Entity
     {
 
-        [Display(Name = "Accessory Name")]
+        [Display(Name = "Name")]
         public string Name { get; set; }
 
         [Display(Name = "Category")]
@@ -20,8 +20,6 @@ namespace AssetManager.Core.Entities
         [Display(Name = "Supplier")]
         [ForeignKey("Supplier")]
         public int SupplierId { get; set; }
-
-        public int UserId { get; set; }
 
         [Display(Name = "Quantity")]
         public int Qty { get; set; }
@@ -35,10 +33,12 @@ namespace AssetManager.Core.Entities
 
 
         [Display(Name = "Purchase Date")]
+        [DataType(DataType.Date)]
         public DateTime PurchaseDate { get; set; }
 
         [Display(Name = "Purchase Cost")]
-        public decimal PurchaseCost { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal? PurchaseCost { get; set; }
 
         [Display(Name = "Order Number")]
         public string OrderNumber { get; set; }
