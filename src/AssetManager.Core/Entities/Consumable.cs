@@ -23,8 +23,7 @@ namespace AssetManager.Core.Entities
         [ForeignKey("Location")]
         public int LocatonId { get; set; }
         public virtual Location Location { get; set; }
-        public int UserId { get; set; }
-
+        
         [Display(Name ="Qty")]
         public int Qty { get; set; }
 
@@ -32,9 +31,11 @@ namespace AssetManager.Core.Entities
         public bool Requestable { get; set; }
 
         [Display(Name = "Purchase Date")]
+        [DataType(DataType.Date)]
         public DateTime PurchaseDate { get; set; }
 
         [Display(Name = "Purchase Cost")]
+        [DataType(DataType.Currency)]
         public decimal PurchaseCost { get; set; }
 
         [Display(Name = "Order Number")]
@@ -58,7 +59,7 @@ namespace AssetManager.Core.Entities
         public virtual Manufacturer Manufacturer { get; set; }
 
         [Display(Name = "Item No")]
-        public string ItemNo { get; set; }
+        public int ItemNo { get; set; }
 
         [Display(Name ="Image")]
         public string Image { get; set; }

@@ -18,5 +18,12 @@ namespace AssetManager.Web.Controllers
             this._consumableyRepository = repository;
         }
 
+        public async Task<IActionResult> Index()
+        {
+            var allconsuable = await _consumableyRepository.ListAllAsync();
+
+            return View(allconsuable);
+        }
+
     }
 }
