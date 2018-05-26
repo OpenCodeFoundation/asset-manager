@@ -27,5 +27,6 @@ namespace AssetManager.Infrastructure.Data
         public DbSet<Asset> Asset { get; set; }
         public DbSet<Accessory> Accessory { get; set; }
         public DbSet<Consumable> Consumable { get; set; }
+        public DbSet<Components> Components { get; set; }
     }
 }

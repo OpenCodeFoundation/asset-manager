@@ -19,8 +19,8 @@ namespace AssetManager.Web.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Index(){
-
+        public async Task<IActionResult> Index()
+        {
             var componentslist = await _componentRepository.ListAllAsync();
             return View(componentslist);
         }
