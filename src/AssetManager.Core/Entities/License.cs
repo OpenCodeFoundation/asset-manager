@@ -19,9 +19,11 @@ namespace AssetManager.Core.Entities
         public string Serial { get; set; }
 
         [Display(Name = "Purchase Date")]
+        [DataType(DataType.Date)]
         public DateTime PurchaseDate { get; set; }
 
         [Display(Name = "Purchase Cost")]
+        [DataType(DataType.Currency)]
         public decimal PurchaseCost { get; set; }
 
         [Display(Name = "Order Number")]
@@ -33,8 +35,6 @@ namespace AssetManager.Core.Entities
 
         [Display(Name = "Notes")]
         public string Notes { get; set; }
-
-        public int UserId { get; set; }
 
         [Display(Name = "Depreciation")]
         [ForeignKey("Depreciation")]
@@ -53,12 +53,14 @@ namespace AssetManager.Core.Entities
         public virtual Supplier Supplier { get; set; }
 
         [Display(Name = "Expiration Date")]
+        [DataType(DataType.Date)]
         public DateTime ExpirationDate { get; set; }
 
         [Display(Name = "Purchase Order Number")]
         public string PurchaseOrder { get; set; }
 
         [Display(Name = "Termination Date")]
+        [DataType(DataType.Date)]
         public DateTime TerminationDate { get; set; }
 
         [Display(Name = "Maintained")]
