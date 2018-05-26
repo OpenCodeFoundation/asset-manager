@@ -1,4 +1,5 @@
-﻿@model IEnumerable<AssetManager.Core.Entities.AssetModels>
+﻿@model IEnumerable<AssetManager.Core.Entities.Consumable>
+
 @{
     ViewData["Title"] = "Index";
 }
@@ -21,31 +22,43 @@
                                     @Html.DisplayNameFor(model => model.Name)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.ManufacturerId)
+                                    @Html.DisplayNameFor(model => model.CategoryId)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.CategoryId)
+                                    @Html.DisplayNameFor(model => model.LocatonId)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Qty)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Requestable)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PurchaseDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PurchaseCost)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.OrderNumber)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CompanyId)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.MinmumAmt)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.ModelNumber)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.DepreciationId)
+                                    @Html.DisplayNameFor(model => model.ManufacturerId)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Eol)
+                                    @Html.DisplayNameFor(model => model.ItemNo)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.Image)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.DeprecatedMacAdress)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Notes)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Requestable)
                                 </th>
 
                                 <th>Action</th>
@@ -59,31 +72,43 @@
                                         @Html.DisplayFor(modelItem => item.Name)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.ManufacturerId)
+                                        @Html.DisplayFor(modelItem => item.CategoryId)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.CategoryId)
+                                        @Html.DisplayFor(modelItem => item.LocatonId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Qty)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Requestable)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PurchaseDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PurchaseCost)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.OrderNumber)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CompanyId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MinmumAmt)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.ModelNumber)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.DepreciationId)
+                                        @Html.DisplayFor(modelItem => item.ManufacturerId)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Eol)
+                                        @Html.DisplayFor(modelItem => item.ItemNo)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Image)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.DeprecatedMacAdress)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Notes)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Requestable)
                                     </td>
 
                                     <td>
@@ -100,4 +125,3 @@
         </div>
     </div>
 </div>
-       
