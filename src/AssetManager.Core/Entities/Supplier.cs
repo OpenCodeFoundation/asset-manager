@@ -11,7 +11,6 @@ namespace AssetManager.Core.Entities
 {
     public class Supplier: Entity
     {
-
         [Display(Name ="Name")]
         public string Name { get; set; }
 

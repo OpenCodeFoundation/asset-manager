@@ -16,7 +16,7 @@
                         <label asp-for="CompanyId" class="control-label col-md-3"></label>
                         <div class="col-md-7">
                             <select asp-for="CompanyId" class="form-control" asp-items="@(new SelectList(ViewBag.CompanyList, "Id", "Name"))">
-                                <option value="0">--Select Company--</option>
+                                <option>--Select Company--</option>
                             </select>
                             <span asp-validation-for="CompanyId" class="text-danger"></span>
                         </div>
@@ -33,7 +33,7 @@
                         <label asp-for="CategoryId" class="control-label col-md-3"></label>
                         <div class="col-md-7">
                             <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(ViewBag.Categorylist, "Id", "Name"))">
-                                <option value="0">--Select Category--</option>
+                                <option>--Select Category--</option>
                             </select>
                             <span asp-validation-for="CategoryId" class="text-danger"></span>
                         </div>
@@ -42,7 +42,7 @@
                         <label asp-for="ManufacturerId" class="control-label col-md-3"></label>
                         <div class="col-md-7">
                             <select asp-for="ManufacturerId" class="form-control" asp-items="@(new SelectList(ViewBag.manufacturer, "Id", "Name"))">
-                                <option value="0">--Select Manufacturer--</option>
+                                <option>--Select Manufacturer--</option>
                             </select>
                             <span asp-validation-for="ManufacturerId" class="text-danger"></span>
                         </div>
@@ -51,7 +51,7 @@
                         <label asp-for="LocatonId" class="control-label col-md-3"></label>
                         <div class="col-md-7">
                             <select asp-for="LocatonId" class="form-control" asp-items="@(new SelectList(ViewBag.locations, "Id", "Name"))">
-                                <option value="0">--Select Location--</option>
+                                <option>--Select Location--</option>
                             </select>
                             <span asp-validation-for="LocatonId" class="text-danger"></span>
                         </div>

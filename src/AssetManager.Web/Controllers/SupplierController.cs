@@ -31,6 +31,7 @@ namespace AssetManager.Web.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewBag.CountryList = AllCountry.getCountry();
             return View();
             
         }
@@ -48,7 +49,7 @@ namespace AssetManager.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
             
-                return View();
+                return View(Supplier);
             
         }
 
