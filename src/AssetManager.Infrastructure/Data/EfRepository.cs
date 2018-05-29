@@ -46,5 +46,7 @@ namespace AssetManager.Infrastructure.Data
             _dbContext.Entry(entity).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }
+
+        
     }
 }
