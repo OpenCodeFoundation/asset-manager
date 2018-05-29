@@ -37,13 +37,13 @@ namespace AssetManager.Core.Entities
     public enum CatagoryType
     {
         [Display(Name = "Asset")]
-        Asset = 0,
+        Asset = 1,
         [Display(Name = "Component")]
-        Component = 1,
+        Component = 2,
         [Display(Name = "Accessory")]
-        Accessory = 2,
+        Accessory = 3,
         [Display(Name = "Consumable")]
-        Consumable = 3
+        Consumable = 4
     }
 }
 
