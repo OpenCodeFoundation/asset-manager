@@ -5,21 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Asset Manager | Starter</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" href="~/bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/bower_components/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="~/bower_components/Ionicons/css/ionicons.min.css">
-    <link rel="stylesheet" href="~/dist/css/AdminLTE.min.css">
-    <link rel="stylesheet" href="~/dist/css/skins/skin-blue.min.css">
 
-    <!-- DataTables -->
-    <link rel="stylesheet" href="~/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <environment include="Development">
+        <link rel="stylesheet" href="~/bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="~/bower_components/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="~/bower_components/Ionicons/css/ionicons.min.css">
+        <link rel="stylesheet" href="~/dist/css/AdminLTE.min.css">
+        <link rel="stylesheet" href="~/dist/css/skins/skin-blue.min.css">
 
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="~/dist/css/skins/_all-skins.min.css">
-
-
-
+        <!-- DataTables -->
+        <link rel="stylesheet" href="~/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -422,15 +421,22 @@
     </div>
     <!-- ./wrapper -->
     <!-- REQUIRED JS SCRIPTS -->
-    <!-- jQuery 3 -->
-    <script src="~/bower_components/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap 3.3.7 -->
-    <script src="~/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="~/dist/js/adminlte.min.js"></script>
-    <!-- Optionally, you can add Slimscroll and FastClick plugins.
-         Both of these plugins are recommended to enhance the
-         user experience. -->
+
+    <environment include="Development">
+        <!-- jQuery 3 -->
+        <script src="~/bower_components/jquery/dist/jquery.min.js"></script>
+        <!-- Bootstrap 3.3.7 -->
+        <script src="~/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="~/dist/js/adminlte.min.js"></script>
+        <!-- Optionally, you can add Slimscroll and FastClick plugins.
+            Both of these plugins are recommended to enhance the
+            user experience. -->
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
     @RenderSection("scripts", required:false)
 </body>
 </html>

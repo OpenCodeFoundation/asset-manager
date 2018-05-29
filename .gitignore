@@ -292,3 +292,5 @@ coverage.xml
 
 # VS code files
 .vscode
+src/AssetManager.Web/wwwroot/css/site.min.css
+src/AssetManager.Web/wwwroot/js/site.min.js
