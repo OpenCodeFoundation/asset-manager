@@ -28,7 +28,7 @@
                         <label asp-for="LocationsId" class="control-label col-md-3"></label>
                         <div class="col-md-7">
                             <select asp-for="LocationsId" class="form-control" asp-items="@(new SelectList(@ViewBag.ParentList, "Id", "Name"))">
-                                <option value="0">--Parent Location--</option>
+                                <option>--Parent Location--</option>
                             </select>
                             <span asp-validation-for="LocationsId" class="text-danger"></span>
                         </div>
@@ -73,7 +73,7 @@
                         <label asp-for="Country" class="control-label col-md-3"></label>
                         <div class="col-md-7">
                             <select asp-for="Country" class="form-control" asp-items="@(new SelectList(@ViewBag.CountryList))">
-                                <option value="0">--Select Country--</option>
+                                <option>--Select Country--</option>
                             </select>
                             <span asp-validation-for="Country" class="text-danger"></span>
                         </div>

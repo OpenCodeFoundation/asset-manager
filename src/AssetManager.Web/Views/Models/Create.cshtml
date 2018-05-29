@@ -31,7 +31,7 @@
                         <label asp-for="ManufacturerId" class="col-md-3 control-label"></label>
                         <div class="col-md-7">
                             <select asp-for="ManufacturerId" class="form-control" asp-items="@(new SelectList(@ViewBag.manufacturer, "Id", "Name"))">
-                                <option value="0">--Select Manufacturer--</option>
+                                <option>--Select Manufacturer--</option>
                             </select>
                             <span asp-validation-for="ManufacturerId" class="text-danger"></span>
                         </div>
@@ -40,7 +40,7 @@
                         <label asp-for="CategoryId" class="col-md-3 control-label"></label>
                         <div class="col-md-7">
                             <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(@ViewBag.category, "Id", "Name"))">
-                                <option value="0">--Select Category--</option>
+                                <option>--Select Category--</option>
                             </select>
                             <span asp-validation-for="CategoryId" class="text-danger"></span>
                         </div>
@@ -56,7 +56,7 @@
                         <label asp-for="DepreciationId" class="col-md-3 control-label"></label>
                         <div class="col-md-7">
                             <select asp-for="DepreciationId" class="form-control" asp-items="@(new SelectList(@ViewBag.depreciation, "Id", "Name"))">
-                                <option value="0">--Select Depreciation--</option>
+                                <option>--Select Depreciation--</option>
                             </select>
                             <span asp-validation-for="DepreciationId" class="text-danger"></span>
                         </div>
