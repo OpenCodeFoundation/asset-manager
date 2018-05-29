@@ -19,7 +19,7 @@
     <ProjectReference Include="..\AssetManager.Infrastructure\AssetManager.Infrastructure.csproj" />
   </ItemGroup>
 
-  <Target Name="BowerInstall" BeforeTargets="Build">
+  <Target Name="BowerInstall" BeforeTargets="CollectPackageReferences">
     <exec Command="bower install" />
   </Target>
 
