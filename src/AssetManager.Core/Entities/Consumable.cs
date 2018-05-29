@@ -27,9 +27,6 @@ namespace AssetManager.Core.Entities
         [Display(Name ="Qty")]
         public int Qty { get; set; }
 
-        [Display(Name = "Requestable")]
-        public bool Requestable { get; set; }
-
         [Display(Name = "Purchase Date")]
         [DataType(DataType.Date)]
         public DateTime PurchaseDate { get; set; }

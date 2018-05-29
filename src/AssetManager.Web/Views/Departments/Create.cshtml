@@ -29,14 +29,18 @@
                     <div class="form-group">
                         <label asp-for="CompanyId" class="control-label col-md-3"></label>
                         <div class="col-md-7">
-                            <select asp-for="CompanyId" class="form-control" asp-items="@(new SelectList(@ViewBag.Companies, "Id", "Name"))"></select>
+                            <select asp-for="CompanyId" class="form-control" asp-items="@(new SelectList(@ViewBag.Companies, "Id", "Name"))">
+                                <option value="0">Select Company</option>
+                            </select>
                             <span asp-validation-for="CompanyId" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label asp-for="LocatonId" class="control-label col-md-3"></label>
                         <div class="col-md-7">
-                            <select asp-for="LocatonId" class="form-control" asp-items="@(new SelectList(@ViewBag.Locations, "Id", "Name"))"></select>
+                            <select asp-for="LocatonId" class="form-control" asp-items="@(new SelectList(@ViewBag.Locations, "Id", "Name"))">
+                                <option value="0">Select Location</option>
+                            </select>
                             <span asp-validation-for="LocatonId" class="text-danger"></span>
                         </div>
                     </div>

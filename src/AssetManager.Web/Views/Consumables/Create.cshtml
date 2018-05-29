@@ -1,0 +1,132 @@
+﻿@model AssetManager.Core.Entities.Consumable
+
+<h4>Consumable</h4>
+<hr />
+<div class="row">
+    <!-- right column -->
+    <div class="col-md-8 col-md-offset-2">
+        <div class="box box-info">
+            <div class="box-header with-border">
+
+            </div>
+            <form asp-action="Create" method="post" class="form-horizontal">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="box-body">
+                    <div class="form-group">
+                        <label asp-for="CompanyId" class="control-label col-md-3"></label>
+                        <div class="col-md-7">
+                            <select asp-for="CompanyId" class="form-control" asp-items="@(new SelectList(ViewBag.CompanyList, "Id", "Name"))">
+                                <option value="0">--Select Company--</option>
+                            </select>
+                            <span asp-validation-for="CompanyId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label col-md-3"></label>
+                        <div class="col-md-7">
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CategoryId" class="control-label col-md-3"></label>
+                        <div class="col-md-7">
+                            <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(ViewBag.Categorylist, "Id", "Name"))">
+                                <option value="0">--Select Category--</option>
+                            </select>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ManufacturerId" class="control-label col-md-3"></label>
+                        <div class="col-md-7">
+                            <select asp-for="ManufacturerId" class="form-control" asp-items="@(new SelectList(ViewBag.manufacturer, "Id", "Name"))">
+                                <option value="0">--Select Manufacturer--</option>
+                            </select>
+                            <span asp-validation-for="ManufacturerId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LocatonId" class="control-label col-md-3"></label>
+                        <div class="col-md-7">
+                            <select asp-for="LocatonId" class="form-control" asp-items="@(new SelectList(ViewBag.locations, "Id", "Name"))">
+                                <option value="0">--Select Location--</option>
+                            </select>
+                            <span asp-validation-for="LocatonId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ModelNumber" class="control-label col-md-3"></label>
+                        <div class="col-md-7">
+                            <input asp-for="ModelNumber" class="form-control" />
+                            <span asp-validation-for="ModelNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ItemNo" class="control-label col-md-3"></label>
+                        <div class="col-md-7">
+                            <input asp-for="ItemNo" class="form-control" />
+                            <span asp-validation-for="ItemNo" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OrderNumber" class="control-label col-md-3"></label>
+                        <div class="col-md-7">
+                            <input asp-for="OrderNumber" class="form-control" />
+                            <span asp-validation-for="OrderNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PurchaseDate" class="control-label col-md-3"></label>
+                        <div class="col-md-3">
+                            <input asp-for="PurchaseDate" class="form-control" />
+                            <span asp-validation-for="PurchaseDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PurchaseCost" class="control-label col-md-3"></label>
+                        <div class="col-md-2">
+                            <input asp-for="PurchaseCost" class="form-control" />
+                            <span asp-validation-for="PurchaseCost" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Qty" class="control-label col-md-3"></label>
+                        <div class="col-md-2">
+                            <input asp-for="Qty" class="form-control" />
+                            <span asp-validation-for="Qty" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MinmumAmt" class="control-label col-md-3"></label>
+                        <div class="col-md-2">
+                            <input asp-for="MinmumAmt" class="form-control" />
+                            <span asp-validation-for="MinmumAmt" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Image" class="control-label col-md-3"></label>
+                        <div class="col-md-3">
+                            <input type="file" asp-for="Image" class="form-control" />
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-5"></div>
+                        <div class="col-sm-5">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
