@@ -43,6 +43,15 @@ namespace AssetManager.Web
             ConfigureServices(services);
         }
 
+        // Configure services when the the app is running in demo environment
+        // ( env value of "ASPNETCORE_ENVIRONMENT" is "Demo" )
+        public void ConfigureDemoServices(IServiceCollection services)
+        {
+            // Use testing configuration as it use In-memory database
+            // and we want in-memory database
+            ConfigureTestingServices(services);
+        }
+
         // This method gets called when Production Environment is used
         // Use this method to set Production services, like Production database
         public void ConfigureProductionServices(IServiceCollection services)
