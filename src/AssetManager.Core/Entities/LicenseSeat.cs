@@ -9,21 +9,22 @@ using System.Threading.Tasks;
 
 namespace AssetManager.Core.Entities
 {
-
     public class LicenseSeat : Entity
     {
         [ForeignKey("License")]
         public int LicenseId { get; set; }
         public virtual License License { get; set; }
         public int AssignTo { get; set; }
+
         [Display(Name = "Note")]
+        [DataType(DataType.Text)]
         public string Note { get; set; }
 
         [Display(Name = "Asset")]
         [ForeignKey("Asset")]
         public int AssetId { get; set; }
         public virtual Asset Asset { get; set; }
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
 
         public DateTime CreatedAt { get; set; }
 
