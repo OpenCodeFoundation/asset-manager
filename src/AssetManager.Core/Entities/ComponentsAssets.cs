@@ -11,7 +11,7 @@ namespace AssetManager.Core.Entities
 {
     public class ComponentsAssets: Entity
     {
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         public int AssignedQty { get; set; }
 
         [ForeignKey("Components")]
