@@ -6,12 +6,12 @@
     // An array of relative input file paths. Globbing patterns supported
     "inputFiles": [
       "wwwroot/bower_components/bootstrap/dist/css/bootstrap.min.css",
-      "wwwroot/bower_components/font-awesome/css/font-awesome.min.css",
       "wwwroot/bower_components/Ionicons/css/ionicons.min.css",
       "wwwroot/dist/css/AdminLTE.min.css",
       "wwwroot/dist/css/skins/skin-blue.min.css",
       "wwwroot/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css"
-    ]
+    ],
+    "sourceMap": true
   },
   {
     "outputFileName": "wwwroot/js/site.min.js",
