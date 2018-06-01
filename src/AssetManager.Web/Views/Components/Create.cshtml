@@ -1,0 +1,127 @@
+﻿@model AssetManager.Core.Entities.Components
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<section class="content-header">
+
+    <h1 class="pull-left">Create Components</h1>
+</section>
+<hr />
+<div class="row">
+    <!-- right column -->
+    <div class="col-md-8 col-md-offset-2">
+        <div class="box box-info">
+            <div class="box-header with-border">
+
+            </div>
+            <form asp-action="Create" method="post" class="form-horizontal">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="box-body">
+                    <div class="form-group">
+                        <label asp-for="Name" class="col-md-3 control-label"></label>
+                        <div class="col-md-7">
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="CategoryId" class="control-label col-md-3"></label>
+                        <div class="col-md-7">
+                            <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(ViewBag.Categorylist, "Id", "Name"))">
+                                <option value="">--Select Category--</option>
+                            </select>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Qty" class="control-label col-md-3">Quantity</label>
+                        <div class="col-md-2">
+                            <input asp-for="Qty" class="form-control" />
+                            <span asp-validation-for="Qty" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="MinmumAmt" class="control-label col-md-3">Min. QTY</label>
+                        <div class="col-md-2">
+                            <input asp-for="MinmumAmt" class="form-control" />
+                            <span asp-validation-for="MinmumAmt" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Serial" class="control-label col-md-3">Serial</label>
+                        <div class="col-md-7">
+                            <input asp-for="Serial" class="form-control" />
+                            <span asp-validation-for="Serial" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CompanyId" class="control-label col-md-3"></label>
+                        <div class="col-md-7">
+                            <select asp-for="CompanyId" class="form-control" asp-items="@(new SelectList(ViewBag.CompanyList, "Id", "Name"))">
+                                <option value="">--Select Company--</option>
+                            </select>
+                            <span asp-validation-for="CompanyId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LocatonId" class="control-label col-md-3"></label>
+                        <div class="col-md-7">
+                            <select asp-for="LocatonId" class="form-control" asp-items="@(new SelectList(ViewBag.locations, "Id", "Name"))">
+                                <option value="">--Select Location--</option>
+                            </select>
+                            <span asp-validation-for="LocatonId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OrderNumber" class="control-label col-md-3">Order Number</label>
+                        <div class="col-md-7">
+                            <input asp-for="OrderNumber" class="form-control" />
+                            <span asp-validation-for="OrderNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PurchaseDate" class="control-label col-md-3">Purchase Date</label>
+                        <div class="col-md-4">
+                            <input asp-for="PurchaseDate" class="form-control" />
+                            <span asp-validation-for="PurchaseDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PurchaseCost" class="control-label col-md-3">Purchase Cost</label>
+                        <div class="col-md-3">
+                            <input asp-for="PurchaseCost" class="form-control" />
+                            <span asp-validation-for="PurchaseCost" class="text-danger"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label asp-for="Image" class="control-label col-md-3">Upload Image</label>
+                        <div class="col-md-4">
+                            <input type="file" asp-for="Image" class="form-control"/>
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="box-footer text-right">
+                        <a class="btn btn-link text-left" asp-action="Index">Cancel</a>
+                        <button type="submit" class="btn btn-success">
+                        <i class="fa fa-check icon-white"></i>
+                        Submit</button>
+                    </div>
+                  
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
