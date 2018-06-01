@@ -17,16 +17,20 @@ namespace AssetManager.Core.Entities
 
         [Display(Name = "Category")]
         [ForeignKey("Category")]
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
+        public virtual Category Category { get; set; }
 
         [Display(Name = "Location")]
         [ForeignKey("Location")]
-        public int LocatonId { get; set; }
+        public int? LocatonId { get; set; }
+        public virtual Location Location { get; set; }
 
         [Display(Name = "Company")]
         [ForeignKey("Company")]
-        public int CompanyId { get; set; }
-        
+        public int? CompanyId { get; set; }
+        public virtual Company Company { get; set; }
+
+        public int? UserId { get; set; }
 
         [Display(Name ="Quantity")]
         public int Qty { get; set; }
@@ -35,9 +39,11 @@ namespace AssetManager.Core.Entities
         public string OrderNumber { get; set; }
 
         [Display(Name = "Purchase Date")]
+        [DataType(DataType.Date)]
         public DateTime PurchaseDate { get; set; }
 
         [Display(Name = "Purchase Cost")]
+        [DataType(DataType.Currency)]
         public decimal PurchaseCost { get; set; }
 
         public DateTime CreatedAt { get; set; }
@@ -54,8 +60,5 @@ namespace AssetManager.Core.Entities
 
         [Display(Name = "Image")]
         public string Image { get; set; }
-        public virtual Category Category { get; set; }
-        public virtual Location Location { get; set; }
-        public virtual Company Company { get; set; }
     }
 }
