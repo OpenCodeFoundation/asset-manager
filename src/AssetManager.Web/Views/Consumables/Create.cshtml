@@ -113,11 +113,12 @@
                             <span asp-validation-for="Image" class="text-danger"></span>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-sm-5"></div>
-                        <div class="col-sm-5">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
+                    <div class="box-footer text-right">
+                        <a class="btn btn-link text-left" asp-action="Index">Cancel</a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-check icon-white"></i>
+                            Submit
+                        </button>
                     </div>
 
                 </div>
@@ -125,8 +126,6 @@
         </div>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
