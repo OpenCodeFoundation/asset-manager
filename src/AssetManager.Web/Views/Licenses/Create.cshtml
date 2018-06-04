@@ -1,0 +1,183 @@
+﻿@model AssetManager.Core.Entities.License
+
+<h4>License</h4>
+<hr />
+<div class="row">
+    <!-- right column -->
+    <div class="col-md-8 col-md-offset-2">
+        <div class="box box-info">
+            <div class="box-header with-border">
+
+            </div>
+            <form asp-action="Create" method="post" class="form-horizontal">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="box-body">
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label col-md-3">Software Name</label>
+                        <div class="col-md-7">
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="CategoryId" class="control-label col-md-3">Category Name</label>
+                        <div class="col-md-7">
+                            <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(ViewBag.Categorylist, "Id", "Name"))">
+                                <option>--Select Category--</option>
+                            </select>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Serial" class="control-label col-md-3">Product Key</label>
+                        <div class="col-md-7 col-sm-12 required">
+                            <textarea asp-for="Serial" class="form-control"></textarea>
+                            <span asp-validation-for="Serial" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Seats" class="control-label col-md-3"></label>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" asp-for="Seats" class="form-control" />
+                            <span asp-validation-for="Seats" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CompanyId" class="control-label col-md-3"></label>
+                        <div class="col-md-7">
+                            <select asp-for="CompanyId" class="form-control" asp-items="@(new SelectList(ViewBag.CompanyList, "Id", "Name"))">
+                                <option>--Select Company--</option>
+                            </select>
+                            <span asp-validation-for="CompanyId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ManufacturerId" class="control-label col-md-3"></label>
+                        <div class="col-md-7">
+                            <select asp-for="ManufacturerId" class="form-control" asp-items="@(new SelectList(ViewBag.Manufacturers, "Id", "Name"))">
+                                <option>--Select Manufacturer--</option>
+                            </select>
+                            <span asp-validation-for="ManufacturerId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="LicenseName" class="control-label col-md-3">Licensed to Name</label>
+                        <div class="col-md-7">
+                            <input asp-for="LicenseName" class="form-control" />
+                            <span asp-validation-for="LicenseName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="LicenseEmail" class="control-label col-md-3">Licensed to Email</label>
+                        <div class="col-md-7">
+                            <input asp-for="LicenseEmail" class="form-control" />
+                            <span asp-validation-for="LicenseEmail" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Reassignable</label>
+                        <div class="col-md-7">
+                            <div class="checkbox">
+                                <input class="minimal" asp-for="Reassignable" /> Yes
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SupplierId" class="control-label col-md-3"></label>
+                        <div class="col-md-7">
+                            <select asp-for="SupplierId" class="form-control" asp-items="@(new SelectList(ViewBag.Suppliers, "Id", "Name"))">
+                                <option>--Select Supplier--</option>
+                            </select>
+                            <span asp-validation-for="SupplierId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OrderNumber" class="control-label col-md-3">Order Number</label>
+                        <div class="col-md-7">
+                            <input asp-for="OrderNumber" class="form-control" />
+                            <span asp-validation-for="OrderNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PurchaseCost" class="control-label col-md-3">Purchase Cost</label>
+                        <div class="col-md-7">
+                            <input asp-for="PurchaseCost" class="form-control" />
+                            <span asp-validation-for="PurchaseCost" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PurchaseDate" class="control-label col-md-3">Purchase Date</label>
+                        <div class="col-md-4">
+                            <input asp-for="PurchaseDate" class="form-control" />
+                            <span asp-validation-for="PurchaseDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ExpirationDate" class="control-label col-md-3">Expiration Date</label>
+                        <div class="col-md-4">
+                            <input asp-for="ExpirationDate" class="form-control" />
+                            <span asp-validation-for="ExpirationDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TerminationDate" class="control-label col-md-3">Termination Date</label>
+                        <div class="col-md-4">
+                            <input asp-for="TerminationDate" class="form-control" />
+                            <span asp-validation-for="TerminationDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PurchaseOrder" class="control-label col-md-3">Purchase Order Number</label>
+                        <div class="col-md-4">
+                            <input asp-for="PurchaseOrder" class="form-control" />
+                            <span asp-validation-for="PurchaseOrder" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DepreciationId" class="control-label col-md-3"></label>
+                        <div class="col-md-7">
+                            <select asp-for="DepreciationId" class="form-control" asp-items="@(new SelectList(ViewBag.Depreciations, "Id", "Name"))">
+                                <option>--Depreciation Method--</option>
+                            </select>
+                            <span asp-validation-for="DepreciationId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Maintained</label>
+                        <div class="col-md-7">
+                            <div class="checkbox">
+                                <input asp-for="Maintained" /> Yes
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Notes" class="control-label col-md-3">Notes</label>
+                        <div class="col-md-7 col-sm-12">
+                            <textarea asp-for="Notes" class="col-md-6 form-control"></textarea>
+                            <span asp-validation-for="Notes" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="box-footer text-right">
+                        <a class="btn btn-link text-left" asp-action="Index">Cancel</a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-check icon-white"></i>
+                            Submit
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
