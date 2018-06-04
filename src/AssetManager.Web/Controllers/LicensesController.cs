@@ -16,7 +16,7 @@ namespace AssetManager.Web.Controllers
         private readonly IAsyncRepository<Category> _categoryRepository;
         private readonly IAsyncRepository<Manufacturer> _menurepository;
         private readonly IAsyncRepository<Depreciation> _depreciationrepository;
-        public readonly IAsyncRepository<Supplier> _supplierasyncRepository;
+        private readonly IAsyncRepository<Supplier> _supplierasyncRepository;
 
         public LicensesController(
             IAsyncRepository<Company> companyRepository,
