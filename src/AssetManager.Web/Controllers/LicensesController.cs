@@ -52,12 +52,13 @@ namespace AssetManager.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(License licenses)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(License license)
         {
-            licenses.Depreciate = true;
+            license.Depreciate = true;
             if (ModelState.IsValid)
             {
-                await _licenseasyncRepository.AddAsync(licenses);
+                await _licenseasyncRepository.AddAsync(license);
                 return RedirectToAction(nameof(Index));
             }
 
