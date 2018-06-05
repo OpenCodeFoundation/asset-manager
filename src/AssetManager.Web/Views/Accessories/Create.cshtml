@@ -1,0 +1,141 @@
+﻿@model AssetManager.Core.Entities.Accessory
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create Accessory</h2>
+
+<hr />
+<div class="row">
+    <!-- right column -->
+    <div class="col-md-8 col-md-offset-2">
+        <div class="box box-info">
+            <div class="box-header with-border">
+
+            </div>
+            <form asp-action="Create" method="post" class="form-horizontal">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="box-body">
+                    <div class="form-group">
+                        <label asp-for="CompanyId" class="control-label col-md-3"></label>
+                        <div class="col-md-7">
+                            <select asp-for="CompanyId" class="form-control" asp-items="@(new SelectList(ViewBag.CompanyList, "Id", "Name"))">
+                                <option>--Select Company--</option>
+                            </select>
+                            <span asp-validation-for="CompanyId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label col-md-3">Accessory Name</label>
+                        <div class="col-md-7">
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CategoryId" class="control-label col-md-3">Category Name</label>
+                        <div class="col-md-7">
+                            <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(ViewBag.Categorylist, "Id", "Name"))">
+                                <option>--Select Category--</option>
+                            </select>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SupplierId" class="control-label col-md-3"></label>
+                        <div class="col-md-7">
+                            <select asp-for="SupplierId" class="form-control" asp-items="@(new SelectList(ViewBag.Suppliers, "Id", "Name"))">
+                                <option>--Select Supplier--</option>
+                            </select>
+                            <span asp-validation-for="SupplierId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ManufacturerId" class="control-label col-md-3"></label>
+                        <div class="col-md-7">
+                            <select asp-for="ManufacturerId" class="form-control" asp-items="@(new SelectList(ViewBag.Manufacturers, "Id", "Name"))">
+                                <option>--Select Manufacturer--</option>
+                            </select>
+                            <span asp-validation-for="ManufacturerId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="LocatonId" class="control-label col-md-3"></label>
+                        <div class="col-md-7">
+                            <select asp-for="LocatonId" class="form-control" asp-items="@(new SelectList(@ViewBag.Locations, "Id", "Name"))">
+                                <option>--Select Location--</option>
+                            </select>
+                            <span asp-validation-for="LocatonId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ModelNumber" class="control-label col-md-3">Model No</label>
+                        <div class="col-md-7">
+                            <input asp-for="ModelNumber" class="form-control" />
+                            <span asp-validation-for="ModelNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OrderNumber" class="control-label col-md-3">Order Number</label>
+                        <div class="col-md-7">
+                            <input asp-for="OrderNumber" class="form-control" />
+                            <span asp-validation-for="OrderNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PurchaseDate" class="control-label col-md-3">Purchase Date</label>
+                        <div class="col-md-4">
+                            <input asp-for="PurchaseDate" class="form-control" />
+                            <span asp-validation-for="PurchaseDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PurchaseCost" class="control-label col-md-3">Purchase Cost</label>
+                        <div class="col-md-3">
+                            <input type="text" asp-for="PurchaseCost" class="form-control" />
+                            <span asp-validation-for="PurchaseCost" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Qty" class="control-label col-md-3">Quantity</label>
+                        <div class="col-md-2">
+                            <input type="text" asp-for="Qty" class="form-control" />
+                            <span asp-validation-for="Qty" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MinAmt" class="control-label col-md-3">Min. QTY</label>
+                        <div class="col-md-2">
+                            <input type="text" asp-for="MinAmt" class="form-control" />
+                            <span asp-validation-for="MinAmt" class="text-danger"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label asp-for="Image" class="control-label col-md-3">Upload Image</label>
+                        <div class="col-md-4">
+                            <input type="file" asp-for="Image" class="form-control" />
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="box-footer text-right">
+                        <a class="btn btn-link text-left" asp-action="Index">Cancel</a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-check icon-white"></i>
+                            Submit
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
