@@ -1,15 +1,15 @@
 ﻿body {
 }
 
-.content-header {
+.header-content {
     background: #fff !important;
     padding: 10px;
     margin-bottom: 15px;
 }
 
-.content-title{
-    font-size:30px;
-    padding:10px;
+.header-content-title {
+    font-size: 30px;
+    padding: 10px;
 }
 
 .btn-create-new{
