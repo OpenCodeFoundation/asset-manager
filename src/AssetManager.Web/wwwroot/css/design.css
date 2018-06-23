@@ -1,0 +1,17 @@
+﻿body {
+}
+
+.header-content {
+    background: #fff;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.header-content-title {
+    font-size: 30px;
+    padding: 10px;
+}
+
+.btn-create-new{
+    margin:20px;
+}
