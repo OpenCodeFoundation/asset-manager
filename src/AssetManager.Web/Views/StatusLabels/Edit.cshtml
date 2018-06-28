@@ -4,10 +4,18 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<section class="header-content">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-8">
+            <p class="header-content-title">Edit Status Label</p>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-4">
+            <a asp-action="Index" class="pull-right btn btn-primary btn-create-new">Back</a>
+        </div>
+    </div>
+</section>
 
-<h4>StatusLabel</h4>
-<hr />
+
 <div class="row">
     <!-- right column -->
     <div class="col-md-8 col-md-offset-2">
@@ -53,11 +61,12 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="col-sm-5"></div>
-                        <div class="col-sm-5">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
+                    <div class="box-footer text-right">
+                        <a class="btn btn-link text-left" asp-action="Index">Cancel</a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-check icon-white"></i>
+                            Submit
+                        </button>
                     </div>
 
                    
@@ -67,9 +76,6 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
