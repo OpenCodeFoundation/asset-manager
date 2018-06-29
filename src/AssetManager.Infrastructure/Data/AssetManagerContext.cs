@@ -1,4 +1,5 @@
 ﻿using AssetManager.Core.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace AssetManager.Infrastructure.Data
 {
-    public class AssetManagerContext : DbContext
+    public class AssetManagerContext : IdentityDbContext<ApplicationUser>
     {
         public AssetManagerContext( DbContextOptions<AssetManagerContext> options) : base(options) { } 
 
