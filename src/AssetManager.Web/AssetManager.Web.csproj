@@ -29,6 +29,12 @@
     <ProjectReference Include="..\AssetManager.Infrastructure\AssetManager.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Shared\_LayoutLogin.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
   <Target Name="BowerInstall" BeforeTargets="CollectPackageReferences">
     <exec Command="bower install" />
   </Target>

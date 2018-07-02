@@ -117,7 +117,7 @@ namespace AssetManager.Web.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
-            return Redirect("/");
+            return RedirectToAction(nameof(Login));
         }
 
         #region Helpers
