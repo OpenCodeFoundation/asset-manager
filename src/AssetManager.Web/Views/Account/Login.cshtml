@@ -1,0 +1,60 @@
+﻿@using System.Collections.Generic
+@using System.Linq
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Authentication
+@using AssetManager.Core.Entities
+@model AssetManager.Web.Models.LoginViewModel
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+    <!-- Main content -->
+<div class="card">
+    <div class="card-body login-card-body">
+
+        <form asp-controller="Account" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+            <p class="login-box-msg">Sign in to start your session</p>
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="form-group has-feedback">
+                <span class="fa fa-envelope form-control-feedback"></span>
+                <input asp-for="Email" class="form-control"></input>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <span class="fa fa-lock form-control-feedback"></span>
+                <input asp-for="Password" class="form-control"></input>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group has-feedback">
+                 <label>
+                    <input type="checkbox" asp-for="RememberMe">
+                      @Html.DisplayNameFor(m => m.RememberMe)
+                 </label>
+                </div>
+                <div class="social-auth-links text-center mb-3">
+                    <button type="submit" class="btn btn-block btn-primary">
+                        Log in
+                    </button>
+                </div>
+
+        </form>
+
+        <div class="form-group">
+            <p>
+                <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
+            </p>
+        </div>
+
+
+    </div>
+
+   
+</div>
+
+
+ 
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

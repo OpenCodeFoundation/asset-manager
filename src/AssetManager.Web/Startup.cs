@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AssetManager.Core.Entities;
 using AssetManager.Core.Interfaces;
 using AssetManager.Infrastructure.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,6 +39,9 @@ namespace AssetManager.Web
             // Configure in-memory database
             services.AddDbContext<AssetManagerContext>(options =>
                 options.UseInMemoryDatabase("assetmanager"));
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+           .AddEntityFrameworkStores<AssetManagerContext>()
+           .AddDefaultTokenProviders();
 
             ConfigureServices(services);
         }
@@ -68,7 +71,13 @@ namespace AssetManager.Web
         {
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
 
-            services.AddMvc();
+            services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                                 .RequireAuthenticatedUser()
+                                 .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            });
 
         }
 
@@ -86,11 +95,13 @@ namespace AssetManager.Web
 
             app.UseStaticFiles();
 
+            app.UseAuthentication();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Account}/{action=Login}/{id?}");
             });
         }
     }

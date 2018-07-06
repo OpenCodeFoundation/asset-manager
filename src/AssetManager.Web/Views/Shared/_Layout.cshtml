@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using AssetManager.Web.Models
+@using AssetManager.Core.Entities
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -30,14 +36,14 @@
     <!-- Google Font -->
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    
+
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         <!-- Main Header -->
         <header class="main-header">
-            
+
             <!-- Header Navbar -->
             <nav class="navbar navbar-static-top" role="navigation">
                 <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
@@ -144,49 +150,36 @@
                                 </li>
                             </ul>
                         </li>
-                        <!-- User Account Menu -->
                         <li class="dropdown user user-menu">
-                            <!-- Menu Toggle Button -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <!-- The user image in the navbar-->
-                                <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                <span class="hidden-xs">Alexander Pierce</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <!-- The user image in the menu -->
-                                <li class="user-header">
-                                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                                    <p>
-                                        Alexander Pierce - Web Developer
-                                        <small>Member since Nov. 2012</small>
-                                    </p>
-                                </li>
-                                <!-- Menu Body -->
-                                <li class="user-body">
-                                    <div class="row">
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Followers</a>
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Sales</a>
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Friends</a>
-                                        </div>
-                                    </div>
-                                    <!-- /.row -->
-                                </li>
-                                <!-- Menu Footer-->
-                                <li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                                    </div>
-                                </li>
-                            </ul>
+                           
+                                    <!-- User Account Menu -->
+                                    <!-- Menu Toggle Button -->
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <span class="hidden-xs"> @UserManager.GetUserName(User)</span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li class="user-header">
+                                            <p>
+                                                @UserManager.GetUserName(User)
+                                                <small>Member since Nov. 2012</small>
+                                            </p>
+                                        </li>
+
+                                        <!-- Menu Footer-->
+                                        <li class="user-footer">
+                                            <div class="pull-left">
+                                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                            </div>
+                                            <div class="pull-right">
+                                                @{
+                                                    <form asp-controller="Account" method="post">
+                                                        <a href="@Url.Action("Logout","Account")" class="btn btn-default btn-flat">Sign out</a>
+                                                    </form>
+                                                }
+                                            </div>
+                                        </li>
+                                    </ul>
+                                
                         </li>
                         <!-- Control Sidebar Toggle Button -->
                         <li>
@@ -200,8 +193,8 @@
         <aside class="main-sidebar">
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
-               
-                
+
+
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <!--<li class="header">MAIN NAVIGATION</li>-->
@@ -241,12 +234,12 @@
                         <a href="@Url.Action("Index","Licenses")">
                             <i class="fa fa-floppy-o"></i>
                             <span>Licenses</span>
-                            
+
                         </a>
 
                     </li>
-                    <li> 
-                        <a href="@Url.Action("Index","Accessories")"> 
+                    <li>
+                        <a href="@Url.Action("Index","Accessories")">
                             <i class="fa fa-keyboard-o"></i> <span>Accessories</span>
                         </a>
                     </li>
@@ -255,28 +248,33 @@
                         <a href="@Url.Action("Index","Consumables")">
                             <i class="fa fa-tint"></i>
                             <span>Consumables</span>
-                            
+
                         </a>
                     </li>
 
-                    <li >
+                    <li>
                         <a href="@Url.Action("Index","Components")">
                             <i class="fa fa-hdd-o"></i>
                             <span>Components</span>
-                            
+
                         </a>
                     </li>
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-users"></i> <span>People</span>
-                            
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
                         </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("Register","Account")"><i class="fa fa-user fa-fw"></i> Add New</a></li>
+                        </ul>
                     </li>
 
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-cloud-download"></i> <span>Import</span>
-                            
+
                         </a>
                     </li>
                     <!--Seetings Start-->
@@ -324,7 +322,7 @@
         </aside>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) 
+            <!-- Content Header (Page header)
             <section class="content-header">
 
                 <ol class="breadcrumb">
@@ -439,7 +437,7 @@
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
 
-    @RenderSection("scripts", required:false)
+    @RenderSection("scripts", required: false)
 </body>
 </html>
 
