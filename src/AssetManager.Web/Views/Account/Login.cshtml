@@ -28,16 +28,10 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group has-feedback">
-                <div class="row">
-                    <div class="col-8">
-                        <div class="checkbox icheck">
-                            <label>
-                                <input type="checkbox" asp-for="RememberMe">
-                                @Html.DisplayNameFor(m => m.RememberMe)
-                            </label>
-                        </div>
-                    </div>
-                </div>
+                 <label>
+                    <input type="checkbox" asp-for="RememberMe">
+                      @Html.DisplayNameFor(m => m.RememberMe)
+                 </label>
                 </div>
                 <div class="social-auth-links text-center mb-3">
                     <button type="submit" class="btn btn-block btn-primary">
@@ -48,9 +42,6 @@
         </form>
 
         <div class="form-group">
-            <p>
-                <a asp-action="ForgotPassword">Forgot your password?</a>
-            </p>
             <p>
                 <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
             </p>

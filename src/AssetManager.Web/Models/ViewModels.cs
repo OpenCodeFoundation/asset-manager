@@ -43,4 +43,29 @@ namespace AssetManager.Web.Models
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
     }
+
+    public class ApplicationUserViewModel
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+        public string WebSite { get; set; }
+
+        public string Country { get; set; }
+
+        public string Gravatar { get; set; }
+        public string Phone { get; set; }
+
+        public string JobTitle { get; set; }
+        public string Address { get; set; }
+
+        public string City { get; set; }
+
+        public string State { get; set; }
+
+        public string Zip { get; set; }
+    }
 }
