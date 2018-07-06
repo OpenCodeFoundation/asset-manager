@@ -4,40 +4,60 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+
+<section class="header-content">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-8">
+            <p class="header-content-title">Details Status Label</p>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-4">
+            <a asp-action="Index" class="pull-right btn btn-primary btn-create-new">Back</a>
+        </div>
+    </div>
+</section>
+
 
 <div>
-    <h4>StatusLabel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Notes)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Notes)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ShowInNav)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ShowInNav)
-        </dd>
-        
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new {  id = Model.Id }) |
-    <a asp-action="Index">Back to List</a>
+
+    <div class="col-md-8 col-md-offset-2">
+        <div class="box box-info">
+            <div class="box-header with-border">
+
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Type)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Type)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Notes)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Notes)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ShowInNav)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.ShowInNav)
+                    </dd>
+
+                </dl>
+            </div>
+            
+
+            <div class="box-footer">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) | 
+                <a asp-action="Index">Back to List</a>
+            </div>
+
+        </div>
+    </div>
 </div>
