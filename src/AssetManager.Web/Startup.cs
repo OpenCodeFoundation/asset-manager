@@ -1,5 +1,6 @@
 ﻿using AssetManager.Core.Entities;
 using AssetManager.Core.Interfaces;
+using AssetManager.Core.Services;
 using AssetManager.Infrastructure.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -69,6 +70,8 @@ namespace AssetManager.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped(typeof(ICompanyService), typeof(CompanyService));
+            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
 
             services.AddMvc(config =>
