@@ -17,8 +17,8 @@ namespace AssetManager.Core.Services
 
         public async Task<Company> AddCompany(Company entity)
         {
-            
-            
+            throw new NotImplementedException();
+
         }
 
         public Task DeleteCompany(Company entity)

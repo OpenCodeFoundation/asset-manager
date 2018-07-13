@@ -44,15 +44,15 @@ namespace AssetManager.Infrastructure.Data
             await _dbContext.SaveChangesAsync();
         }
 
-        public T GetById(int id)
+        public virtual T GetById(int id)
         {
             return _dbContext.Set<T>().Find(id);
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public virtual async Task<T> GetByIdAsync(int id)
         {
-            
-            return await _dbContext.Set<T>().SingleOrDefaultAsync(m => m.Id == id);
+
+            return await _dbContext.Set<T>().FindAsync(id);
         }
 
         public T GetSingleBySpec(ISpecification<T> spec)
