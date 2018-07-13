@@ -3,7 +3,7 @@ sudo: required
 dist: trusty
 
 mono: latest
-dotnet: 2.1.4
+dotnet: 2.1.302
 
 env:
   global:
