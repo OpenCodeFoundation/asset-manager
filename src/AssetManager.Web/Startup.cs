@@ -5,7 +5,9 @@ using AssetManager.Infrastructure.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -37,6 +39,12 @@ namespace AssetManager.Web
         // Use this method to set Testing services, like Testng database
         public void ConfigureTestingServices(IServiceCollection services)
         {
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
             // Configure in-memory database
             services.AddDbContext<AssetManagerContext>(options =>
                 options.UseInMemoryDatabase("assetmanager"));
@@ -80,7 +88,7 @@ namespace AssetManager.Web
                                  .RequireAuthenticatedUser()
                                  .Build();
                 config.Filters.Add(new AuthorizeFilter(policy));
-            });
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
         }
 
