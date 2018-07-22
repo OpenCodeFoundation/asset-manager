@@ -7,38 +7,8 @@ using System.Threading.Tasks;
 
 namespace AssetManager.Core.Services
 {
-   public class CompanyService: ICompanyService
+   public class CompanyService
     {
-        private readonly IAsyncRepository<Company> _companyRepository;
-        public CompanyService(IAsyncRepository<Company> repository)
-        {
-            this._companyRepository = repository;
-        }
-
-        public async Task<Company> AddCompany(Company entity)
-        {
-            throw new NotImplementedException();
-
-        }
-
-        public Task DeleteCompany(Company entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Company> GetCompany(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<Company>> ListAllCompany()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateCompany(Company entity)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

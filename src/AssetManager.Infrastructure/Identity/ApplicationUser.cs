@@ -1,8 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using AssetManager.Core.Entities;
 using Microsoft.AspNetCore.Identity;
 
-namespace AssetManager.Core.Entities
+namespace AssetManager.Infrastructure.Identity
 {
     public class ApplicationUser : IdentityUser
     {
@@ -22,7 +23,7 @@ namespace AssetManager.Core.Entities
 
         [ForeignKey("LocationId")]
         public int LocationId { get; set; }
-        public virtual Location Location { get; set; }
+        public Location Location { get; set; }
 
         public string Phone { get; set; }
 
@@ -30,11 +31,11 @@ namespace AssetManager.Core.Entities
 
         [ForeignKey("CompanyId")]
         public int CompanyId { get; set; }
-        public virtual Company Company { get; set; }
+        public Company Company { get; set; }
 
         [ForeignKey("DepartmentId")]
         public int DepartmentId { get; set; }
-        public virtual Departments Departments { get; set; }
+        public Departments Departments { get; set; }
 
         public string Address { get; set; }
 

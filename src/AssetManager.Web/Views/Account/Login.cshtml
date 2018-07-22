@@ -3,13 +3,14 @@
 @using Microsoft.AspNetCore.Http
 @using Microsoft.AspNetCore.Http.Authentication
 @using AssetManager.Core.Entities
+@using AssetManager.Infrastructure.Identity
 @model AssetManager.Web.Models.LoginViewModel
 @inject SignInManager<ApplicationUser> SignInManager
 @{
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 
-    <!-- Main content -->
+<!-- Main content -->
 <div class="card">
     <div class="card-body login-card-body">
 
@@ -28,16 +29,16 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group has-feedback">
-                 <label>
+                <label>
                     <input type="checkbox" asp-for="RememberMe">
-                      @Html.DisplayNameFor(m => m.RememberMe)
-                 </label>
-                </div>
-                <div class="social-auth-links text-center mb-3">
-                    <button type="submit" class="btn btn-block btn-primary">
-                        Log in
-                    </button>
-                </div>
+                    @Html.DisplayNameFor(m => m.RememberMe)
+                </label>
+            </div>
+            <div class="social-auth-links text-center mb-3">
+                <button type="submit" class="btn btn-block btn-primary">
+                    Log in
+                </button>
+            </div>
 
         </form>
 
@@ -50,11 +51,11 @@
 
     </div>
 
-   
+
 </div>
 
 
- 
+
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
 }
