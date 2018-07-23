@@ -30,7 +30,6 @@ namespace AssetManager.Web.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -38,7 +37,6 @@ namespace AssetManager.Web.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
@@ -120,7 +118,7 @@ namespace AssetManager.Web.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction(nameof(AccountController.Login), "Login");
+            return RedirectToAction(nameof(AccountController.Login), "Account");
         }
 
         #region Helpers
