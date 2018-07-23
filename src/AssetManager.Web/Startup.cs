@@ -107,6 +107,13 @@ namespace AssetManager.Web
             //}).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             // Add memory cache services
             services.AddMemoryCache();
+            services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                                 .RequireAuthenticatedUser()
+                                 .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            });
 
             services.AddMvc();
 
