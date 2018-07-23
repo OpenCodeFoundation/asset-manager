@@ -3,18 +3,23 @@
 @using Microsoft.AspNetCore.Http
 @using Microsoft.AspNetCore.Http.Authentication
 @using AssetManager.Core.Entities
+@using AssetManager.Infrastructure.Identity
 @model AssetManager.Web.Models.LoginViewModel
 @inject SignInManager<ApplicationUser> SignInManager
 @{
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 
-    <!-- Main content -->
+<!-- Main content -->
 <div class="card">
     <div class="card-body login-card-body">
 
         <form asp-controller="Account" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
             <p class="login-box-msg">Sign in to start your session</p>
+            <div class="alert alert-info">
+                <p>Welcome to the Asset Manager demo! Please remember not to submit real data here, as it's publicly viewable. </p>
+                <p>To login, use <code>demouser@microsoft.com</code> / <code>Pass@word1</code>.</p>
+            </div>
             <div asp-validation-summary="All" class="text-danger"></div>
 
             <div class="form-group has-feedback">
@@ -28,33 +33,26 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group has-feedback">
-                 <label>
+                <label>
                     <input type="checkbox" asp-for="RememberMe">
-                      @Html.DisplayNameFor(m => m.RememberMe)
-                 </label>
-                </div>
-                <div class="social-auth-links text-center mb-3">
-                    <button type="submit" class="btn btn-block btn-primary">
-                        Log in
-                    </button>
-                </div>
+                    @Html.DisplayNameFor(m => m.RememberMe)
+                </label>
+            </div>
+            <div class="social-auth-links text-center mb-3">
+                <button type="submit" class="btn btn-block btn-primary">
+                    Log in
+                </button>
+            </div>
 
         </form>
-
-        <div class="form-group">
-            <p>
-                <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
-            </p>
-        </div>
-
-
+        
     </div>
 
-   
+
 </div>
 
 
- 
+
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
 }

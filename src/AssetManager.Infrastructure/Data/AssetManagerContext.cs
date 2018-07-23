@@ -7,7 +7,7 @@ using System.Text;
 
 namespace AssetManager.Infrastructure.Data
 {
-    public class AssetManagerContext : IdentityDbContext<ApplicationUser>
+    public class AssetManagerContext : DbContext
     {
         public AssetManagerContext( DbContextOptions<AssetManagerContext> options) : base(options) { } 
 

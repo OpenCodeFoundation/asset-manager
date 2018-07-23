@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using AssetManager.Web.Models
 @using AssetManager.Core.Entities
+@using AssetManager.Infrastructure.Identity
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
@@ -151,35 +152,35 @@
                             </ul>
                         </li>
                         <li class="dropdown user user-menu">
-                           
-                                    <!-- User Account Menu -->
-                                    <!-- Menu Toggle Button -->
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <span class="hidden-xs"> @UserManager.GetUserName(User)</span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li class="user-header">
-                                            <p>
-                                                @UserManager.GetUserName(User)
-                                                <small>Member since Nov. 2012</small>
-                                            </p>
-                                        </li>
 
-                                        <!-- Menu Footer-->
-                                        <li class="user-footer">
-                                            <div class="pull-left">
-                                                <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                            </div>
-                                            <div class="pull-right">
-                                                @{
-                                                    <form asp-controller="Account" method="post">
-                                                        <a href="@Url.Action("Logout","Account")" class="btn btn-default btn-flat">Sign out</a>
-                                                    </form>
-                                                }
-                                            </div>
-                                        </li>
-                                    </ul>
-                                
+                            <!-- User Account Menu -->
+                            <!-- Menu Toggle Button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="hidden-xs"> @UserManager.GetUserName(User)</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="user-header">
+                                    <p>
+                                        @UserManager.GetUserName(User)
+                                        <small>Member since Nov. 2012</small>
+                                    </p>
+                                </li>
+
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        @{
+                                            <form asp-controller="Account" method="post">
+                                                <a href="@Url.Action("Logout","Account")" class="btn btn-default btn-flat">Sign out</a>
+                                            </form>
+                                        }
+                                    </div>
+                                </li>
+                            </ul>
+
                         </li>
                         <!-- Control Sidebar Toggle Button -->
                         <li>
