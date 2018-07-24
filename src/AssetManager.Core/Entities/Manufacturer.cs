@@ -11,7 +11,6 @@ namespace AssetManager.Core.Entities
 {
     public class Manufacturer: Entity
     {
-        
         [Display(Name =("Manufacturer Name"))]
         [Required]
         public string Name { get; set; }
@@ -34,13 +33,5 @@ namespace AssetManager.Core.Entities
 
         [Display(Name ="Image")]
         public string Image { get; set; }
-
-        public DateTime CreatedAt { get; set; }
-
-        public DateTime UpdatedAt { get; set; }
-
-        public DateTime DeletedAt { get; set; }
-
-        public virtual ICollection<AssetModels> Models { get; set; }
     }
 }

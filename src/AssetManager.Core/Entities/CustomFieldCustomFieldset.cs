@@ -10,15 +10,9 @@ namespace AssetManager.Core.Entities
 {
     public class CustomFieldCustomFieldset: Entity
     {
-
-        [ForeignKey("CustomFields")]
         public int CustomFieldsId { get; set; }
-        public virtual CustomFields CustomFields { get; set; }
-
-
+        public CustomFields CustomFields { get; set; }
         public int CustomFieldsetId { get; set; }
-
-
         public int Order { get; set; }
         public bool Required { get; set; }
     }

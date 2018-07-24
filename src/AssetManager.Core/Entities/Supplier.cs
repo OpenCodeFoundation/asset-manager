@@ -52,10 +52,5 @@ namespace AssetManager.Core.Entities
 
         [Display(Name = "Image")]
         public string Image { get; set; }
-
-        public DateTime CreateAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
-        public DateTime DeletedAt { get; set; }
-
     }
 }

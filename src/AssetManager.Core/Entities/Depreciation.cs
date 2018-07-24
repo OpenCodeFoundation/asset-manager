@@ -13,13 +13,7 @@ namespace AssetManager.Core.Entities
     {
         [Display(Name = "Depreciation Name")]
         public string Name { get; set; }
-   
         [Display(Name = "Number of Months")]
         public int Months { get; set; }
-        
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
-        public virtual ICollection<AssetModels> Models { get; set; }
-
     }
 }

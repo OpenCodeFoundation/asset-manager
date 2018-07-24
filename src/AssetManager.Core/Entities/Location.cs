@@ -15,9 +15,8 @@ namespace AssetManager.Core.Entities
         public string Name { get; set; }
 
         [Display(Name = ("Parent"))]
-        [ForeignKey("Locations")]
-        public int? LocationsId { get; set; }
-        public virtual Location Locations { get; set; }
+        public int LocationsId { get; set; }
+        public Location Locations { get; set; }
 
         public string Manager { get; set; }
 
@@ -35,15 +34,10 @@ namespace AssetManager.Core.Entities
         [Display(Name ="Country")]
         public string Country { get; set; }
         
-
         [Display(Name ="Zip Code")]
         public int Zip { get; set; }
 
-       
         [Display(Name ="Image")]
         public string Image { get; set; }
-
-        public ICollection<Departments> Departments { get; set; }
-
     }
 }

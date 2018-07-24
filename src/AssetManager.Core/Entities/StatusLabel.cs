@@ -17,11 +17,6 @@ namespace AssetManager.Core.Entities
         public StatusType Type { get; set; }
         public string Notes { get; set; }
         public bool ShowInNav { get; set; }
-        public DateTime CreatedAt { get; set; }
-
-        public DateTime UpdatedAt { get; set; }
-
-        public DateTime DeletedAt { get; set; }
     }
 
     public enum StatusType

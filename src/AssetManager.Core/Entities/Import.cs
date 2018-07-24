@@ -12,21 +12,11 @@ namespace AssetManager.Core.Entities
     public class Import: Entity
     {
         public string Name { get; set; }
-
         public string FilePath { get; set; }
-
         public int FileSize { get; set; }
-
         public string ImportType { get; set; }
-
-        public DateTime CreatedAt { get; set; }
-
-        public DateTime UpdatedAt { get; set; }
-
         public string HeaderRow { get; set; }
-
         public string FirstRow { get; set; }
-
         public string FieldMap { get; set; }
     }
 }

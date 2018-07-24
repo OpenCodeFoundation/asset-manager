@@ -11,9 +11,8 @@ namespace AssetManager.Core.Entities
 {
     public class RequestedAsset: Entity
     {
-        [ForeignKey("Asset")]
         public int AssetId { get; set; }
-        public virtual Asset Asset { get; set; }
+        public Asset Asset { get; set; }
         public int UserId { get; set; }
     
         public DateTime AcceptedAt { get; set; }
@@ -22,9 +21,5 @@ namespace AssetManager.Core.Entities
 
         [Display(Name ="Note")]
         public string Note { get; set; }
-
-        public DateTime CreatedAt { get; set; }
-
-        public DateTime UpdatedAt { get; set; }
     }
 }

@@ -12,12 +12,8 @@ namespace AssetManager.Core.Entities
     public class ConsumablesUsers: Entity
     {
         public int UserId { get; set; }
-
-        [ForeignKey("Consumable")]
         public int ConsumableId { get; set; }
-        public virtual Consumable Consumable { get; set; }
+        public Consumable Consumable { get; set; }
         public int AssignTo { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
     }
 }
