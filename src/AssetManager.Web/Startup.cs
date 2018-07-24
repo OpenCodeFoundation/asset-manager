@@ -84,12 +84,11 @@ namespace AssetManager.Web
                 options.LogoutPath = "/Account/Logout";
             });
 
+            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
             services.AddScoped<IStatusLabelService, StatusLabelService>();
             services.AddScoped<ISupplierService, SupplierService>();
             services.AddScoped<ICompanyService, CompanyService>();
-            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-            services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
-            
 
             //My Testing
             //services.AddMvc(config =>
