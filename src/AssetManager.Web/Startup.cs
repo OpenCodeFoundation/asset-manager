@@ -84,9 +84,9 @@ namespace AssetManager.Web
                 options.LogoutPath = "/Account/Logout";
             });
 
-            services.AddScoped(typeof(IStatusLabelService), typeof(StatusLabelService));
-            services.AddScoped(typeof(ISupplierService), typeof(SupplierService));
-            services.AddScoped(typeof(ICompanyService), typeof(CompanyService));
+            services.AddScoped<IStatusLabelService, StatusLabelService>();
+            services.AddScoped<ISupplierService, SupplierService>();
+            services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
             
