@@ -42,8 +42,8 @@ namespace AssetManager.Web.Controllers
         public async Task<IActionResult> Create(Company company)
         {
             if (ModelState.IsValid) { 
-                company.CreateDate = DateTime.Now;
-                company.UpdateDate = DateTime.Now;
+                company.CreatedAt = DateTime.Now;
+                company.UpdatedAt = DateTime.Now;
                 await _companyRepository.AddAsync(company);
 
                 return RedirectToAction(nameof(Index));
@@ -75,7 +75,7 @@ namespace AssetManager.Web.Controllers
             {
                 if (id == company.Id)
                 {
-                    company.UpdateDate = DateTime.Now;
+                    company.UpdatedAt = DateTime.Now;
                    await _companyRepository.UpdateAsync(company);
                 }
 
