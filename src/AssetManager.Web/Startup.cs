@@ -42,23 +42,13 @@ namespace AssetManager.Web
         // Use this method to set Testing services, like Testng database
         public void ConfigureTestingServices(IServiceCollection services)
         {
-            //Testing started for me
-            //services.Configure<CookiePolicyOptions>(options =>
-            //{
-            //    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-            //    options.CheckConsentNeeded = context => true;
-            //    options.MinimumSameSitePolicy = SameSiteMode.None;
-            //});
-            // Configure in-memory database
+
             services.AddDbContext<AssetManagerContext>(options =>
                 options.UseInMemoryDatabase("assetmanager"));
             // Add Identity DbContext
             services.AddDbContext<AppIdentityDbContext>(options =>
                 options.UseInMemoryDatabase("Identity"));
-            //Testing started for me
-            // services.AddIdentity<ApplicationUser, IdentityRole>()
-            //.AddEntityFrameworkStores<AssetManagerContext>()
-            //.AddDefaultTokenProviders();
+
 
             ConfigureServices(services);
         }
@@ -93,9 +83,13 @@ namespace AssetManager.Web
                 options.LoginPath = "/Account/Login";
                 options.LogoutPath = "/Account/Logout";
             });
-            //services.AddScoped(typeof(ICompanyService), typeof(CompanyService));
+
+            services.AddScoped(typeof(IStatusLabelService), typeof(StatusLabelService));
+            services.AddScoped(typeof(ISupplierService), typeof(SupplierService));
+            services.AddScoped(typeof(ICompanyService), typeof(CompanyService));
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
+            
 
             //My Testing
             //services.AddMvc(config =>
