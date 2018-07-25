@@ -36,10 +36,6 @@ namespace AssetManager.Core.Entities
         [Display(Name = "Order Number")]
         public string OrderNumber { get; set; }
 
-        [Display(Name = "Company")]
-        public int CompanyId { get; set; }
-        public Company Company { get; set; }
-
         [Display(Name = "Min. QTY")]
         public int MinmumAmt { get; set; }
 

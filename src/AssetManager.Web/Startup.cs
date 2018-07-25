@@ -88,7 +88,7 @@ namespace AssetManager.Web
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
             services.AddScoped<IStatusLabelService, StatusLabelService>();
             services.AddScoped<ISupplierService, SupplierService>();
-            services.AddScoped<ICompanyService, CompanyService>();
+            //services.AddScoped<ICompanyService, CompanyService>();
 
             //My Testing
             //services.AddMvc(config =>

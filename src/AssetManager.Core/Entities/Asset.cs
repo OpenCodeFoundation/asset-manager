@@ -68,8 +68,6 @@ namespace AssetManager.Core.Entities
 
         public DateTime LastCheckout { get; set; }
         public DateTime ExpectedCheckin { get; set; }
-        public int CompanyId { get; set; }
-        public Company Company { get; set; }
         public int AssignedType { get; set; }
         public int CheckoutTo { get; set; }
         public int CreatedBy { get; set; }

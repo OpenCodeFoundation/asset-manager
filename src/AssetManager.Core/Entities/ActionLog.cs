@@ -23,8 +23,6 @@ namespace AssetManager.Core.Entities
         public int ItemId { get; set; }
         public DateTime ExpecteCheckIn { get; set; }
         public int AcceptedId { get; set; }
-        public int CompanyId { get; set; }
-        public Company Company { get; set; }
         public string AcceptSign { get; set; }
         public string LogMeta { get; set; }
         

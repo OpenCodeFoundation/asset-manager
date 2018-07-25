@@ -19,9 +19,6 @@ namespace AssetManager.Core.Entities
         [Display(Name = "Location")]
         public int LocatonId { get; set; }
         public Location Location { get; set; }
-        [Display(Name = "Company")]
-        public int CompanyId { get; set; }
-        public Company Company { get; set; }
         public int UserId { get; set; }
         [Display(Name ="Quantity")]
         public int Qty { get; set; }

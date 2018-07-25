@@ -13,14 +13,11 @@ namespace AssetManager.Web.Controllers
     {
         private readonly IAsyncRepository<Departments> _asyncRepository;
         private readonly IAsyncRepository<Location> _locRepository;
-        private readonly IAsyncRepository<Company> _companyRepository;
         public DepartmentsController(
             IAsyncRepository<Departments> asyncRepository, 
-            IAsyncRepository<Location> locRepository, 
-            IAsyncRepository<Company> companyRepository)
+            IAsyncRepository<Location> locRepository)
         {
             this._asyncRepository = asyncRepository;
-            this._companyRepository = companyRepository;
             this._locRepository = locRepository;
         }
 
@@ -50,7 +47,6 @@ namespace AssetManager.Web.Controllers
         public async Task<ActionResult> Create()
         {
             ViewBag.Locations = await _locRepository.ListAllAsync();
-            ViewBag.Companies = await _companyRepository.ListAllAsync();
             return View();
         }
 
@@ -83,7 +79,6 @@ namespace AssetManager.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewBag.Locations = await _locRepository.ListAllAsync();
-            ViewBag.Companies = await _companyRepository.ListAllAsync();
             return View(department);
         }
 
@@ -100,7 +95,6 @@ namespace AssetManager.Web.Controllers
             }
 
             ViewBag.Locations = await _locRepository.ListAllAsync();
-            ViewBag.Companies = await _companyRepository.ListAllAsync();
             return View(collection);
         }
 

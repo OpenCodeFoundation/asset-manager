@@ -64,10 +64,6 @@ namespace AssetManager.Core.Entities
         [Display(Name = "Reassignable")]
         public bool Reassignable { get; set; }
 
-        [Display(Name = "Company")]
-        public int CompanyId { get; set; }
-        public Company Company { get; set; }
-
         [Display(Name = "Manufacturer")]
         public int ManufacturerId { get; set; }
         public Manufacturer Manufacturer { get; set; }
