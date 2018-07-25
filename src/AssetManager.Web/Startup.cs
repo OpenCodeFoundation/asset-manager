@@ -3,6 +3,7 @@ using AssetManager.Core.Interfaces;
 using AssetManager.Core.Services;
 using AssetManager.Infrastructure.Data;
 using AssetManager.Infrastructure.Identity;
+using AssetManager.Infrastructure.Logging;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -88,7 +89,8 @@ namespace AssetManager.Web
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
             services.AddScoped<IStatusLabelService, StatusLabelService>();
             services.AddScoped<ISupplierService, SupplierService>();
-            //services.AddScoped<ICompanyService, CompanyService>();
+
+            services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
             //My Testing
             //services.AddMvc(config =>
