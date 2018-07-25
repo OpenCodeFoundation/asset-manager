@@ -95,15 +95,6 @@ namespace AssetManager.Web
 
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
-            //My Testing
-            //services.AddMvc(config =>
-            //{
-            //    var policy = new AuthorizationPolicyBuilder()
-            //                     .RequireAuthenticatedUser()
-            //                     .Build();
-            //    config.Filters.Add(new AuthorizeFilter(policy));
-            //}).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            // Add memory cache services
             services.AddMemoryCache();
             services.AddMvc(config =>
             {
