@@ -1,4 +1,5 @@
-﻿using AssetManager.Core.Entities;
+﻿using AssetManager.Core;
+using AssetManager.Core.Entities;
 using AssetManager.Core.Interfaces;
 using AssetManager.Core.Services;
 using AssetManager.Infrastructure.Data;
@@ -89,6 +90,8 @@ namespace AssetManager.Web
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
             services.AddScoped<IStatusLabelService, StatusLabelService>();
             services.AddScoped<ISupplierService, SupplierService>();
+            services.Configure<CatalogSettings>(Configuration);
+            services.AddSingleton<IUriComposer>(new UriComposer(Configuration.Get<CatalogSettings>()));
 
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
