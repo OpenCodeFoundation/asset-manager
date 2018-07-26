@@ -1,19 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AssetManager.Core.Entities;
 using AssetManager.Core.Interfaces;
+using AssetManager.Core.Services;
 using AssetManager.Infrastructure.Data;
+using AssetManager.Infrastructure.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace AssetManager.Web
 {
     public class Startup
     {
+        private IServiceCollection _services;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -36,9 +42,23 @@ namespace AssetManager.Web
         // Use this method to set Testing services, like Testng database
         public void ConfigureTestingServices(IServiceCollection services)
         {
+            //Testing started for me
+            //services.Configure<CookiePolicyOptions>(options =>
+            //{
+            //    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+            //    options.CheckConsentNeeded = context => true;
+            //    options.MinimumSameSitePolicy = SameSiteMode.None;
+            //});
             // Configure in-memory database
             services.AddDbContext<AssetManagerContext>(options =>
                 options.UseInMemoryDatabase("assetmanager"));
+            // Add Identity DbContext
+            services.AddDbContext<AppIdentityDbContext>(options =>
+                options.UseInMemoryDatabase("Identity"));
+            //Testing started for me
+            // services.AddIdentity<ApplicationUser, IdentityRole>()
+            //.AddEntityFrameworkStores<AssetManagerContext>()
+            //.AddDefaultTokenProviders();
 
             ConfigureServices(services);
         }
@@ -56,9 +76,6 @@ namespace AssetManager.Web
         // Use this method to set Production services, like Production database
         public void ConfigureProductionServices(IServiceCollection services)
         {
-            services.AddDbContext<AssetManagerContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
-            );
 
             ConfigureServices(services);
         }
@@ -66,9 +83,41 @@ namespace AssetManager.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>()
+                .AddDefaultTokenProviders();
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromHours(1);
+                options.LoginPath = "/Account/Login";
+                options.LogoutPath = "/Account/Logout";
+            });
+            //services.AddScoped(typeof(ICompanyService), typeof(CompanyService));
+            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
 
+            //My Testing
+            //services.AddMvc(config =>
+            //{
+            //    var policy = new AuthorizationPolicyBuilder()
+            //                     .RequireAuthenticatedUser()
+            //                     .Build();
+            //    config.Filters.Add(new AuthorizeFilter(policy));
+            //}).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            // Add memory cache services
+            services.AddMemoryCache();
+            services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                                 .RequireAuthenticatedUser()
+                                 .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            });
+
             services.AddMvc();
+
+            _services = services;
 
         }
 
@@ -85,6 +134,8 @@ namespace AssetManager.Web
             }
 
             app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
