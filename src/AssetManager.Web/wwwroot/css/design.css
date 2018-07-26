@@ -9,9 +9,16 @@
 
 .header-content-title {
     font-size: 30px;
-    padding: 10px;
+    padding: 10px 10px 0 10px;
 }
 
 .btn-create-new{
     margin:20px;
+}
+
+
+.header-content-subtitle {
+    padding-left: 15px;
+    font-size: 16px;
+    padding-top: 0;
 }
