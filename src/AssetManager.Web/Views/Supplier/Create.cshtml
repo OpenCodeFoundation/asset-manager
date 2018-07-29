@@ -1,4 +1,4 @@
-﻿@model AssetManager.Core.Entities.Supplier
+﻿@model AssetManager.Web.ViewModels.SupplierViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -16,8 +16,7 @@
             </div>
             <form asp-action="Create" method="post" class="form-horizontal">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-
+                
                 <div class="box-body">
 
                     <div class="form-group">

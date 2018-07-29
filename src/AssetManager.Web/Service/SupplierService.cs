@@ -51,7 +51,7 @@ namespace AssetManager.Web
 
         public async Task<IEnumerable<Supplier>> GetAllSupplierAsync()
         {
-           return await _supplierRepository.ListAllAsync();
+            return await _supplierRepository.ListAllAsync();
         }
 
         public async Task<SupplierViewModel> GetSupplier(int id)
