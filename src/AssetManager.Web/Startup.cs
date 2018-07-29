@@ -89,7 +89,7 @@ namespace AssetManager.Web
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
             services.AddScoped<IStatusLabelService, StatusLabelService>();
-            services.AddScoped<ISupplierService, SupplierService>();
+            services.AddScoped<ISupplierViewModelService, SupplierViewModelService>();
             services.Configure<CatalogSettings>(Configuration);
             services.AddSingleton<IUriComposer>(new UriComposer(Configuration.Get<CatalogSettings>()));
 

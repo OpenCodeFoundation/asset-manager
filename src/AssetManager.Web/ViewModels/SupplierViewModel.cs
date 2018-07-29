@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace AssetManager.Web.ViewModels
 {
-    public class Supplier
+    public class SupplierViewModel
     {
+        public int Id { get; set; }
         [Display(Name = "Name")]
         [Required]
         [MaxLength(100)]

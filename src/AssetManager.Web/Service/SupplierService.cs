@@ -1,5 +1,6 @@
 ﻿using AssetManager.Core.Entities;
 using AssetManager.Core.Interfaces;
+using AssetManager.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,41 +8,100 @@ using System.Threading.Tasks;
 
 namespace AssetManager.Web
 {
-    public class SupplierService : ISupplierService
+    public class SupplierViewModelService : ISupplierViewModelService
     {
         private readonly IAsyncRepository<Supplier> _supplierRepository;
-        public SupplierService(IAsyncRepository<Supplier> supplierRepository)
+        public SupplierViewModelService(IAsyncRepository<Supplier> supplierRepository)
         {
             _supplierRepository = supplierRepository;
         }
-        public Supplier AddSupplier(Supplier supplier, string userId)
+        public bool AddSupplier(SupplierViewModel supplier, string userId)
         {
-            throw new NotImplementedException();
+            var _supplier = new Supplier()
+            {
+                Name = supplier.Name,
+                Address = supplier.Address,
+                AddressTwo = supplier.AddressTwo,
+                City = supplier.City,
+                State = supplier.State,
+                Phone = supplier.Phone,
+                Fax = supplier.Fax,
+                Country = supplier.Country,
+                Contact = supplier.Contact,
+                Email = supplier.Email,
+                Notes = supplier.Notes,
+                Zip = supplier.Zip,
+                Url = supplier.Url,
+                Image = supplier.Image,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+                UpdatedBy = userId
+            };
+
+            _supplierRepository.AddAsync(_supplier);
+
+            return true;
         }
 
-        public void DeleteSupplier(int id, string userId)
+        public async Task DeleteSupplier(int id)
         {
-            throw new NotImplementedException();
+            var supplier = await _supplierRepository.GetByIdAsync(id);
+           await _supplierRepository.DeleteAsync(supplier);
         }
 
-        public IEnumerable<Supplier> GetAllSupplier()
+        public async Task<IEnumerable<Supplier>> GetAllSupplierAsync()
         {
-            throw new NotImplementedException();
+           return await _supplierRepository.ListAllAsync();
         }
 
-        public IEnumerable<Supplier> GetAllSupplierAsync()
+        public async Task<SupplierViewModel> GetSupplier(int id)
         {
-            throw new NotImplementedException();
+          var supplier =   await _supplierRepository.GetByIdAsync(id);
+            SupplierViewModel supplierViewModel = new SupplierViewModel()
+            {
+                Id = supplier.Id,
+                Name = supplier.Name,
+                Address = supplier.Address,
+                AddressTwo = supplier.AddressTwo,
+                City = supplier.City,
+                State = supplier.State,
+                Phone = supplier.Phone,
+                Fax = supplier.Fax,
+                Country = supplier.Country,
+                Contact = supplier.Contact,
+                Email = supplier.Email,
+                Notes = supplier.Notes,
+                Zip = supplier.Zip,
+                Url = supplier.Url,
+                Image = supplier.Image,
+            };
+          return supplierViewModel;
         }
 
-        public Supplier GetSupplier(int id)
+        public void UpdateSupplier(SupplierViewModel supplier, string userId)
         {
-            throw new NotImplementedException();
-        }
+            var _supplier = new Supplier()
+            {
+                Id = supplier.Id,
+                Name = supplier.Name,
+                Address = supplier.Address,
+                AddressTwo = supplier.AddressTwo,
+                City = supplier.City,
+                State = supplier.State,
+                Phone = supplier.Phone,
+                Fax = supplier.Fax,
+                Country = supplier.Country,
+                Contact = supplier.Contact,
+                Email = supplier.Email,
+                Notes = supplier.Notes,
+                Zip = supplier.Zip,
+                Url = supplier.Url,
+                Image = supplier.Image,
+                UpdatedAt = DateTime.Now,
+                UpdatedBy = userId
+            };
+            _supplierRepository.UpdateAsync(_supplier);
 
-        public void UpdateSupplier(int id, string userId)
-        {
-            throw new NotImplementedException();
         }
     }
 }
