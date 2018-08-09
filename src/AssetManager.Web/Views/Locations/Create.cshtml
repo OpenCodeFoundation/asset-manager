@@ -1,4 +1,4 @@
-﻿@model AssetManager.Core.Entities.Location
+﻿@model AssetManager.Web.ViewModels.LocationViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -24,16 +24,6 @@
                             <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="LocationsId" class="control-label col-md-3"></label>
-                        <div class="col-md-7">
-                            <select asp-for="LocationsId" class="form-control" asp-items="@(new SelectList(@ViewBag.ParentList, "Id", "Name"))">
-                                <option value="">--Parent Location--</option>
-                            </select>
-                            <span asp-validation-for="LocationsId" class="text-danger"></span>
-                        </div>
-                    </div>
-
                     <div class="form-group">
                         <label asp-for="Manager" class="control-label col-md-3"></label>
                         <div class="col-md-7">
@@ -86,10 +76,10 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Image" class="control-label col-md-3"></label>
+                        <label asp-for="ImageUri" class="control-label col-md-3"></label>
                         <div class="col-md-7">
-                            <input type="file" asp-for="Image" class="form-control" />
-                            <span asp-validation-for="Image" class="text-danger"></span>
+                            <input type="file" asp-for="ImageUri" class="form-control" />
+                            <span asp-validation-for="ImageUri" class="text-danger"></span>
                         </div>
                     </div>
 

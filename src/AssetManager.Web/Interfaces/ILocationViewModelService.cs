@@ -9,7 +9,7 @@ namespace AssetManager.Web.Interfaces
 {
    public interface ILocationViewModelService
     {
-        Task AddLocationAsync(LocationViewModel depreciationVM, string userId);
+        Task AddLocationAsync(LocationViewModel locationVM, string userId);
         Task DeleteLocationAsync(int id);
         Task<LocationViewModel> GetLocationAsync(int id);
         Task UpdateLocationAsync(LocationViewModel locationVM, string userId);

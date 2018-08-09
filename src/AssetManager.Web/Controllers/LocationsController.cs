@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AssetManager.Core.Entities;
 using AssetManager.Core.Interfaces;
+using AssetManager.Web.Interfaces;
+using AssetManager.Web.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,17 +13,17 @@ namespace AssetManager.Web.Controllers
 {
     public class LocationsController : Controller
     {
-        private readonly IAsyncRepository<Location> _asyncRepository;
+        private readonly ILocationViewModelService _locationViewModelService;
 
-        public LocationsController(IAsyncRepository<Location> asyncRepository)
+        public LocationsController(ILocationViewModelService locationViewModelService)
         {
-            this._asyncRepository = asyncRepository;
+            this._locationViewModelService = locationViewModelService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var allLocations = await _asyncRepository.ListAllAsync();
+            var allLocations = await _locationViewModelService.GetAllLocationAsync();
             return View(allLocations);
         }
 
@@ -32,7 +34,7 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            var location = await _asyncRepository.GetByIdAsync(id);
+            var location = await _locationViewModelService.GetLocationAsync(id);
             if(location == null)
             {
                 return RedirectToAction(nameof(Index));
@@ -41,28 +43,25 @@ namespace AssetManager.Web.Controllers
         }
 
         // GET: Locations/Create
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             ViewBag.CountryList =  AllCountry.getCountry();
-            ViewBag.ParentList = await _asyncRepository.ListAllAsync();
             return View();
         }
 
         // POST: Locations/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Location collection)
+        public async Task<IActionResult> Create(LocationViewModel locationViewModel)
         {
-            if(ModelState.IsValid)
+            string userId = User.Identity.Name;
+            if (ModelState.IsValid)
             {
-                await _asyncRepository.AddAsync(collection);
-
+                await _locationViewModelService.AddLocationAsync(locationViewModel, userId);
                 return RedirectToAction(nameof(Index));
             }
-
             ViewBag.CountryList = AllCountry.getCountry();
-            ViewBag.ParentList = await _asyncRepository.ListAllAsync();
-            return View(collection);
+            return View(locationViewModel);
             
         }
 
@@ -73,33 +72,28 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-
-            var locations = await _asyncRepository.GetByIdAsync(id);
+            var locations = await _locationViewModelService.GetLocationAsync(id);
             if(locations == null)
             {
                 return RedirectToAction(nameof(Index));
             }
             ViewBag.CountryList = AllCountry.getCountry();
-            ViewBag.ParentList = await _asyncRepository.ListAllAsync();
-
             return View(locations);
         }
 
         // POST: Locations/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Location location)
+        public async Task<IActionResult> Edit(int id, LocationViewModel locationViewModel)
         {
-            if(ModelState.IsValid)
+            string userId = User.Identity.Name;
+            if (ModelState.IsValid)
             {
-                await _asyncRepository.UpdateAsync(location);
-
+                await _locationViewModelService.UpdateLocationAsync(locationViewModel, userId);
                 return RedirectToAction(nameof(Index));
             }
-
             ViewBag.CountryList = AllCountry.getCountry();
-            ViewBag.ParentList = await _asyncRepository.ListAllAsync();
-            return View(location);
+            return View(locationViewModel);
             
         }
 
@@ -110,29 +104,25 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-
-            var dellocation = await _asyncRepository.GetByIdAsync(id);
-            if (dellocation == null)
+            var getLocation = await _locationViewModelService.GetLocationAsync(id);
+            if (getLocation == null)
             {
                 return RedirectToAction(nameof(Index));
             }
-            return View(dellocation);
+            return View(getLocation);
         }
 
         // POST: Locations/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, Location dellocation)
+        public async Task<IActionResult> Delete(int id, LocationViewModel locationViewModel)
         {
             if(ModelState.IsValid)
             {
-                await _asyncRepository.DeleteAsync(dellocation);
-
+                await _locationViewModelService.DeleteLocationAsync(id);
                 return RedirectToAction(nameof(Index));
             }
-            
                 return RedirectToAction(nameof(Index));
-
         }
     }
 }

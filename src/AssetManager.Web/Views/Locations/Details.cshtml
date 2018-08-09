@@ -1,4 +1,4 @@
-﻿@model AssetManager.Core.Entities.Location
+﻿@model AssetManager.Web.ViewModels.LocationViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -15,12 +15,6 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LocationsId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LocationsId)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Manager)
@@ -60,10 +54,10 @@
             @Html.DisplayFor(model => model.Zip)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Image)
+            @Html.DisplayNameFor(model => model.ImageUri)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Image)
+            @Html.DisplayFor(model => model.ImageUri)
         </dd>
         
     </dl>
