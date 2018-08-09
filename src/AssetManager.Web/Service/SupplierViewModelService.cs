@@ -84,7 +84,7 @@ namespace AssetManager.Web
           return supplierViewModel;
         }
 
-        public void UpdateSupplier(SupplierViewModel supplier, string userId)
+        public async Task UpdateSupplier(SupplierViewModel supplier, string userId)
         {
             var _supplier = new Supplier()
             {
@@ -106,7 +106,7 @@ namespace AssetManager.Web
                 UpdatedAt = DateTime.Now,
                 UpdatedBy = userId
             };
-            _supplierRepository.UpdateAsync(_supplier);
+           await _supplierRepository.UpdateAsync(_supplier);
 
         }
     }

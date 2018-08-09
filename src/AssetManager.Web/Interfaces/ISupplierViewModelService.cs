@@ -12,7 +12,7 @@ namespace AssetManager.Web
         Task AddSupplier(SupplierViewModel supplier, string userId);
         Task<SupplierViewModel> GetSupplier(int id);
         Task DeleteSupplier(int id);
-        void UpdateSupplier(SupplierViewModel supplier, string userId);
+        Task UpdateSupplier(SupplierViewModel supplier, string userId);
         IEnumerable<Supplier> GetAllSupplier();
         Task<IEnumerable<Supplier>> GetAllSupplierAsync();
     }

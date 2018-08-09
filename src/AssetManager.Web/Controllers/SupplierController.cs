@@ -74,7 +74,7 @@ namespace AssetManager.Web.Controllers
             try
             {
                 string userId = User.Identity.Name;
-                _supplierService.UpdateSupplier(supplier, userId);
+                await _supplierService.UpdateSupplier(supplier, userId);
                 return RedirectToAction(nameof(Index));
             }
             catch
