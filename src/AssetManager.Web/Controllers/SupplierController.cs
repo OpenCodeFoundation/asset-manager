@@ -41,7 +41,7 @@ namespace AssetManager.Web.Controllers
             string userId = User.Identity.Name;
             if (ModelState.IsValid)
             {
-              _supplierService.AddSupplier(supplier, userId);
+              await _supplierService.AddSupplier(supplier, userId);
               return RedirectToAction(nameof(Index));
             }
             

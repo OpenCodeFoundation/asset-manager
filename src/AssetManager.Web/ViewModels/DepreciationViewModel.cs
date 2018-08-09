@@ -1,17 +1,18 @@
-﻿using AssetManager.Core.SharedKernel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace AssetManager.Core.Entities
+namespace AssetManager.Web.ViewModels
 {
-    public class Depreciation: Entity
+    public class DepreciationViewModel
     {
+        public int Id { get; set; }
+        [Display(Name = "Depreciation Name")]
         public string Name { get; set; }
+        [Display(Name = "Number of Months")]
         public int Months { get; set; }
+
     }
 }

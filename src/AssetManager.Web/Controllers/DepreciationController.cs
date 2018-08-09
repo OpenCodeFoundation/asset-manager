@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AssetManager.Core.Entities;
 using AssetManager.Core.Interfaces;
+using AssetManager.Web.Interfaces;
+using AssetManager.Web.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,34 +13,18 @@ namespace AssetManager.Web.Controllers
 {
     public class DepreciationController : Controller
     {
-        private readonly IAsyncRepository<Depreciation> _depreciationRepository;
-        public DepreciationController(IAsyncRepository<Depreciation> repository)
+        private readonly IDepreciationViewModelService _depreciationViewModelService;
+        public DepreciationController(IDepreciationViewModelService depreciationViewModelService)
         {
-            this._depreciationRepository = repository;
+            this._depreciationViewModelService = depreciationViewModelService;
         }
 
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var depreciation = await _depreciationRepository.ListAllAsync();
+            var depreciation = await _depreciationViewModelService.GetAllDepreciationAsync();
             return View(depreciation);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Details(int id)
-        {
-            if(id <= 0)
-            {
-                return RedirectToAction(nameof(Index));
-            }
-
-            var depIteam = await _depreciationRepository.GetByIdAsync(id);
-            if(depIteam == null)
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            return View(depIteam);
         }
 
         [HttpGet]
@@ -50,11 +36,12 @@ namespace AssetManager.Web.Controllers
 
         [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Insert(Depreciation item)
+        public async Task<IActionResult> Insert(DepreciationViewModel item)
         {
+            string userId = User.Identity.Name;
             if (ModelState.IsValid)
             {
-                await _depreciationRepository.AddAsync(item);
+                await _depreciationViewModelService.AddDepreciationAsync(item, userId);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -71,7 +58,7 @@ namespace AssetManager.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            var dep = await _depreciationRepository.GetByIdAsync(id);
+            var dep = await _depreciationViewModelService.GetDepreciationAsync(id);
             if(dep == null)
             {
                 return RedirectToAction(nameof(Index));
@@ -83,12 +70,12 @@ namespace AssetManager.Web.Controllers
        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Depreciation obj)
+        public async Task<IActionResult> Edit(int id, DepreciationViewModel obj)
         {
-          
+            string userId = User.Identity.Name;
             try
             {
-               await _depreciationRepository.UpdateAsync(obj);
+                await _depreciationViewModelService.UpdateDepreciationAsync(obj, userId);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -106,14 +93,14 @@ namespace AssetManager.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            var deleteIteam = await _depreciationRepository.GetByIdAsync(id);
+            var deleteIteam = await _depreciationViewModelService.GetDepreciationAsync(id);
             return View(deleteIteam);
         }
 
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, Depreciation item)
+        public async Task<IActionResult> Delete(int id, DepreciationViewModel item)
         {
             if(id != item.Id)
             {
@@ -121,7 +108,7 @@ namespace AssetManager.Web.Controllers
             }
             try
             {
-                await _depreciationRepository.DeleteAsync(item);
+                await _depreciationViewModelService.DeleteDepreciationAsync(id);
 
                 return RedirectToAction(nameof(Index));
             }

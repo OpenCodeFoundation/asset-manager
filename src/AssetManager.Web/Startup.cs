@@ -5,6 +5,8 @@ using AssetManager.Core.Services;
 using AssetManager.Infrastructure.Data;
 using AssetManager.Infrastructure.Identity;
 using AssetManager.Infrastructure.Logging;
+using AssetManager.Web.Interfaces;
+using AssetManager.Web.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -90,6 +92,7 @@ namespace AssetManager.Web
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
             services.AddScoped<IStatusLabelService, StatusLabelService>();
             services.AddScoped<ISupplierViewModelService, SupplierViewModelService>();
+            services.AddScoped<IDepreciationViewModelService, DepreciationViewModelService>();
             services.Configure<CatalogSettings>(Configuration);
             services.AddSingleton<IUriComposer>(new UriComposer(Configuration.Get<CatalogSettings>()));
 

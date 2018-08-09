@@ -11,11 +11,13 @@ namespace AssetManager.Web
     public class SupplierViewModelService : ISupplierViewModelService
     {
         private readonly IAsyncRepository<Supplier> _supplierRepository;
-        public SupplierViewModelService(IAsyncRepository<Supplier> supplierRepository)
+        private readonly IRepository<Supplier> _repository;
+        public SupplierViewModelService(IAsyncRepository<Supplier> supplierRepository, IRepository<Supplier> repository)
         {
             _supplierRepository = supplierRepository;
+            _repository = repository;
         }
-        public bool AddSupplier(SupplierViewModel supplier, string userId)
+        public async Task AddSupplier(SupplierViewModel supplier, string userId)
         {
             var _supplier = new Supplier()
             {
@@ -38,15 +40,19 @@ namespace AssetManager.Web
                 UpdatedBy = userId
             };
 
-            _supplierRepository.AddAsync(_supplier);
-
-            return true;
+           await _supplierRepository.AddAsync(_supplier);
+            
         }
 
         public async Task DeleteSupplier(int id)
         {
             var supplier = await _supplierRepository.GetByIdAsync(id);
            await _supplierRepository.DeleteAsync(supplier);
+        }
+
+        public IEnumerable<Supplier> GetAllSupplier()
+        {
+            return _repository.ListAll();
         }
 
         public async Task<IEnumerable<Supplier>> GetAllSupplierAsync()
