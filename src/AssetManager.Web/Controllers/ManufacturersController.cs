@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AssetManager.Core.Entities;
 using AssetManager.Core.Interfaces;
+using AssetManager.Web.Interfaces;
+using AssetManager.Web.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,17 +13,17 @@ namespace AssetManager.Web.Controllers
 {
     public class ManufacturersController : Controller
     {
-        private readonly IAsyncRepository<Manufacturer> _manufacturerRepository;
+        private readonly IManufacturerViewModelService _manufacturerViewModelService;
 
-        public ManufacturersController(IAsyncRepository<Manufacturer> repository)
+        public ManufacturersController(IManufacturerViewModelService manufacturerViewModelService)
         {
-            this._manufacturerRepository = repository;
+            this._manufacturerViewModelService = manufacturerViewModelService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var allManufaturer = await _manufacturerRepository.ListAllAsync();
+            var allManufaturer = await _manufacturerViewModelService.GetAllManufacturerAsync();
             return View(allManufaturer);
         }
 
@@ -34,7 +36,7 @@ namespace AssetManager.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            var item = await _manufacturerRepository.GetByIdAsync(id);
+            var item = await _manufacturerViewModelService.GetManufacturerAsync(id);
 
             return View(item);
         }
@@ -49,14 +51,12 @@ namespace AssetManager.Web.Controllers
         // POST: Manufacturers/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Manufacturer manufacturer)
+        public async Task<IActionResult> Create(ManufacturerViewModel manufacturer)
         {
-
-            if(ModelState.IsValid)
+            string userId = User.Identity.Name;
+            if (ModelState.IsValid)
             {
-                manufacturer.CreatedAt = DateTime.Now;
-                manufacturer.UpdatedAt = DateTime.Now;
-                await _manufacturerRepository.AddAsync(manufacturer);
+                await _manufacturerViewModelService.AddManufacturerAsync(manufacturer, userId);
                 
                 return RedirectToAction(nameof(Index));
                 
@@ -76,7 +76,7 @@ namespace AssetManager.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            var manufacturer = await _manufacturerRepository.GetByIdAsync(id);
+            var manufacturer = await _manufacturerViewModelService.GetManufacturerAsync(id);
 
             if(manufacturer == null)
             {
@@ -91,16 +91,16 @@ namespace AssetManager.Web.Controllers
         // POST: Manufacturers/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Manufacturer data)
+        public async Task<IActionResult> Edit(int id, ManufacturerViewModel  manufacturerViewModel)
         {
+            string userId = User.Identity.Name;
             if (!ModelState.IsValid)
             {
                 return RedirectToAction(nameof(Index));
             }
             try
             {
-               await _manufacturerRepository.UpdateAsync(data);
-
+                await _manufacturerViewModelService.UpdateManufacturerAsync(manufacturerViewModel, userId);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -116,7 +116,7 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            var deleteItem = await _manufacturerRepository.GetByIdAsync(id);
+            var deleteItem = await _manufacturerViewModelService.GetManufacturerAsync(id);
             if(deleteItem == null)
             {
                 return RedirectToAction(nameof(Index));
@@ -127,12 +127,11 @@ namespace AssetManager.Web.Controllers
         // POST: Manufacturers/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(int id, Manufacturer dataCollection)
+        public async Task<ActionResult> Delete(int id, ManufacturerViewModel manufacturerViewModel)
         {
             try
             {
-
-                await _manufacturerRepository.DeleteAsync(dataCollection);
+                await _manufacturerViewModelService.DeleteManufacturerAsync(id);
                 return RedirectToAction(nameof(Index));
             }
             catch
