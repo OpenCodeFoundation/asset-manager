@@ -94,6 +94,7 @@ namespace AssetManager.Web
             services.AddScoped<ISupplierViewModelService, SupplierViewModelService>();
             services.AddScoped<ILocationViewModelService, LocationViewModelService>();
             services.AddScoped<IDepreciationViewModelService, DepreciationViewModelService>();
+            services.AddScoped<IManufacturerViewModelService, ManufacturerViewModelService>();
             services.Configure<CatalogSettings>(Configuration);
             services.AddSingleton<IUriComposer>(new UriComposer(Configuration.Get<CatalogSettings>()));
 
