@@ -50,14 +50,64 @@ namespace AssetManager.Web
            await _supplierRepository.DeleteAsync(supplier);
         }
 
-        public IEnumerable<Supplier> GetAllSupplier()
+        public IEnumerable<SupplierViewModel> GetAllSupplier()
         {
-            return _repository.ListAll();
+            var suppliers =  _repository.ListAll();
+            var supplierViewList = new List<SupplierViewModel>();
+            foreach(var supplier in suppliers)
+            {
+                var supplierView = new SupplierViewModel()
+                {
+                    Id = supplier.Id,
+                    Name = supplier.Name,
+                    Address = supplier.Address,
+                    AddressTwo = supplier.AddressTwo,
+                    City = supplier.City,
+                    State = supplier.State,
+                    Phone = supplier.Phone,
+                    Fax = supplier.Fax,
+                    Country = supplier.Country,
+                    Contact = supplier.Contact,
+                    Email = supplier.Email,
+                    Notes = supplier.Notes,
+                    Zip = supplier.Zip,
+                    Url = supplier.Url,
+                    Image = supplier.Image
+                };
+
+                supplierViewList.Add(supplierView);
+            }
+            return supplierViewList;
         }
 
-        public async Task<IEnumerable<Supplier>> GetAllSupplierAsync()
+        public async Task<IEnumerable<SupplierViewModel>> GetAllSupplierAsync()
         {
-            return await _supplierRepository.ListAllAsync();
+            var suppliers = await _supplierRepository.ListAllAsync();
+            var supplierViewList = new List<SupplierViewModel>();
+            foreach (var supplier in suppliers)
+            {
+                var supplierView = new SupplierViewModel()
+                {
+                    Id = supplier.Id,
+                    Name = supplier.Name,
+                    Address = supplier.Address,
+                    AddressTwo = supplier.AddressTwo,
+                    City = supplier.City,
+                    State = supplier.State,
+                    Phone = supplier.Phone,
+                    Fax = supplier.Fax,
+                    Country = supplier.Country,
+                    Contact = supplier.Contact,
+                    Email = supplier.Email,
+                    Notes = supplier.Notes,
+                    Zip = supplier.Zip,
+                    Url = supplier.Url,
+                    Image = supplier.Image
+                };
+
+                supplierViewList.Add(supplierView);
+            }
+            return supplierViewList;
         }
 
         public async Task<SupplierViewModel> GetSupplier(int id)
@@ -79,7 +129,7 @@ namespace AssetManager.Web
                 Notes = supplier.Notes,
                 Zip = supplier.Zip,
                 Url = supplier.Url,
-                Image = supplier.Image,
+                Image = supplier.Image
             };
           return supplierViewModel;
         }

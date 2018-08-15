@@ -79,9 +79,34 @@ namespace AssetManager.Web.Service
             return locationViewList;
         }
 
-        public async Task<IEnumerable<Location>> GetAllLocationAsync()
+        public async Task<IEnumerable<LocationViewModel>> GetAllLocationAsync()
         {
-            return await _locationRepository.ListAllAsync();
+            var locations = await _locationRepository.ListAllAsync();
+            
+            var locationViewList = new List<LocationViewModel>();
+            foreach (var location in locations)
+            {
+                var locationView = new LocationViewModel()
+                {
+                    Id = location.Id,
+                    Name = location.Name,
+                    Manager = location.Manager,
+                    Address = location.Address,
+                    AddressTwo = location.AddressTwo,
+                    City = location.City,
+                    State = location.State,
+                    Country = location.Country,
+                    Zip = location.Zip,
+                    ImageUri = location.ImageUri,
+                    CreatedAt = location.CreatedAt,
+                    UpdatedAt = location.UpdatedAt,
+                    UpdatedBy = location.UpdatedBy,
+                    DeletedAt = location.DeletedAt,
+                    Extra = location.Extra
+                };
+                locationViewList.Add(locationView);
+            }
+            return locationViewList;
         }
 
         public async Task<LocationViewModel> GetLocationAsync(int id)
