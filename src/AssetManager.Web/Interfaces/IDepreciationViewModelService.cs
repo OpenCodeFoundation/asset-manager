@@ -13,7 +13,7 @@ namespace AssetManager.Web.Interfaces
         Task DeleteDepreciationAsync(int id);
         Task<DepreciationViewModel> GetDepreciationAsync(int id);
         Task UpdateDepreciationAsync(DepreciationViewModel depreciationVM, string userId);
-        IEnumerable<Depreciation> GetAllDepreciation();
-        Task<IEnumerable<Depreciation>> GetAllDepreciationAsync();
+        IEnumerable<DepreciationViewModel> GetAllDepreciation();
+        Task<IEnumerable<DepreciationViewModel>> GetAllDepreciationAsync();
     }
 }

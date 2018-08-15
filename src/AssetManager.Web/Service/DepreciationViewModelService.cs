@@ -38,14 +38,38 @@ namespace AssetManager.Web.Service
             await _depreciationRepository.DeleteAsync(depreciation);
         }
 
-        public IEnumerable<Depreciation> GetAllDepreciation()
+        public IEnumerable<DepreciationViewModel> GetAllDepreciation()
         {
-            return _repository.ListAll();
+            var depreciations =  _repository.ListAll();
+            var depreciationList = new List<DepreciationViewModel>();
+            foreach(var depreciation in depreciations)
+            {
+                var depView = new DepreciationViewModel()
+                {
+                    Id = depreciation.Id,
+                    Name = depreciation.Name,
+                    Months = depreciation.Months
+                };
+                depreciationList.Add(depView);                
+            }
+            return depreciationList;
         }
 
-        public async Task<IEnumerable<Depreciation>> GetAllDepreciationAsync()
+        public async Task<IEnumerable<DepreciationViewModel>> GetAllDepreciationAsync()
         {
-            return await _depreciationRepository.ListAllAsync();
+            var depreciations = await _depreciationRepository.ListAllAsync();
+            var depreciationList = new List<DepreciationViewModel>();
+            foreach (var depreciation in depreciations)
+            {
+                var depView = new DepreciationViewModel()
+                {
+                    Id = depreciation.Id,
+                    Name = depreciation.Name,
+                    Months = depreciation.Months
+                };
+                depreciationList.Add(depView);
+            }
+            return depreciationList;
         }
 
         public async Task<DepreciationViewModel> GetDepreciationAsync(int id)
