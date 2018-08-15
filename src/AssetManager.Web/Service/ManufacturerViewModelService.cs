@@ -45,14 +45,58 @@ namespace AssetManager.Web.Service
             await _manufacturerRepository.DeleteAsync(manufacturer);
         }
 
-        public IEnumerable<Manufacturer> GetAllManufacturer()
+        public IEnumerable<ManufacturerViewModel> GetAllManufacturer()
         {
-            return _repository.ListAll();
+             var manu = _repository.ListAll();
+            var manViewList = new List<ManufacturerViewModel>();
+            foreach(var manufacturer in manu)
+            {
+                var manView = new ManufacturerViewModel
+                {
+                    Id = manufacturer.Id,
+                    Name = manufacturer.Name,
+                    Url = manufacturer.Url,
+                    SupportUrl = manufacturer.SupportUrl,
+                    SupportEmail = manufacturer.SupportEmail,
+                    SupportPhone = manufacturer.SupportPhone,
+                    Image = manufacturer.Image,
+                    CreatedAt = manufacturer.CreatedAt,
+                    UpdatedAt = manufacturer.UpdatedAt,
+                    UpdatedBy = manufacturer.UpdatedBy,
+                    DeletedAt = manufacturer.DeletedAt
+                };
+
+                manViewList.Add(manView);
+            }
+
+            return manViewList;
         }
 
-        public async Task<IEnumerable<Manufacturer>> GetAllManufacturerAsync()
+        public async Task<IEnumerable<ManufacturerViewModel>> GetAllManufacturerAsync()
         {
-            return await _manufacturerRepository.ListAllAsync();
+            var manu = await _manufacturerRepository.ListAllAsync();
+            var manViewList = new List<ManufacturerViewModel>();
+            foreach (var manufacturer in manu)
+            {
+                var manView = new ManufacturerViewModel
+                {
+                    Id = manufacturer.Id,
+                    Name = manufacturer.Name,
+                    Url = manufacturer.Url,
+                    SupportUrl = manufacturer.SupportUrl,
+                    SupportEmail = manufacturer.SupportEmail,
+                    SupportPhone = manufacturer.SupportPhone,
+                    Image = manufacturer.Image,
+                    CreatedAt = manufacturer.CreatedAt,
+                    UpdatedAt = manufacturer.UpdatedAt,
+                    UpdatedBy = manufacturer.UpdatedBy,
+                    DeletedAt = manufacturer.DeletedAt
+                };
+
+                manViewList.Add(manView);
+            }
+
+            return manViewList;
         }
 
         public async Task<ManufacturerViewModel> GetManufacturerAsync(int id)

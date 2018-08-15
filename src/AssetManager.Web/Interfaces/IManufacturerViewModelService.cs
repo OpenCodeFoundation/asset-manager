@@ -13,7 +13,7 @@ namespace AssetManager.Web.Interfaces
         Task DeleteManufacturerAsync(int id);
         Task<ManufacturerViewModel> GetManufacturerAsync(int id);
         Task UpdateManufacturerAsync(ManufacturerViewModel manufacturerVM, string userId);
-        IEnumerable<Manufacturer> GetAllManufacturer();
-        Task<IEnumerable<Manufacturer>> GetAllManufacturerAsync();
+        IEnumerable<ManufacturerViewModel> GetAllManufacturer();
+        Task<IEnumerable<ManufacturerViewModel>> GetAllManufacturerAsync();
     }
 }
