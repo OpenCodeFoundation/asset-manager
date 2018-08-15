@@ -50,9 +50,33 @@ namespace AssetManager.Web.Service
             await _locationRepository.DeleteAsync(location);
         }
 
-        public IEnumerable<Location> GetAllLocation()
+        public IEnumerable<LocationViewModel> GetAllLocation()
         {
-            return _repository.ListAll();
+            var locations = _repository.ListAll();
+            var locationViewList = new List<LocationViewModel>();
+            foreach(var location in locations)
+            {
+                var locationView = new LocationViewModel()
+                {
+                    Id = location.Id,
+                    Name = location.Name,
+                    Manager = location.Manager,
+                    Address = location.Address,
+                    AddressTwo = location.AddressTwo,
+                    City = location.City,
+                    State = location.State,
+                    Country = location.Country,
+                    Zip = location.Zip,
+                    ImageUri = location.ImageUri,
+                    CreatedAt = location.CreatedAt,
+                    UpdatedAt = location.UpdatedAt,
+                    UpdatedBy = location.UpdatedBy,
+                    DeletedAt = location.DeletedAt,
+                    Extra = location.Extra
+                };
+                locationViewList.Add(locationView);
+            }
+            return locationViewList;
         }
 
         public async Task<IEnumerable<Location>> GetAllLocationAsync()

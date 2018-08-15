@@ -13,7 +13,7 @@ namespace AssetManager.Web.Interfaces
         Task DeleteLocationAsync(int id);
         Task<LocationViewModel> GetLocationAsync(int id);
         Task UpdateLocationAsync(LocationViewModel locationVM, string userId);
-        IEnumerable<Location> GetAllLocation();
-        Task<IEnumerable<Location>> GetAllLocationAsync();
+        IEnumerable<LocationViewModel> GetAllLocation();
+        Task<IEnumerable<LocationViewModel>> GetAllLocationAsync();
     }
 }
