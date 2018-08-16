@@ -2,6 +2,7 @@
 using AssetManager.Core.Interfaces;
 using AssetManager.Web.Interfaces;
 using AssetManager.Web.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -21,14 +22,14 @@ namespace AssetManager.Web.Service
         private readonly IRepository<Departments> _repository;
         public DepartmentsViewModelService
             (
-            ILogger<DepartmentsViewModelService> logger,
+            ILoggerFactory loggerFactory,
             IAsyncRepository<Departments> asyncRepository, 
             IRepository<Departments> repository
             )
         {
             this._asyncRepository = asyncRepository;
             this._repository = repository;
-            this._logger = logger;
+            this._logger = loggerFactory.CreateLogger<DepartmentsViewModelService>();
         }
 
         public Task AddDepartmentsAsync(DepartmentsViewModel departmentsVM, string userId)
@@ -65,6 +66,22 @@ namespace AssetManager.Web.Service
         {
             _logger.LogInformation("UpdateDepartmentsAsync called.");
             throw new NotImplementedException();
+        }
+        public async Task<IEnumerable<SelectListItem>> GetDepartments()
+        {
+            _logger.LogInformation("GetLocations called.");
+            var departments = await _asyncRepository.ListAllAsync();
+
+            var items = new List<SelectListItem>
+            {
+                new SelectListItem() { Value = null, Text = "All", Selected = true }
+            };
+            foreach (Departments department in departments)
+            {
+                items.Add(new SelectListItem() { Value = department.Id.ToString(), Text = department.Name });
+            }
+
+            return items;
         }
     }
 }

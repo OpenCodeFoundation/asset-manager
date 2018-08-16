@@ -1,4 +1,5 @@
 ﻿using AssetManager.Web.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace AssetManager.Web.Interfaces
         Task UpdateDepartmentsAsync(DepartmentsViewModel departmentsVM, string userId);
         IEnumerable<DepartmentsViewModel> GetAllDepartments();
         Task<IEnumerable<DepartmentsViewModel>> GetAllDepartmentsAsync();
+        Task<IEnumerable<SelectListItem>> GetDepartments();
     }
 }

@@ -2,6 +2,7 @@
 using AssetManager.Core.Interfaces;
 using AssetManager.Web.Interfaces;
 using AssetManager.Web.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -22,12 +23,12 @@ namespace AssetManager.Web.Service
         public LocationViewModelService(
             IAsyncRepository<Location> locationRepository,
             IRepository<Location> repository,
-            ILogger<LocationViewModelService> logger
+            ILoggerFactory loggerFactory
             )
         {
             this._locationRepository = locationRepository;
             this._repository = repository;
-            this._logger = logger;
+            this._logger = loggerFactory.CreateLogger<LocationViewModelService>();
         }
 
         public async Task AddLocationAsync(LocationViewModel locationVM, string userId)
@@ -65,7 +66,7 @@ namespace AssetManager.Web.Service
             _logger.LogInformation("GetAllLocation called.");
             var locations = _repository.ListAll();
             var locationViewList = new List<LocationViewModel>();
-            foreach(var location in locations)
+            foreach (var location in locations)
             {
                 var locationView = new LocationViewModel()
                 {
@@ -94,7 +95,7 @@ namespace AssetManager.Web.Service
         {
             _logger.LogInformation("GetAllLocationAsync called.");
             var locations = await _locationRepository.ListAllAsync();
-            
+
             var locationViewList = new List<LocationViewModel>();
             foreach (var location in locations)
             {
@@ -167,6 +168,23 @@ namespace AssetManager.Web.Service
             };
 
             await _locationRepository.UpdateAsync(location);
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetLocations()
+        {
+            _logger.LogInformation("GetLocations called.");
+            var locations = await _locationRepository.ListAllAsync();
+
+            var items = new List<SelectListItem>
+            {
+                new SelectListItem() { Value = null, Text = "All", Selected = true }
+            };
+            foreach (Location location in locations)
+            {
+                items.Add(new SelectListItem() { Value = location.Id.ToString(), Text = location.Name });
+            }
+
+            return items;
         }
     }
 }
