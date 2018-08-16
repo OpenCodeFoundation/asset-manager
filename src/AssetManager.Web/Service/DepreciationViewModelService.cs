@@ -2,6 +2,7 @@
 using AssetManager.Core.Interfaces;
 using AssetManager.Web.Interfaces;
 using AssetManager.Web.ViewModels;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +10,27 @@ using System.Threading.Tasks;
 
 namespace AssetManager.Web.Service
 {
+    /// <summary>
+    /// This is a UI-specific service so belongs in UI project. It does not contain any business logic and works
+    /// with UI-specific types (view models and SelectListItem types).
+    /// </summary>
     public class DepreciationViewModelService : IDepreciationViewModelService
     {
+        private readonly ILogger<DepreciationViewModelService> _logger;
         private readonly IAsyncRepository<Depreciation> _depreciationRepository;
         private readonly IRepository<Depreciation> _repository;
-        public DepreciationViewModelService(IAsyncRepository<Depreciation> depreciationRepository, IRepository<Depreciation> repository)
+        public DepreciationViewModelService(
+            ILogger<DepreciationViewModelService> logger, 
+            IAsyncRepository<Depreciation> depreciationRepository, 
+            IRepository<Depreciation> repository)
         {
             this._depreciationRepository = depreciationRepository;
             this._repository = repository;
+            this._logger = logger;
         }
         public async Task AddDepreciationAsync(DepreciationViewModel depreciationVM, string userId)
         {
+            _logger.LogInformation("AddDepreciationAsync called.");
             var depreciation = new Depreciation()
             {
                 Name = depreciationVM.Name,
@@ -34,12 +45,14 @@ namespace AssetManager.Web.Service
 
         public async Task DeleteDepreciationAsync(int id)
         {
-           var depreciation = await _depreciationRepository.GetByIdAsync(id);
+            _logger.LogInformation("DeleteDepreciationAsync called.");
+            var depreciation = await _depreciationRepository.GetByIdAsync(id);
             await _depreciationRepository.DeleteAsync(depreciation);
         }
 
         public IEnumerable<DepreciationViewModel> GetAllDepreciation()
         {
+            _logger.LogInformation("GetAllDepreciation called.");
             var depreciations =  _repository.ListAll();
             var depreciationList = new List<DepreciationViewModel>();
             foreach(var depreciation in depreciations)
@@ -57,6 +70,7 @@ namespace AssetManager.Web.Service
 
         public async Task<IEnumerable<DepreciationViewModel>> GetAllDepreciationAsync()
         {
+            _logger.LogInformation("GetAllDepreciationAsync called.");
             var depreciations = await _depreciationRepository.ListAllAsync();
             var depreciationList = new List<DepreciationViewModel>();
             foreach (var depreciation in depreciations)
@@ -74,6 +88,7 @@ namespace AssetManager.Web.Service
 
         public async Task<DepreciationViewModel> GetDepreciationAsync(int id)
         {
+            _logger.LogInformation("GetDepreciationAsync called.");
             var depreciation = await _depreciationRepository.GetByIdAsync(id);
             DepreciationViewModel depreciationViewModel = new DepreciationViewModel()
             {
@@ -86,6 +101,7 @@ namespace AssetManager.Web.Service
 
         public async Task UpdateDepreciationAsync(DepreciationViewModel depreciationVM, string userId)
         {
+            _logger.LogInformation("UpdateDepreciationAsync called.");
             var depreciation = new Depreciation()
             {
                 Id = depreciationVM.Id,

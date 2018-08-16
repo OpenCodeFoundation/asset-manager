@@ -2,6 +2,7 @@
 using AssetManager.Core.Interfaces;
 using AssetManager.Web.Interfaces;
 using AssetManager.Web.ViewModels;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,21 +10,29 @@ using System.Threading.Tasks;
 
 namespace AssetManager.Web.Service
 {
+    /// <summary>
+    /// This is a UI-specific service so belongs in UI project. It does not contain any business logic and works
+    /// with UI-specific types (view models and SelectListItem types).
+    /// </summary>
     public class LocationViewModelService : ILocationViewModelService
     {
+        private readonly ILogger<LocationViewModelService> _logger;
         private readonly IAsyncRepository<Location> _locationRepository;
         private readonly IRepository<Location> _repository;
         public LocationViewModelService(
             IAsyncRepository<Location> locationRepository,
-            IRepository<Location> repository
+            IRepository<Location> repository,
+            ILogger<LocationViewModelService> logger
             )
         {
             this._locationRepository = locationRepository;
             this._repository = repository;
+            this._logger = logger;
         }
 
         public async Task AddLocationAsync(LocationViewModel locationVM, string userId)
         {
+            _logger.LogInformation("AddLocationAsync called.");
             var location = new Location()
             {
                 Id = locationVM.Id,
@@ -46,12 +55,14 @@ namespace AssetManager.Web.Service
 
         public async Task DeleteLocationAsync(int id)
         {
+            _logger.LogInformation("DeleteLocationAsync called.");
             var location = await _locationRepository.GetByIdAsync(id);
             await _locationRepository.DeleteAsync(location);
         }
 
         public IEnumerable<LocationViewModel> GetAllLocation()
         {
+            _logger.LogInformation("GetAllLocation called.");
             var locations = _repository.ListAll();
             var locationViewList = new List<LocationViewModel>();
             foreach(var location in locations)
@@ -81,6 +92,7 @@ namespace AssetManager.Web.Service
 
         public async Task<IEnumerable<LocationViewModel>> GetAllLocationAsync()
         {
+            _logger.LogInformation("GetAllLocationAsync called.");
             var locations = await _locationRepository.ListAllAsync();
             
             var locationViewList = new List<LocationViewModel>();
@@ -111,6 +123,7 @@ namespace AssetManager.Web.Service
 
         public async Task<LocationViewModel> GetLocationAsync(int id)
         {
+            _logger.LogInformation("GetLocationAsync called.");
             var location = await _locationRepository.GetByIdAsync(id);
             LocationViewModel locationViewModel = new LocationViewModel()
             {
@@ -136,6 +149,7 @@ namespace AssetManager.Web.Service
 
         public async Task UpdateLocationAsync(LocationViewModel locationVM, string userId)
         {
+            _logger.LogInformation("UpdateLocationAsync called.");
             var location = new Location()
             {
                 Id = locationVM.Id,
