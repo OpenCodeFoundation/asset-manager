@@ -32,16 +32,29 @@ namespace AssetManager.Web.Service
             this._logger = loggerFactory.CreateLogger<DepartmentsViewModelService>();
         }
 
-        public Task AddDepartmentsAsync(DepartmentsViewModel departmentsVM, string userId)
+        public async Task AddDepartmentsAsync(DepartmentsViewModel departmentsVM, string userId)
         {
             _logger.LogInformation("AddDepartmentsAsync called.");
-            throw new NotImplementedException();
+            var departments = new Departments()
+            {
+                Id = departmentsVM.Id,
+                Name = departmentsVM.Name,
+                LocatonId = departmentsVM.LocatonId,
+                ManagerId = departmentsVM.ManagerId,
+                Image = departmentsVM.Image,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+                UpdatedBy = userId
+            };
+
+            await _asyncRepository.AddAsync(departments);
         }
 
-        public Task DeleteDepartmentsAsync(int id)
+        public async Task DeleteDepartmentsAsync(int id)
         {
             _logger.LogInformation("DeleteDepartmentsAsync called.");
-            throw new NotImplementedException();
+            var department = await _asyncRepository.GetByIdAsync(id);
+            await _asyncRepository.DeleteAsync(department);
         }
 
         public IEnumerable<DepartmentsViewModel> GetAllDepartments()
@@ -50,22 +63,44 @@ namespace AssetManager.Web.Service
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<DepartmentsViewModel>> GetAllDepartmentsAsync()
+        public async Task<IEnumerable<Departments>> GetAllDepartmentsAsync()
         {
             _logger.LogInformation("GetAllDepartmentsAsync called.");
-            throw new NotImplementedException();
+
+            return await _asyncRepository.ListAllAsync();
         }
 
-        public Task<DepartmentsViewModel> GetDepartmentsAsync(int id)
+        public async Task<DepartmentsViewModel> GetDepartmentsAsync(int id)
         {
             _logger.LogInformation("GetDepartmentsAsync called.");
-            throw new NotImplementedException();
+            var departmentget = await _asyncRepository.GetByIdAsync(id);
+            var department = new DepartmentsViewModel()
+            {
+                Id = departmentget.Id,
+                Name = departmentget.Name,
+                LocatonId = departmentget.LocatonId,
+                ManagerId = departmentget.ManagerId,
+                Image = departmentget.Image,
+            };
+
+            return department;
         }
 
-        public Task UpdateDepartmentsAsync(DepartmentsViewModel departmentsVM, string userId)
+        public async Task UpdateDepartmentsAsync(DepartmentsViewModel departmentsVM, string userId)
         {
             _logger.LogInformation("UpdateDepartmentsAsync called.");
-            throw new NotImplementedException();
+            var department = new Departments()
+            {
+                Id = departmentsVM.Id,
+                Name = departmentsVM.Name,
+                LocatonId = departmentsVM.LocatonId,
+                ManagerId = departmentsVM.ManagerId,
+                Image = departmentsVM.Image,
+                UpdatedAt = DateTime.Now,
+                UpdatedBy = userId
+            };
+
+            await _asyncRepository.UpdateAsync(department);
         }
         public async Task<IEnumerable<SelectListItem>> GetDepartments()
         {

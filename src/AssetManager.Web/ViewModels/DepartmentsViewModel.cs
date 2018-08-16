@@ -8,6 +8,7 @@ namespace AssetManager.Web.ViewModels
 {
     public class DepartmentsViewModel
     {
+        public int Id { get; set; }
         [Display(Name = "Department Name")]
         public string Name { get; set; }
 
