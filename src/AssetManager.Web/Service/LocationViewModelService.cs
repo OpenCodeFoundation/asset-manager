@@ -170,7 +170,7 @@ namespace AssetManager.Web.Service
             await _locationRepository.UpdateAsync(location);
         }
 
-        public async Task<IEnumerable<SelectListItem>> GetLocations()
+        public async Task<IEnumerable<SelectListItem>> GetLocation()
         {
             _logger.LogInformation("GetLocations called.");
             var locations = await _locationRepository.ListAllAsync();

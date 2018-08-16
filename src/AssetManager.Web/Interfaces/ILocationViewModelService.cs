@@ -16,6 +16,6 @@ namespace AssetManager.Web.Interfaces
         Task UpdateLocationAsync(LocationViewModel locationVM, string userId);
         IEnumerable<LocationViewModel> GetAllLocation();
         Task<IEnumerable<LocationViewModel>> GetAllLocationAsync();
-        Task<IEnumerable<SelectListItem>> GetLocations();
+        Task<IEnumerable<SelectListItem>> GetLocation();
     }
 }

@@ -102,7 +102,7 @@ namespace AssetManager.Web.Service
 
             await _asyncRepository.UpdateAsync(department);
         }
-        public async Task<IEnumerable<SelectListItem>> GetDepartments()
+        public async Task<IEnumerable<SelectListItem>> GetDepartment()
         {
             _logger.LogInformation("GetLocations called.");
             var departments = await _asyncRepository.ListAllAsync();
