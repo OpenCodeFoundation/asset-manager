@@ -14,7 +14,6 @@ namespace AssetManager.Web.Interfaces
         Task DeleteDepartmentsAsync(int id);
         Task<DepartmentsViewModel> GetDepartmentsAsync(int id);
         Task UpdateDepartmentsAsync(DepartmentsViewModel departmentsVM, string userId);
-        IEnumerable<DepartmentsViewModel> GetAllDepartments();
         Task<IEnumerable<Departments>> GetAllDepartmentsAsync();
         Task<IEnumerable<SelectListItem>> GetDepartment();
     }

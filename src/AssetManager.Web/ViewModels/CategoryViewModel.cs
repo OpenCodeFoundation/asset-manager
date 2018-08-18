@@ -27,6 +27,9 @@ namespace AssetManager.Web.ViewModels
 
         [Display(Name = ("Image"))]
         public string Image { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
+        public string UpdatedBy { get; set; }
     }
     public enum CatagoryTypeVM
     {

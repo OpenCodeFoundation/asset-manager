@@ -57,12 +57,6 @@ namespace AssetManager.Web.Service
             await _asyncRepository.DeleteAsync(department);
         }
 
-        public IEnumerable<DepartmentsViewModel> GetAllDepartments()
-        {
-            _logger.LogInformation("GetAllDepartments called.");
-            throw new NotImplementedException();
-        }
-
         public async Task<IEnumerable<Departments>> GetAllDepartmentsAsync()
         {
             _logger.LogInformation("GetAllDepartmentsAsync called.");
@@ -102,6 +96,11 @@ namespace AssetManager.Web.Service
 
             await _asyncRepository.UpdateAsync(department);
         }
+
+        /// <summary>
+        /// SelectListItem for dropdownlist
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<SelectListItem>> GetDepartment()
         {
             _logger.LogInformation("GetLocations called.");
