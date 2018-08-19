@@ -2,6 +2,7 @@
 using AssetManager.Core.Interfaces;
 using AssetManager.Web.Interfaces;
 using AssetManager.Web.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -150,6 +151,21 @@ namespace AssetManager.Web.Service
             };
 
             await _manufacturerRepository.UpdateAsync(manufacturer);
+        }
+        public async Task<IEnumerable<SelectListItem>> GetManufacturers()
+        {
+            _logger.LogInformation("GetManufacturers called.");
+            var allManufacturer = await _manufacturerRepository.ListAllAsync();
+            var items = new List<SelectListItem>
+            {
+                new SelectListItem() { Value = null, Text = "All", Selected = true }
+            };
+            foreach (Manufacturer manufacturer in allManufacturer)
+            {
+                items.Add(new SelectListItem() { Value = manufacturer.Id.ToString(), Text = manufacturer.Name });
+            }
+
+            return items;
         }
     }
 }

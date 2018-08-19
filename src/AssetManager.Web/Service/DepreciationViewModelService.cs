@@ -2,6 +2,7 @@
 using AssetManager.Core.Interfaces;
 using AssetManager.Web.Interfaces;
 using AssetManager.Web.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -111,6 +112,22 @@ namespace AssetManager.Web.Service
                 UpdatedBy = userId
             };
             await _depreciationRepository.UpdateAsync(depreciation);
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetDepreciations()
+        {
+            _logger.LogInformation("GetDepreciations called.");
+            var allDepreciation = await _depreciationRepository.ListAllAsync();
+            var items = new List<SelectListItem>
+            {
+                new SelectListItem() { Value = null, Text = "All", Selected = true }
+            };
+            foreach (Depreciation depreciation in allDepreciation)
+            {
+                items.Add(new SelectListItem() { Value = depreciation.Id.ToString(), Text = depreciation.Name });
+            }
+
+            return items;
         }
     }
 }

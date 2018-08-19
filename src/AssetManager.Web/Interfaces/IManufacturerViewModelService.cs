@@ -1,5 +1,6 @@
 ﻿using AssetManager.Core.Entities;
 using AssetManager.Web.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,6 @@ namespace AssetManager.Web.Interfaces
         Task UpdateManufacturerAsync(ManufacturerViewModel manufacturerVM, string userId);
         IEnumerable<ManufacturerViewModel> GetAllManufacturer();
         Task<IEnumerable<ManufacturerViewModel>> GetAllManufacturerAsync();
+        Task<IEnumerable<SelectListItem>> GetManufacturers();
     }
 }
