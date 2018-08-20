@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AssetManager.Core.Entities;
-using AssetManager.Core.Interfaces;
+﻿using System.Threading.Tasks;
 using AssetManager.Web.Interfaces;
-using AssetManager.Web.Service;
 using AssetManager.Web.ViewModels;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AssetManager.Web.Controllers
@@ -115,8 +108,7 @@ namespace AssetManager.Web.Controllers
                 await _statusLabelViewModelService.DeleteStatusAsync(statusLabel.Id);            
                 return RedirectToAction(nameof(Index));
             }            
-            return View();
-            
+            return View();            
         }
     }
 }
