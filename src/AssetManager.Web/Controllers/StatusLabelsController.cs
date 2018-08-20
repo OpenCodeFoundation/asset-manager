@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-using AssetManager.Web.Interfaces;
+﻿using AssetManager.Web.Interfaces;
 using AssetManager.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace AssetManager.Web.Controllers
 {
