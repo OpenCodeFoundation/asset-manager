@@ -32,7 +32,7 @@ namespace AssetManager.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var allModels = _assetModelViewModelService.GetAllModelAsync();
+            var allModels = await _assetModelViewModelService.GetAllModelAsync();
             return View(allModels);
         }
 
@@ -120,7 +120,7 @@ namespace AssetManager.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id, AssetModelViewModel model)
         {
-            if(ModelState.IsValid)
+            if (id == model.Id && model != null)
             {
                 await _assetModelViewModelService.DeleteAssetModelAsync(model.Id);
                 return RedirectToAction(nameof(Index));

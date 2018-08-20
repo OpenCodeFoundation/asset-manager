@@ -144,7 +144,7 @@ namespace AssetManager.Web.Service
                 UpdatedAt = DateTime.Now,
                 UpdatedBy = userId
             };
-            await _asyncRepository.AddAsync(model);
+            await _asyncRepository.UpdateAsync(model);
         }
     }
 }

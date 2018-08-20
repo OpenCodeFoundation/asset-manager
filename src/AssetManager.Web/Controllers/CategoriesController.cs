@@ -93,19 +93,13 @@ namespace AssetManager.Web.Controllers
         public async Task<IActionResult> Edit(int id, CategoryViewModel category)
         {
             string userId = User.Identity.Name;
-            if (id != category.Id)
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            try
+            if (ModelState.IsValid)
             {
                 await _categoryViewModelService.UpdateCategoryAsync(category, userId); 
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View();
+
         }
 
         // GET: Categories/Delete/5
@@ -128,19 +122,12 @@ namespace AssetManager.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id, CategoryViewModel cateItem)
         {
-            if(cateItem == null)
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            try
+            if(cateItem!=null)
             {
                 await _categoryViewModelService.DeleteCategoryAsync(id);
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View();
         }
     }
 }

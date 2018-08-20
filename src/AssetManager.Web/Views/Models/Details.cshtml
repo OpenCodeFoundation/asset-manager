@@ -1,79 +1,88 @@
-﻿@model AssetManager.Core.Entities.AssetModels
+﻿@model AssetManager.Web.ViewModels.AssetModelViewModel
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>AssetModels</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ManufacturerId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ManufacturerId)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CategoryId)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ModelNumber)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ModelNumber)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DepreciationId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DepreciationId)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Eol)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Eol)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DeprecatedMacAdress)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DeprecatedMacAdress)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Notes)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Notes)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Requestable)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Requestable)
-        </dd>
-        
-    </dl>
+<div class="header-content">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-8">
+            <p class="header-content-title">Details Asset Model</p>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-4">
+            <a asp-action="Index" class="pull-right btn btn-primary btn-create-new">Back</a>
+        </div>
+    </div>
 </div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new {  id = Model.Id }) |
-    <a asp-action="Index">Back to List</a>
+
+<div class="header-content">
+    <div class="row">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ManufacturerId)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ManufacturerId)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CategoryId)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ModelNumber)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ModelNumber)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DepreciationId)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DepreciationId)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Eol)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Eol)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Image)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Image)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DeprecatedMacAdress)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DeprecatedMacAdress)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Notes)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Notes)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Requestable)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Requestable)
+            </dd>
+
+        </dl>
+    </div>
+</div>
+<div class="box-footer">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "pull-right btn btn-primary btn-create-new" })
+    
 </div>

@@ -1,20 +1,25 @@
-﻿@model AssetManager.Core.Entities.AssetModels
+﻿@model AssetManager.Web.ViewModels.AssetModelViewModel
 
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<div class="header-content">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-8">
+            <p class="header-content-title">Edit Asset Model</p>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-4">
+            <a asp-action="Index" class="pull-right btn btn-primary btn-create-new">Back</a>
+        </div>
+    </div>
+</div>
 
-<h4>AssetModels</h4>
-<hr />
 <div class="row">
     <!-- right column -->
     <div class="col-md-8 col-md-offset-2">
         <div class="box box-info">
-            <div class="box-header with-border">
-
-            </div>
+            <div class="box-header with-border"></div>
             <form asp-action="Edit" method="post" class="form-horizontal">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                
@@ -30,14 +35,14 @@
                     <div class="form-group">
                         <label asp-for="ManufacturerId" class="col-md-3 control-label"></label>
                         <div class="col-md-7">
-                            <select asp-for="ManufacturerId" class="form-control" asp-items="@(new SelectList(@ViewBag.manufacturer, "Id", "Name"))"></select>
+                            <select asp-for="ManufacturerId" class="form-control" asp-items="@ViewBag.manufacturer"></select>
                             <span asp-validation-for="ManufacturerId" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label asp-for="CategoryId" class="col-md-3 control-label"></label>
                         <div class="col-md-7">
-                            <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(@ViewBag.category, "Id", "Name"))"></select>
+                            <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.category"></select>
                             <span asp-validation-for="CategoryId" class="text-danger"></span>
                         </div>
                     </div>
@@ -51,7 +56,7 @@
                     <div class="form-group">
                         <label asp-for="DepreciationId" class="col-md-3 control-label"></label>
                         <div class="col-md-7">
-                            <select asp-for="DepreciationId" class="form-control" asp-items="@(new SelectList(@ViewBag.depreciation, "Id", "Name"))"></select>
+                            <select asp-for="DepreciationId" class="form-control" asp-items="@ViewBag.depreciation"></select>
                             <span asp-validation-for="DepreciationId" class="text-danger"></span>
                         </div>
                     </div>

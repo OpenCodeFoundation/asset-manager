@@ -1,13 +1,19 @@
-﻿@model IEnumerable<AssetManager.Core.Entities.AssetModels>
+﻿@model IEnumerable<AssetManager.Web.ViewModels.AssetModelViewModel>
 @{
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<div class="header-content">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-8">
+            <p class="header-content-title">Asset Model</p>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-4">
+            <a asp-action="Create" class="pull-right btn btn-primary btn-create-new">Create New</a>
+        </div>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <div class="row">
     <div class="col-md-12">
 
