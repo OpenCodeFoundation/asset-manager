@@ -1,5 +1,5 @@
-﻿@model AssetManager.Core.Entities.StatusLabel
-@using AssetManager.Core.Entities
+﻿@model AssetManager.Web.ViewModels.StatusLabelViewModel
+@using AssetManager.Web.ViewModels
 @{
     ViewData["Title"] = "Edit";
 }
@@ -39,7 +39,7 @@
                     <div class="form-group">
                         <label asp-for="Type" class="control-label col-md-3"></label>
                         <div class="col-md-7">
-                            <select asp-for="Type" asp-items="Html.GetEnumSelectList<StatusType>()"> </select>
+                            <select asp-for="Type" asp-items="Html.GetEnumSelectList<StatusTypeVM>()"> </select>
                             <span asp-validation-for="Type" class="text-danger"></span>
                         </div>
                     </div>

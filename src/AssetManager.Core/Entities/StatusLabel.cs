@@ -11,8 +11,6 @@ namespace AssetManager.Core.Entities
 {
     public class StatusLabel: Entity
     {
-        [Required]
-        [Display(Name ="Name")]
         public string Name { get; set; }
         public StatusType Type { get; set; }
         public string Notes { get; set; }

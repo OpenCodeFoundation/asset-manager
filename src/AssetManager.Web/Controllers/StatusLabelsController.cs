@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using AssetManager.Core.Entities;
 using AssetManager.Core.Interfaces;
+using AssetManager.Web.Interfaces;
+using AssetManager.Web.Service;
+using AssetManager.Web.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,17 +14,17 @@ namespace AssetManager.Web.Controllers
 {
     public class StatusLabelsController : Controller
     {
-        private readonly IAsyncRepository<StatusLabel> _statusRepository;
+        private readonly IStatusLabelViewModelService  _statusLabelViewModelService;
 
-        public StatusLabelsController(IAsyncRepository<StatusLabel> repository)
+        public StatusLabelsController(IStatusLabelViewModelService statusLabelViewModelService)
         {
-            this._statusRepository = repository;
+            this._statusLabelViewModelService = statusLabelViewModelService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var allstatuslabel = await _statusRepository.ListAllAsync();
+            var allstatuslabel = await _statusLabelViewModelService.GetAllStatusAsync();
             return View(allstatuslabel);
         }
 
@@ -33,8 +36,7 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            var statusItem = await _statusRepository.GetByIdAsync(id); 
-
+            var statusItem = await _statusLabelViewModelService.GetStatusAsync(id);
             return View(statusItem);
         }
 
@@ -48,11 +50,12 @@ namespace AssetManager.Web.Controllers
         // POST: StatusLabels/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(StatusLabel label)
-        {            
-            if(ModelState.IsValid)
+        public async Task<IActionResult> Create(StatusLabelViewModel label)
+        {
+            string userId = User.Identity.Name;
+            if (ModelState.IsValid)
             {
-                await _statusRepository.AddAsync(label);
+                await _statusLabelViewModelService.AddStatusAsync(label, userId);
                 return RedirectToAction(nameof(Index));
             }
             return View();            
@@ -65,7 +68,7 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            var statusLabel = await _statusRepository.GetByIdAsync(id);
+            var statusLabel = await _statusLabelViewModelService.GetStatusAsync(id);
             if (statusLabel == null)
             {
                 return RedirectToAction(nameof(Index));
@@ -76,17 +79,15 @@ namespace AssetManager.Web.Controllers
         // POST: StatusLabels/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, StatusLabel label)
+        public async Task<IActionResult> Edit(int id, StatusLabelViewModel label)
         {
-            try
+            string userId = User.Identity.Name;
+            if(ModelState.IsValid)
             {
-                await _statusRepository.UpdateAsync(label);
+                await _statusLabelViewModelService.UpdateStatusAsync(label, userId);
                 return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            }            
+            return View();            
         }
 
         // GET: StatusLabels/Delete/5
@@ -96,7 +97,7 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            var statuslabel = await _statusRepository.GetByIdAsync(id);
+            var statuslabel = await _statusLabelViewModelService.GetStatusAsync(id);
             if (statuslabel == null)
             {
                 return RedirectToAction(nameof(Index));
@@ -107,17 +108,15 @@ namespace AssetManager.Web.Controllers
         // POST: StatusLabels/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, StatusLabel statusObject)
+        public async Task<IActionResult> Delete(int id, StatusLabelViewModel statusLabel)
         {
-            try
+            if(statusLabel != null && statusLabel.Id == id)
             {
-                await _statusRepository.DeleteAsync(statusObject);                
+                await _statusLabelViewModelService.DeleteStatusAsync(statusLabel.Id);            
                 return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            }            
+            return View();
+            
         }
     }
 }
