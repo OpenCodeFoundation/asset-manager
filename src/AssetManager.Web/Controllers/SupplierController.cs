@@ -29,8 +29,7 @@ namespace AssetManager.Web.Controllers
         public IActionResult Create()
         {
             ViewBag.CountryList = AllCountry.getCountry();
-            return View();
-            
+            return View();            
         }
 
     
@@ -44,9 +43,7 @@ namespace AssetManager.Web.Controllers
               await _supplierService.AddSupplier(supplier, userId);
               return RedirectToAction(nameof(Index));
             }
-            
-              return View(supplier);
-            
+            return View(supplier);            
         }
 
         // GET: Supplier/Edit/5
@@ -57,7 +54,6 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-
             var supplier = await _supplierService.GetSupplier(id);
             if(supplier == null)
             {
@@ -71,16 +67,13 @@ namespace AssetManager.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, SupplierViewModel supplier)
         {
-            try
+            if(ModelState.IsValid)
             {
                 string userId = User.Identity.Name;
                 await _supplierService.UpdateSupplier(supplier, userId);
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View();
         }
 
         [HttpGet]

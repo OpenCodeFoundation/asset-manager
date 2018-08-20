@@ -14,7 +14,6 @@ namespace AssetManager.Web.Controllers
     public class CategoriesController : Controller
     {
         private readonly ICategoryViewModelService _categoryViewModelService;
-
         public CategoriesController(ICategoryViewModelService categoryViewModelService)
         {
             this._categoryViewModelService = categoryViewModelService;
@@ -24,7 +23,6 @@ namespace AssetManager.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var CategoryList = await _categoryViewModelService.GetAllCategoryAsync();
-
             return View(CategoryList);
         }
 
@@ -46,7 +44,6 @@ namespace AssetManager.Web.Controllers
         [HttpGet]
         public  IActionResult Create()
         {
-
             return View();
         }
 
@@ -58,15 +55,10 @@ namespace AssetManager.Web.Controllers
             string userId = User.Identity.Name;
             if (ModelState.IsValid)
             {
-                category.CreatedAt = DateTime.Now;
-
                 await _categoryViewModelService.AddCategoryAsync(category, userId);
                 return RedirectToAction(nameof(Index));
             }
-            
-            
-                return View();
-            
+            return View(); 
         }
 
         // GET: Categories/Edit/5
@@ -76,14 +68,11 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-
             var obj = await _categoryViewModelService.GetCategoryAsync(id);
-
             if(obj == null)
             {
                 return RedirectToAction(nameof(Index));
             }
-
             return View(obj);
         }
 

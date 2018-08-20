@@ -54,9 +54,7 @@ namespace AssetManager.Web.Controllers
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);
-            }
-
-            // If we got this far, something failed, redisplay form
+            }            
             return View(model);
         }
 
@@ -68,9 +66,7 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
-
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }

@@ -49,17 +49,13 @@ namespace AssetManager.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(StatusLabel label)
-        {
-            
+        {            
             if(ModelState.IsValid)
             {
-
                 await _statusRepository.AddAsync(label);
-                 return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index));
             }
-            
-                return View();
-            
+            return View();            
         }
 
         [HttpGet]
@@ -85,7 +81,6 @@ namespace AssetManager.Web.Controllers
             try
             {
                 await _statusRepository.UpdateAsync(label);
-
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -116,8 +111,7 @@ namespace AssetManager.Web.Controllers
         {
             try
             {
-                await _statusRepository.DeleteAsync(statusObject);
-                
+                await _statusRepository.DeleteAsync(statusObject);                
                 return RedirectToAction(nameof(Index));
             }
             catch

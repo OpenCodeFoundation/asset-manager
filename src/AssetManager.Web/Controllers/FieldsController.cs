@@ -44,10 +44,8 @@ namespace AssetManager.Web.Controllers
             if(ModelState.IsValid)
             {
                 await _customFieldsRepository.AddAsync(fields);
-
                 return RedirectToAction(nameof(Index));
-            }
-            
+            }            
             return View();
             
         }
@@ -68,13 +66,10 @@ namespace AssetManager.Web.Controllers
             if (id <= 0)
             {
                 return RedirectToAction(nameof(Index));
-            }
-
-            
+            }            
             try
             {
                 await _customFieldsRepository.DeleteAsync(data);
-
                 return RedirectToAction(nameof(Index));
             }
             catch

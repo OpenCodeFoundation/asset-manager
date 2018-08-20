@@ -32,7 +32,6 @@ namespace AssetManager.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var allconsuable = await _consumableRepository.ListAllAsync();
-
             return View(allconsuable);
         }
 

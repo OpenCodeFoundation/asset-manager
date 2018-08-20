@@ -37,7 +37,6 @@ namespace AssetManager.Web.Controllers
             }
 
             var item = await _manufacturerViewModelService.GetManufacturerAsync(id);
-
             return View(item);
         }
 
@@ -56,14 +55,10 @@ namespace AssetManager.Web.Controllers
             string userId = User.Identity.Name;
             if (ModelState.IsValid)
             {
-                await _manufacturerViewModelService.AddManufacturerAsync(manufacturer, userId);
-                
+                await _manufacturerViewModelService.AddManufacturerAsync(manufacturer, userId);                
                 return RedirectToAction(nameof(Index));
-                
-
-            }
-            
-                return View();
+            }            
+            return View();
             
         }
 
@@ -75,16 +70,11 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-
             var manufacturer = await _manufacturerViewModelService.GetManufacturerAsync(id);
-
             if(manufacturer == null)
             {
-                return RedirectToAction(nameof(Index));
-            
+                return RedirectToAction(nameof(Index));            
             }
-
-
             return View(manufacturer);
         }
 
@@ -94,19 +84,12 @@ namespace AssetManager.Web.Controllers
         public async Task<IActionResult> Edit(int id, ManufacturerViewModel  manufacturerViewModel)
         {
             string userId = User.Identity.Name;
-            if (!ModelState.IsValid)
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            try
+            if (ModelState.IsValid)
             {
                 await _manufacturerViewModelService.UpdateManufacturerAsync(manufacturerViewModel, userId);
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View();            
         }
 
         // GET: Manufacturers/Delete/5
@@ -129,15 +112,12 @@ namespace AssetManager.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(int id, ManufacturerViewModel manufacturerViewModel)
         {
-            try
+            if(manufacturerViewModel!=null)
             {
                 await _manufacturerViewModelService.DeleteManufacturerAsync(id);
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View();            
         }
     }
 }

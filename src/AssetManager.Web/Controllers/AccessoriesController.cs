@@ -34,7 +34,6 @@ namespace AssetManager.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var allaccessories = await _accessoriesRepository.ListAllAsync();
-
             return View(allaccessories);
         }
 
@@ -57,7 +56,6 @@ namespace AssetManager.Web.Controllers
                 await _accessoriesRepository.AddAsync(accessory);
                 return RedirectToAction(nameof(Index));
             }
-
             return View();
         }
     }

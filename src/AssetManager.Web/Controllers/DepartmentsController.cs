@@ -63,11 +63,9 @@ namespace AssetManager.Web.Controllers
             if (ModelState.IsValid)
             {
                 await _departmentsViewModelService.AddDepartmentsAsync(departments, userId);
-
                 return RedirectToAction(nameof(Index));
-            }
-            
-                return View(departments);
+            }            
+            return View(departments);
             
         }
 
@@ -96,10 +94,8 @@ namespace AssetManager.Web.Controllers
             if (ModelState.IsValid)
             {
                 await _departmentsViewModelService.UpdateDepartmentsAsync(departments, userId);
-
                 return RedirectToAction(nameof(Index));
             }
-
             ViewBag.Locations = await _locationViewModelService.GetLocation();
             return View(departments);
         }
@@ -111,13 +107,11 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-
             var deleteDept = await _departmentsViewModelService.GetDepartmentsAsync(id);
             if(deleteDept == null)
             {
                 return RedirectToAction(nameof(Index));
             }
-
             return View(deleteDept);
         }
 
@@ -129,10 +123,8 @@ namespace AssetManager.Web.Controllers
             if(ModelState.IsValid)
             {
                 await _departmentsViewModelService.DeleteDepartmentsAsync(departmentsViewModel.Id);
-
                 return RedirectToAction(nameof(Index));
             }
-
             return RedirectToAction(nameof(Index));
 
         }

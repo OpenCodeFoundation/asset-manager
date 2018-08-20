@@ -50,7 +50,6 @@ namespace AssetManager.Web.Controllers
                 await _componentRepository.AddAsync(components);
                 return RedirectToAction(nameof(Index));
             }
-
             return View(components);
         }
     }

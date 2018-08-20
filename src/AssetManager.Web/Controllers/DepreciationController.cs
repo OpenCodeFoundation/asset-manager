@@ -19,7 +19,6 @@ namespace AssetManager.Web.Controllers
             this._depreciationViewModelService = depreciationViewModelService;
         }
 
-
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -33,7 +32,6 @@ namespace AssetManager.Web.Controllers
             return View();
         }
 
-
         [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Insert(DepreciationViewModel item)
@@ -42,10 +40,9 @@ namespace AssetManager.Web.Controllers
             if (ModelState.IsValid)
             {
                 await _depreciationViewModelService.AddDepreciationAsync(item, userId);
-
                 return RedirectToAction(nameof(Index));
             }
-                return View();
+            return View();
             
         }
 
@@ -57,13 +54,11 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-
             var dep = await _depreciationViewModelService.GetDepreciationAsync(id);
             if(dep == null)
             {
                 return RedirectToAction(nameof(Index));
             }
-
             return View(dep);
         }
 
@@ -73,16 +68,12 @@ namespace AssetManager.Web.Controllers
         public async Task<IActionResult> Edit(int id, DepreciationViewModel obj)
         {
             string userId = User.Identity.Name;
-            try
+            if(ModelState.IsValid)
             {
                 await _depreciationViewModelService.UpdateDepreciationAsync(obj, userId);
-
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View();            
         }
 
         [HttpGet]
@@ -92,7 +83,6 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-
             var deleteIteam = await _depreciationViewModelService.GetDepreciationAsync(id);
             return View(deleteIteam);
         }
@@ -102,14 +92,13 @@ namespace AssetManager.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id, DepreciationViewModel item)
         {
-            if(id != item.Id)
+            if(item == null)
             {
                 return RedirectToAction(nameof(Index));
             }
             try
             {
-                await _depreciationViewModelService.DeleteDepreciationAsync(id);
-
+                await _depreciationViewModelService.DeleteDepreciationAsync(item.Id);
                 return RedirectToAction(nameof(Index));
             }
             catch
