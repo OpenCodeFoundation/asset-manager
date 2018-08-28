@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AssetManager.Core.Entities;
 using AssetManager.Core.Interfaces;
+using AssetManager.Web.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,17 +13,17 @@ namespace AssetManager.Web.Controllers
     public class ComponentsController : Controller
     {
         private readonly IAsyncRepository<Components> _componentRepository;
-        private readonly IAsyncRepository<Category> _categoryRepository;
-        private readonly IAsyncRepository<Location> _locationRepository;
+        private readonly ICategoryViewModelService _categoryViewModelService;
+        private readonly ILocationViewModelService _locationViewModelService;
         public ComponentsController(
             IAsyncRepository<Components> componentRepository,
-            IAsyncRepository<Category> categoryRepository,
-            IAsyncRepository<Location> locationRepository
+            ICategoryViewModelService categoryViewModelService,
+            ILocationViewModelService locationViewModelService
             )
         {
             this._componentRepository = componentRepository;
-            this._categoryRepository = categoryRepository;
-            this._locationRepository = locationRepository;
+            this._categoryViewModelService = categoryViewModelService;
+            this._locationViewModelService = locationViewModelService;
         }
 
 
@@ -36,8 +37,8 @@ namespace AssetManager.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            ViewBag.Categorylist = await _categoryRepository.ListAllAsync();
-            ViewBag.locations = await _locationRepository.ListAllAsync();
+            ViewBag.Categorylist = await _categoryViewModelService.GetCategories();
+            ViewBag.locations = await _locationViewModelService.GetLocation();
             return View();
         }
 
