@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AssetManager.Core.Entities;
+using AssetManager.Core.Interfaces;
 using AssetManager.Infrastructure.Identity;
 using AssetManager.Web.Models;
 using Microsoft.AspNetCore.Authentication;
@@ -17,12 +18,12 @@ namespace AssetManager.Web.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly ILogger _logger;
+        private readonly IAppLogger<AccountController> _logger;
 
         public AccountController(
                     UserManager<ApplicationUser> userManager,
                     SignInManager<ApplicationUser> signInManager,
-                    ILogger<AccountController> logger)
+                    IAppLogger<AccountController> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
