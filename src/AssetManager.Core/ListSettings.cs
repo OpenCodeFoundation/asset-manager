@@ -4,8 +4,8 @@ using System.Text;
 
 namespace AssetManager.Core
 {
-   public class CatalogSettings
+   public class ListSettings
     {
-        public string CatalogBaseUrl { get; set; }
+        public string ListBaseUrl { get; set; }
     }
 }

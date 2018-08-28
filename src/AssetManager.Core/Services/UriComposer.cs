@@ -7,11 +7,11 @@ namespace AssetManager.Core.Services
 {
     public class UriComposer : IUriComposer
     {
-        private readonly CatalogSettings _catalogSettings;
-        public UriComposer(CatalogSettings catalogSettings) => _catalogSettings = catalogSettings;
+        private readonly ListSettings _listSettings;
+        public UriComposer(ListSettings listSettings) => _listSettings = listSettings;
         public string ComposePicUri(string uriTemplate)
         {
-            return uriTemplate.Replace("http://catalogbaseurltobereplaced", _catalogSettings.CatalogBaseUrl);
+            return uriTemplate.Replace("http://listbaseurltobereplaced", _listSettings.ListBaseUrl);
         }
     }
 }
