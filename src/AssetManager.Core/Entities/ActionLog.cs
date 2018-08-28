@@ -24,8 +24,6 @@ namespace AssetManager.Core.Entities
         public DateTime ExpecteCheckIn { get; set; }
         public int AcceptedId { get; set; }
         public string AcceptSign { get; set; }
-        public string LogMeta { get; set; }
-        
-        
+        public string LogMeta { get; set; }     
     }
 }
