@@ -12,8 +12,4 @@
     <ProjectReference Include="..\AssetManager.Core\AssetManager.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>
