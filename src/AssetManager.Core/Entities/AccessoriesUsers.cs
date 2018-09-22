@@ -10,17 +10,9 @@ namespace AssetManager.Core.Entities
 {
     public class AccessoriesUsers: Entity
     {
-        [ForeignKey("Accessory")]
         public int AccessoryId { get; set; }
-        
-
+        public Accessory Accessory { get; set; }
         public int AssignTo { get; set; }
-
-
-        public DateTime CreatedAt { get; set; }
-
-        public DateTime UpdatedAt { get; set; }
-
-        public virtual Accessory Accessory { get; set; }
+       
     }
 }

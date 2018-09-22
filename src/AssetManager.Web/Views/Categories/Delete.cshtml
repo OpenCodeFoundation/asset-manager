@@ -1,4 +1,4 @@
-﻿@model AssetManager.Core.Entities.Category
+﻿@model AssetManager.Web.ViewModels.CategoryViewModel
 
 @{
     ViewData["Title"] = "Delete";
@@ -47,24 +47,7 @@
         <dd>
             @Html.DisplayFor(model => model.Image)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ModifiedAt)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ModifiedAt)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DeletedAt)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DeletedAt)
-        </dd>
+        
         <dt>
             @Html.DisplayNameFor(model => model.Id)
         </dt>

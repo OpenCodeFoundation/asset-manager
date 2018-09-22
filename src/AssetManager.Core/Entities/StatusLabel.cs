@@ -11,17 +11,10 @@ namespace AssetManager.Core.Entities
 {
     public class StatusLabel: Entity
     {
-        [Required]
-        [Display(Name ="Name")]
         public string Name { get; set; }
         public StatusType Type { get; set; }
         public string Notes { get; set; }
         public bool ShowInNav { get; set; }
-        public DateTime CreatedAt { get; set; }
-
-        public DateTime UpdatedAt { get; set; }
-
-        public DateTime DeletedAt { get; set; }
     }
 
     public enum StatusType

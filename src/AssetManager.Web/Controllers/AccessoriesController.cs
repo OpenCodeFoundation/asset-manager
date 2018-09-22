@@ -12,14 +12,12 @@ namespace AssetManager.Web.Controllers
     public class AccessoriesController : Controller
     {
         private readonly IAsyncRepository<Accessory> _accessoriesRepository;
-        private readonly IAsyncRepository<Company> _companyRepository;
         private readonly IAsyncRepository<Category> _categoryRepository;
         private readonly IAsyncRepository<Manufacturer> _manufacturerRepository;
         private readonly IAsyncRepository<Supplier> _supplierasyncRepository;
         private readonly IAsyncRepository<Location> _locRepository;
         public AccessoriesController(
             IAsyncRepository<Accessory> repository,
-            IAsyncRepository<Company> companyRepository,
             IAsyncRepository<Category> categoryRepository,
             IAsyncRepository<Manufacturer> manufacturer,
             IAsyncRepository<Supplier> supplierRepository,
@@ -27,7 +25,6 @@ namespace AssetManager.Web.Controllers
             )
         {
             this._accessoriesRepository = repository;
-            this._companyRepository = companyRepository;
             this._categoryRepository = categoryRepository;
             this._manufacturerRepository = manufacturer;
             this._supplierasyncRepository = supplierRepository;
@@ -37,14 +34,12 @@ namespace AssetManager.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var allaccessories = await _accessoriesRepository.ListAllAsync();
-
             return View(allaccessories);
         }
 
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            ViewBag.CompanyList = await _companyRepository.ListAllAsync();
             ViewBag.Categorylist = await _categoryRepository.ListAllAsync();
             ViewBag.Manufacturers = await _manufacturerRepository.ListAllAsync();
             ViewBag.Suppliers = await _supplierasyncRepository.ListAllAsync();
@@ -61,7 +56,6 @@ namespace AssetManager.Web.Controllers
                 await _accessoriesRepository.AddAsync(accessory);
                 return RedirectToAction(nameof(Index));
             }
-
             return View();
         }
     }

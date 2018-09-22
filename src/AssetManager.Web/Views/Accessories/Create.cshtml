@@ -17,15 +17,7 @@
             <form asp-action="Create" method="post" class="form-horizontal">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="box-body">
-                    <div class="form-group">
-                        <label asp-for="CompanyId" class="control-label col-md-3"></label>
-                        <div class="col-md-7">
-                            <select asp-for="CompanyId" class="form-control" asp-items="@(new SelectList(ViewBag.CompanyList, "Id", "Name"))">
-                                <option>--Select Company--</option>
-                            </select>
-                            <span asp-validation-for="CompanyId" class="text-danger"></span>
-                        </div>
-                    </div>
+
                     <div class="form-group">
                         <label asp-for="Name" class="control-label col-md-3">Accessory Name</label>
                         <div class="col-md-7">

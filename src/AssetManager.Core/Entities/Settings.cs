@@ -168,9 +168,5 @@ namespace AssetManager.Core.Entities
 
         public bool ShowAlertsInMenu { get; set; }
         public bool LabelsDisplayCompanyName { get; set; }
-
-        public DateTime CreatedAt { get; set; }
-
-        public DateTime UpdatedAt { get; set; }
     }
 }

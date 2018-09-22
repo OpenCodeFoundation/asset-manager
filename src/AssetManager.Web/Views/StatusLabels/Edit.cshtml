@@ -1,10 +1,11 @@
-﻿@model AssetManager.Core.Entities.StatusLabel
-@using AssetManager.Core.Entities
+﻿@model AssetManager.Web.ViewModels.StatusLabelViewModel
+@using AssetManager.Web.ViewModels
+
 @{
     ViewData["Title"] = "Edit";
 }
 
-<section class="header-content">
+<div class="header-content">
     <div class="row">
         <div class="col-md-6 col-sm-6 col-xs-8">
             <p class="header-content-title">Edit Status Label</p>
@@ -13,7 +14,7 @@
             <a asp-action="Index" class="pull-right btn btn-primary btn-create-new">Back</a>
         </div>
     </div>
-</section>
+</div>
 
 
 <div class="row">
@@ -39,7 +40,7 @@
                     <div class="form-group">
                         <label asp-for="Type" class="control-label col-md-3"></label>
                         <div class="col-md-7">
-                            <select asp-for="Type" asp-items="Html.GetEnumSelectList<StatusType>()"> </select>
+                            <select asp-for="Type" asp-items="Html.GetEnumSelectList<StatusTypeVM>()"> </select>
                             <span asp-validation-for="Type" class="text-danger"></span>
                         </div>
                     </div>

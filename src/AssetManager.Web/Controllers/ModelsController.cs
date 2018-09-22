@@ -1,5 +1,7 @@
 ﻿using AssetManager.Core.Entities;
 using AssetManager.Core.Interfaces;
+using AssetManager.Web.Interfaces;
+using AssetManager.Web.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -9,71 +11,63 @@ namespace AssetManager.Web.Controllers
 {
     public class ModelsController : Controller
     {
-        private readonly IAsyncRepository<AssetModels> modelsRepository;
-        private readonly IAsyncRepository<Manufacturer> _menurepository;
-        private readonly IAsyncRepository<Category> _caterepository;
-        private readonly IAsyncRepository<Depreciation> _depcaterepository;
-
+        private readonly IAssetModelViewModelService _assetModelViewModelService;
+        private readonly IManufacturerViewModelService  _manufacturerViewModelService;
+        private readonly ICategoryViewModelService  _categoryViewModelService;
+        private readonly IDepreciationViewModelService _depreciationViewModelService;
 
         public ModelsController(
-            IAsyncRepository<AssetModels> repository, 
-            IAsyncRepository<Manufacturer> manufacturer, 
-            IAsyncRepository<Category> cateRepo, 
-            IAsyncRepository<Depreciation> deprepos)
+            IAssetModelViewModelService assetModelViewModelService,
+            IManufacturerViewModelService manufacturerViewModelService,
+            ICategoryViewModelService categoryViewModelService,
+            IDepreciationViewModelService depreciationViewModelService
+            )
         {
-            this.modelsRepository = repository;
-            this._menurepository = manufacturer;
-            this._caterepository = cateRepo;
-            this._depcaterepository = deprepos;
+            this._assetModelViewModelService = assetModelViewModelService;
+            this._manufacturerViewModelService = manufacturerViewModelService;
+            this._categoryViewModelService = categoryViewModelService;
+            this._depreciationViewModelService = depreciationViewModelService;
         }
+
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            
-            var allModels = await modelsRepository.ListAllAsync();
-            
+            var allModels = await _assetModelViewModelService.GetAllModelAsync();
             return View(allModels);
         }
 
-        // GET: Models/Details/5
+        [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
             if(id <= 0)
             {
                 return RedirectToAction(nameof(Index));
             }
-
-            var assetModel = await modelsRepository.GetByIdAsync(id);
-
+            var assetModel = await _assetModelViewModelService.GetAssetModelAsync(id);
             return View(assetModel);
         }
 
-        // GET: Models/Create
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-                       
-            ViewBag.manufacturer = await _menurepository.ListAllAsync();
-            ViewBag.category = await _caterepository.ListAllAsync();
-            ViewBag.depreciation = await _depcaterepository.ListAllAsync();
+
+            ViewBag.manufacturer = await _manufacturerViewModelService.GetManufacturers();
+            ViewBag.category = await _categoryViewModelService.GetCategories();
+            ViewBag.depreciation = await _depreciationViewModelService.GetDepreciations();
             return View();
         }
 
-        
-
-        // POST: Models/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(AssetModels model)
+        public async Task<IActionResult> Create(AssetModelViewModel model)
         {
-            if(ModelState.IsValid)
+            string userId = User.Identity.Name;
+            if (ModelState.IsValid)
             {
-                await modelsRepository.AddAsync(model);
-
+                await _assetModelViewModelService.AddAssetModelAsync(model, userId);
                 return RedirectToAction(nameof(Index));
             }
-            
-                return View(model);
-            
+            return View(model);
         }
 
         [HttpGet]
@@ -83,33 +77,30 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            var model = await modelsRepository.GetByIdAsync(id);
+            var model = await _assetModelViewModelService.GetAssetModelAsync(id);
             if(model == null)
             {
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.manufacturer = await _menurepository.ListAllAsync();
-            ViewBag.category = await _caterepository.ListAllAsync();
-            ViewBag.depreciation = await _depcaterepository.ListAllAsync();
+            ViewBag.manufacturer = await _manufacturerViewModelService.GetManufacturers();
+            ViewBag.category = await _categoryViewModelService.GetCategories();
+            ViewBag.depreciation = await _depreciationViewModelService.GetDepreciations();
             return View(model);
         }
 
-       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, AssetModels collection)
+        public async Task<IActionResult> Edit(int id, AssetModelViewModel model)
         {
+            string userId = User.Identity.Name;
             if (ModelState.IsValid)
             {
-                await modelsRepository.UpdateAsync(collection);
-
+                await _assetModelViewModelService.UpdateAssetModelAsync(model, userId);
                 return RedirectToAction(nameof(Index));
             }
-
-            return View(collection);
+            return View(model);
         }
 
-        // GET: Models/Delete/5
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
@@ -117,7 +108,7 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            var deletemodel = await modelsRepository.GetByIdAsync(id);
+            var deletemodel = await _assetModelViewModelService.GetAssetModelAsync(id);
             if(deletemodel == null)
             {
                 return RedirectToAction(nameof(Index));
@@ -125,19 +116,16 @@ namespace AssetManager.Web.Controllers
             return View(deletemodel);
         }
 
-        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, AssetModels modelcollection)
+        public async Task<IActionResult> Delete(int id, AssetModelViewModel model)
         {
-            if(ModelState.IsValid)
+            if (id == model.Id && model != null)
             {
-
-                await modelsRepository.DeleteAsync(modelcollection);
+                await _assetModelViewModelService.DeleteAssetModelAsync(model.Id);
                 return RedirectToAction(nameof(Index));
             }
-                return View();
-            
+            return View();
         }
     }
 }

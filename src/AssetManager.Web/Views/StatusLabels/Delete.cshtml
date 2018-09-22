@@ -1,14 +1,24 @@
-﻿@model AssetManager.Core.Entities.StatusLabel
+﻿@model AssetManager.Web.ViewModels.StatusLabelViewModel
 
 @{
     ViewData["Title"] = "Delete";
 }
 
-<h2>Delete</h2>
+<div class="header-content">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-8">
+            <p class="header-content-title">Delete Status Label</p>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-4">
+            <a asp-action="Index" class="pull-right btn btn-primary btn-create-new">Back</a>
+        </div>
+    </div>
+</div>
+
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Status Label</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>

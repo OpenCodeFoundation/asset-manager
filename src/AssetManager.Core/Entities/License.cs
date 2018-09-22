@@ -27,8 +27,7 @@ namespace AssetManager.Core.Entities
 
         [Display(Name = "Order Number")]
         public string OrderNumber { get; set; }
-
-
+        
         [Display(Name = "Seats")]
         public int Seats { get; set; }
 
@@ -36,9 +35,8 @@ namespace AssetManager.Core.Entities
         public string Notes { get; set; }
 
         [Display(Name = "Depreciation")]
-        [ForeignKey("Depreciation")]
         public int DepreciationId { get; set; }
-        public virtual Depreciation Depreciation { get; set; }
+        public Depreciation Depreciation { get; set; }
         public string LicenseName { get; set; }
 
         [DataType(DataType.EmailAddress)]
@@ -46,9 +44,8 @@ namespace AssetManager.Core.Entities
         public bool Depreciate { get; set; }
 
         [Display(Name = "Supplier")]
-        [ForeignKey("Supplier")]
         public int SupplierId { get; set; }
-        public virtual Supplier Supplier { get; set; }
+        public Supplier Supplier { get; set; }
 
         [Display(Name = "Expiration Date")]
         [DataType(DataType.Date)]
@@ -67,26 +64,13 @@ namespace AssetManager.Core.Entities
         [Display(Name = "Reassignable")]
         public bool Reassignable { get; set; }
 
-        [Display(Name = "Company")]
-        [ForeignKey("Company")]
-        public int CompanyId { get; set; }
-        public virtual Company Company { get; set; }
-
         [Display(Name = "Manufacturer")]
-        [ForeignKey("Manufacturer")]
         public int ManufacturerId { get; set; }
-        public virtual Manufacturer Manufacturer { get; set; }
-
-        public DateTime CreatedAt { get; set; }
-
-        public DateTime UpdatedAt { get; set; }
-
-        public DateTime DeletedAt { get; set; }
+        public Manufacturer Manufacturer { get; set; }
 
         [Display(Name = "Category Name")]
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
-        public virtual Category Category { get; set; }
-
+        public Category Category { get; set; }
     }
 }

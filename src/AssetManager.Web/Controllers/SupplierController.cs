@@ -1,28 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AssetManager.Core.Entities;
-using AssetManager.Core.Interfaces;
-using Microsoft.AspNetCore.Http;
+using AssetManager.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AssetManager.Web.Controllers
 {
     public class SupplierController : Controller
     {
-        private readonly IAsyncRepository<Supplier> _supplierRepository;
-        public SupplierController(IAsyncRepository<Supplier> repository)
+        private readonly ISupplierViewModelService _supplierService;
+        public SupplierController(ISupplierViewModelService supplierService)
         {
-            this._supplierRepository = repository;
+            this._supplierService = supplierService;
         }
 
         // GET: Supplier
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var companies = await _supplierRepository.ListAllAsync();
-            return View(companies);
+            var suppliers = await _supplierService.GetAllSupplierAsync();
+            return View(suppliers);
         }
 
 
@@ -32,25 +29,21 @@ namespace AssetManager.Web.Controllers
         public IActionResult Create()
         {
             ViewBag.CountryList = AllCountry.getCountry();
-            return View();
-            
+            return View();            
         }
 
     
         [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Insert(Supplier Supplier)
+        public async Task<IActionResult> Insert(SupplierViewModel supplier)
         {
-            if(ModelState.IsValid)
+            string userId = User.Identity.Name;
+            if (ModelState.IsValid)
             {
-             
-                await _supplierRepository.AddAsync(Supplier);
-
-                return RedirectToAction(nameof(Index));
+              await _supplierService.AddSupplier(supplier, userId);
+              return RedirectToAction(nameof(Index));
             }
-            
-                return View(Supplier);
-            
+            return View(supplier);            
         }
 
         // GET: Supplier/Edit/5
@@ -61,8 +54,7 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-
-            var supplier = await _supplierRepository.GetByIdAsync(id);
+            var supplier = await _supplierService.GetSupplier(id);
             if(supplier == null)
             {
                 return NotFound();
@@ -73,22 +65,15 @@ namespace AssetManager.Web.Controllers
         // POST: Supplier/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Supplier supplier)
+        public async Task<IActionResult> Edit(int id, SupplierViewModel supplier)
         {
-            try
+            if(ModelState.IsValid)
             {
-                if (id == supplier.Id)
-                {
-                    supplier.UpdatedAt = DateTime.Now;
-                    await _supplierRepository.UpdateAsync(supplier);
-                }
-
+                string userId = User.Identity.Name;
+                await _supplierService.UpdateSupplier(supplier, userId);
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View();
         }
 
         [HttpGet]
@@ -98,12 +83,12 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            var data = await _supplierRepository.GetByIdAsync(id);
-            if (data == null)
+            var supplierData = await _supplierService.GetSupplier(id);
+            if (supplierData == null)
             {
                 return RedirectToAction(nameof(Index));
             }
-            return View(data);
+            return View(supplierData);
         }
 
      
@@ -113,7 +98,7 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            var supplier = await _supplierRepository.GetByIdAsync(id);
+            var supplier = await _supplierService.GetSupplier(id);
             if (supplier == null)
             {
                 return RedirectToAction(nameof(Index));
@@ -124,15 +109,13 @@ namespace AssetManager.Web.Controllers
     
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id, Supplier supplier)
+        public async Task<IActionResult> DeleteConfirmed(int id, SupplierViewModel supplier)
         {
             try
             {
-                if (id == supplier.Id)
-                {
-                    await _supplierRepository.DeleteAsync(supplier);
+                if(supplier.Id == id) { 
+                await _supplierService.DeleteSupplier(supplier.Id);
                 }
-
                 return RedirectToAction(nameof(Index));
             }
             catch

@@ -1,4 +1,4 @@
-﻿@model AssetManager.Core.Entities.Departments
+﻿@model AssetManager.Web.ViewModels.DepartmentsViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -25,25 +25,16 @@
                             <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
                     </div>
+                   
+        <div class="form-group">
+            <label asp-for="LocatonId" class="control-label col-md-3"></label>
+            <div class="col-md-7">
+                <select asp-for="LocatonId" class="form-control" asp-items="@(ViewBag.Locations)"></select>
 
-                    <div class="form-group">
-                        <label asp-for="CompanyId" class="control-label col-md-3"></label>
-                        <div class="col-md-7">
-                            <select asp-for="CompanyId" class="form-control" asp-items="@(new SelectList(@ViewBag.Companies, "Id", "Name"))">
-                                <option>--Select Company--</option>
-                            </select>
-                            <span asp-validation-for="CompanyId" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="LocatonId" class="control-label col-md-3"></label>
-                        <div class="col-md-7">
-                            <select asp-for="LocatonId" class="form-control" asp-items="@(new SelectList(@ViewBag.Locations, "Id", "Name"))">
-                                <option>--Select Location--</option>
-                            </select>
-                            <span asp-validation-for="LocatonId" class="text-danger"></span>
-                        </div>
-                    </div>
+                <span asp-validation-for="LocatonId" class="text-danger"></span>
+            </div>
+        </div>
+                  
                     <div class="form-group">
                         <label asp-for="ManagerId" class="control-label col-md-3"></label>
                         <div class="col-md-7">

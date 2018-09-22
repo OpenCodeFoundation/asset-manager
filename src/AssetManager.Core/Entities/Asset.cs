@@ -17,10 +17,8 @@ namespace AssetManager.Core.Entities
 
         [Display(Name="Asset Tag")]
         public string AssetTag { get; set; }
-
-        [ForeignKey("Models")]
         public int ModelsId { get; set; }
-        public virtual AssetModels Models { get; set; }
+        public  AssetModels Models { get; set; }
 
         [Display(Name = "Serial")]
         public string Serial { get; set; }
@@ -42,17 +40,13 @@ namespace AssetManager.Core.Entities
 
         [Display(Name = "Image")]
         public string Image { get; set; }
-        
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
 
         [MaxLength(1)]
         public byte Physical { get; set; }
-         public DateTime DeletedAt { get; set; }
 
         [ForeignKey("Status")]
         public int StatusId { get; set; }
-        public virtual Status Status { get; set; }
+        public Status Status { get; set; }
         public bool Archived { get; set; }
 
         [Display(Name = "Warrenty")]
@@ -67,26 +61,19 @@ namespace AssetManager.Core.Entities
         [Display(Name = "Requestable")]
         public bool Requestable { get; set; }
 
-        [ForeignKey("RdLocation")]
         public int RtdLocationId { get; set; }
-        public virtual Location RdLocation { get; set; }
+        public Location RtdLocation { get; set; }
 
         public bool Accepted { get; set; }
 
         public DateTime LastCheckout { get; set; }
         public DateTime ExpectedCheckin { get; set; }
-
-        [ForeignKey("Company")]
-        public int CompanyId { get; set; }
-        public virtual Company Company { get; set; }
         public int AssignedType { get; set; }
         public int CheckoutTo { get; set; }
         public int CreatedBy { get; set; }
         public DateTime LastAuditDate { get; set; }
         public DateTime NextAuditDate { get; set; }
-
-        [ForeignKey("Location")]
         public int LocationId { get; set; }
-        public virtual Location Location { get; set; }
+        public Location Location { get; set; }
     }
 }

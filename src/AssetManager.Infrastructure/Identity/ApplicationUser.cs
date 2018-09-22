@@ -21,7 +21,7 @@ namespace AssetManager.Infrastructure.Identity
 
         public string Gravatar { get; set; }
 
-        [ForeignKey("LocationId")]
+        [ForeignKey("Location")]
         public int LocationId { get; set; }
         public Location Location { get; set; }
 
@@ -29,12 +29,8 @@ namespace AssetManager.Infrastructure.Identity
 
         public string JobTitle { get; set; }
 
-        [ForeignKey("CompanyId")]
-        public int CompanyId { get; set; }
-        public Company Company { get; set; }
-
-        [ForeignKey("DepartmentId")]
-        public int DepartmentId { get; set; }
+        [ForeignKey("Departments")]
+        public int DepartmentsId { get; set; }
         public Departments Departments { get; set; }
 
         public string Address { get; set; }

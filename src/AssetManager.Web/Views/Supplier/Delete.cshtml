@@ -1,4 +1,4 @@
-﻿@model AssetManager.Core.Entities.Supplier
+﻿@model AssetManager.Web.ViewModels.SupplierViewModel
 
 @{
     ViewData["Title"] = "Delete";
@@ -95,24 +95,7 @@
         <dd>
             @Html.DisplayFor(model => model.Image)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CreateAt)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CreateAt)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedAt)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DeletedAt)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DeletedAt)
-        </dd>
+        
         <dt>
             @Html.DisplayNameFor(model => model.Id)
         </dt>

@@ -11,13 +11,8 @@ namespace AssetManager.Core.Entities
 {
     public class Group: Entity
     {
-
         [Display(Name ="Group Name")]
         public string Name { get; set; }
-
         public string Permissions { get; set; }
-        public DateTime CreatedAt { get; set; }
-
-        public DateTime UpdatedAt { get; set; }
     }
 }

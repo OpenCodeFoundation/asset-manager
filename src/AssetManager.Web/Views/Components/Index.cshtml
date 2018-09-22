@@ -4,11 +4,17 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>All Components</h2>
+<div class="header-content">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-8">
+            <p class="header-content-title">All Components</p>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-4">
+            <a asp-action="Create" class="pull-right btn btn-primary btn-create-new">Create New</a>
+        </div>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <div class="row">
     <div class="col-md-12">
 
@@ -26,9 +32,6 @@
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.LocatonId)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.CompanyId)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.Qty)
@@ -68,9 +71,6 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.LocatonId)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CompanyId)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Qty)

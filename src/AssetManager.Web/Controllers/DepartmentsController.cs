@@ -4,30 +4,30 @@ using System.Linq;
 using System.Threading.Tasks;
 using AssetManager.Core.Entities;
 using AssetManager.Core.Interfaces;
+using AssetManager.Web.Interfaces;
+using AssetManager.Web.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AssetManager.Web.Controllers
 {
     public class DepartmentsController : Controller
     {
-        private readonly IAsyncRepository<Departments> _asyncRepository;
-        private readonly IAsyncRepository<Location> _locRepository;
-        private readonly IAsyncRepository<Company> _companyRepository;
+        private readonly IDepartmentsViewModelService _departmentsViewModelService;
+        private readonly ILocationViewModelService _locationViewModelService;
         public DepartmentsController(
-            IAsyncRepository<Departments> asyncRepository, 
-            IAsyncRepository<Location> locRepository, 
-            IAsyncRepository<Company> companyRepository)
+            IDepartmentsViewModelService departmentsViewModelService,
+            ILocationViewModelService locationViewModelService)
         {
-            this._asyncRepository = asyncRepository;
-            this._companyRepository = companyRepository;
-            this._locRepository = locRepository;
+            this._departmentsViewModelService = departmentsViewModelService;
+            this._locationViewModelService = locationViewModelService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var departmentall = await _asyncRepository.ListAllAsync();
+            var departmentall = await _departmentsViewModelService.GetAllDepartmentsAsync();
             return View(departmentall);
         }
 
@@ -38,7 +38,7 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            var department = await _asyncRepository.GetByIdAsync(id);
+            var department = await _departmentsViewModelService.GetDepartmentsAsync(id);
             if(department == null)
             {
                 return RedirectToAction(nameof(Index));
@@ -49,24 +49,23 @@ namespace AssetManager.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> Create()
         {
-            ViewBag.Locations = await _locRepository.ListAllAsync();
-            ViewBag.Companies = await _companyRepository.ListAllAsync();
+            IEnumerable<SelectListItem> LocationList = await _locationViewModelService.GetLocation();
+            ViewBag.Locations = LocationList;
             return View();
         }
 
         // POST: Departments/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Departments departments)
+        public async Task<ActionResult> Create(DepartmentsViewModel departments)
         {
-            if(ModelState.IsValid)
+            string userId = User.Identity.Name;
+            if (ModelState.IsValid)
             {
-                await _asyncRepository.AddAsync(departments);
-
+                await _departmentsViewModelService.AddDepartmentsAsync(departments, userId);
                 return RedirectToAction(nameof(Index));
-            }
-            
-                return View(departments);
+            }            
+            return View(departments);
             
         }
 
@@ -77,31 +76,28 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            var department = await _asyncRepository.GetByIdAsync(id);
+            var department = await _departmentsViewModelService.GetDepartmentsAsync(id);
             if (department == null)
             {
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.Locations = await _locRepository.ListAllAsync();
-            ViewBag.Companies = await _companyRepository.ListAllAsync();
+            ViewBag.Locations = await _locationViewModelService.GetLocation();
             return View(department);
         }
 
         // POST: Departments/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Departments collection)
+        public async Task<IActionResult> Edit(int id, DepartmentsViewModel departments)
         {
+            string userId = User.Identity.Name;
             if (ModelState.IsValid)
             {
-                await _asyncRepository.UpdateAsync(collection);
-
+                await _departmentsViewModelService.UpdateDepartmentsAsync(departments, userId);
                 return RedirectToAction(nameof(Index));
             }
-
-            ViewBag.Locations = await _locRepository.ListAllAsync();
-            ViewBag.Companies = await _companyRepository.ListAllAsync();
-            return View(collection);
+            ViewBag.Locations = await _locationViewModelService.GetLocation();
+            return View(departments);
         }
 
         [HttpGet]
@@ -111,28 +107,24 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-
-            var deleteDept = await _asyncRepository.GetByIdAsync(id);
+            var deleteDept = await _departmentsViewModelService.GetDepartmentsAsync(id);
             if(deleteDept == null)
             {
                 return RedirectToAction(nameof(Index));
             }
-
             return View(deleteDept);
         }
 
         // POST: Departments/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, Departments collection)
+        public async Task<IActionResult> Delete(int id, DepartmentsViewModel departmentsViewModel)
         {
             if(ModelState.IsValid)
             {
-                await _asyncRepository.DeleteAsync(collection);
-
+                await _departmentsViewModelService.DeleteDepartmentsAsync(departmentsViewModel.Id);
                 return RedirectToAction(nameof(Index));
             }
-
             return RedirectToAction(nameof(Index));
 
         }

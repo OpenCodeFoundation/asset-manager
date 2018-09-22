@@ -1,8 +1,12 @@
-﻿using AssetManager.Core.Entities;
+﻿using AssetManager.Core;
+using AssetManager.Core.Entities;
 using AssetManager.Core.Interfaces;
 using AssetManager.Core.Services;
 using AssetManager.Infrastructure.Data;
 using AssetManager.Infrastructure.Identity;
+using AssetManager.Infrastructure.Logging;
+using AssetManager.Web.Interfaces;
+using AssetManager.Web.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -42,23 +46,13 @@ namespace AssetManager.Web
         // Use this method to set Testing services, like Testng database
         public void ConfigureTestingServices(IServiceCollection services)
         {
-            //Testing started for me
-            //services.Configure<CookiePolicyOptions>(options =>
-            //{
-            //    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-            //    options.CheckConsentNeeded = context => true;
-            //    options.MinimumSameSitePolicy = SameSiteMode.None;
-            //});
-            // Configure in-memory database
+
             services.AddDbContext<AssetManagerContext>(options =>
                 options.UseInMemoryDatabase("assetmanager"));
             // Add Identity DbContext
             services.AddDbContext<AppIdentityDbContext>(options =>
                 options.UseInMemoryDatabase("Identity"));
-            //Testing started for me
-            // services.AddIdentity<ApplicationUser, IdentityRole>()
-            //.AddEntityFrameworkStores<AssetManagerContext>()
-            //.AddDefaultTokenProviders();
+
 
             ConfigureServices(services);
         }
@@ -93,19 +87,23 @@ namespace AssetManager.Web
                 options.LoginPath = "/Account/Login";
                 options.LogoutPath = "/Account/Logout";
             });
-            //services.AddScoped(typeof(ICompanyService), typeof(CompanyService));
+
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
+            services.AddScoped<IStatusLabelService, StatusLabelService>();
+            services.AddScoped<ISupplierViewModelService, SupplierViewModelService>();
+            services.AddScoped<ILocationViewModelService, LocationViewModelService>();
+            services.AddScoped<IDepreciationViewModelService, DepreciationViewModelService>();
+            services.AddScoped<IManufacturerViewModelService, ManufacturerViewModelService>();
+            services.AddScoped<IDepartmentsViewModelService, DepartmentsViewModelService>();
+            services.AddScoped<ICategoryViewModelService, CategoryViewModelService>();
+            services.AddScoped<IAssetModelViewModelService, AssetModelViewModelService>();
+            services.AddScoped<IStatusLabelViewModelService, StatusLabelViewModelService>();
+            services.Configure<ListSettings>(Configuration);
+            services.AddSingleton<IUriComposer>(new UriComposer(Configuration.Get<ListSettings>()));
 
-            //My Testing
-            //services.AddMvc(config =>
-            //{
-            //    var policy = new AuthorizationPolicyBuilder()
-            //                     .RequireAuthenticatedUser()
-            //                     .Build();
-            //    config.Filters.Add(new AuthorizeFilter(policy));
-            //}).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            // Add memory cache services
+            services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
+
             services.AddMemoryCache();
             services.AddMvc(config =>
             {

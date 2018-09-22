@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AssetManager.Core.Entities;
 using AssetManager.Core.Interfaces;
+using AssetManager.Web.Interfaces;
+using AssetManager.Web.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,18 +13,16 @@ namespace AssetManager.Web.Controllers
 {
     public class CategoriesController : Controller
     {
-        private readonly IAsyncRepository<Category> _categoryRepository;
-
-        public CategoriesController(IAsyncRepository<Category> repository)
+        private readonly ICategoryViewModelService _categoryViewModelService;
+        public CategoriesController(ICategoryViewModelService categoryViewModelService)
         {
-            this._categoryRepository = repository;
+            this._categoryViewModelService = categoryViewModelService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var CategoryList = await _categoryRepository.ListAllAsync();
-
+            var CategoryList = await _categoryViewModelService.GetAllCategoryAsync();
             return View(CategoryList);
         }
 
@@ -33,7 +33,7 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            var catdetail = await _categoryRepository.GetByIdAsync(id);
+            var catdetail = await _categoryViewModelService.GetCategoryAsync(id);
             if(catdetail == null)
             {
                 return RedirectToAction(nameof(Index));
@@ -44,26 +44,21 @@ namespace AssetManager.Web.Controllers
         [HttpGet]
         public  IActionResult Create()
         {
-
             return View();
         }
 
         // POST: Categories/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Category category)
+        public async Task<IActionResult> Create(CategoryViewModel category)
         {
-            if(ModelState.IsValid)
+            string userId = User.Identity.Name;
+            if (ModelState.IsValid)
             {
-                category.CreatedAt = DateTime.Now;
-                
-                await _categoryRepository.AddAsync(category);
+                await _categoryViewModelService.AddCategoryAsync(category, userId);
                 return RedirectToAction(nameof(Index));
             }
-            
-            
-                return View();
-            
+            return View(); 
         }
 
         // GET: Categories/Edit/5
@@ -73,36 +68,27 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-
-            var obj = await _categoryRepository.GetByIdAsync(id);
-
+            var obj = await _categoryViewModelService.GetCategoryAsync(id);
             if(obj == null)
             {
                 return RedirectToAction(nameof(Index));
             }
-
             return View(obj);
         }
 
         // POST: Categories/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Category collection)
+        public async Task<IActionResult> Edit(int id, CategoryViewModel category)
         {
-            if(id != collection.Id)
+            string userId = User.Identity.Name;
+            if (ModelState.IsValid)
             {
+                await _categoryViewModelService.UpdateCategoryAsync(category, userId); 
                 return RedirectToAction(nameof(Index));
             }
-            try
-            {
-               await _categoryRepository.UpdateAsync(collection); 
+            return View();
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
 
         // GET: Categories/Delete/5
@@ -112,8 +98,8 @@ namespace AssetManager.Web.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            var deleteItem = await _categoryRepository.GetByIdAsync(id);
-            if(deleteItem == null)
+            var deleteItem = await _categoryViewModelService.GetCategoryAsync(id);
+            if (deleteItem == null)
             {
                 return RedirectToAction(nameof(Index));
             }
@@ -123,23 +109,14 @@ namespace AssetManager.Web.Controllers
         // POST: Categories/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, Category cateItem)
+        public async Task<IActionResult> Delete(int id, CategoryViewModel cateItem)
         {
-            if(cateItem == null)
+            if(cateItem!=null)
             {
+                await _categoryViewModelService.DeleteCategoryAsync(id);
                 return RedirectToAction(nameof(Index));
             }
-            try
-            {
-                
-               await _categoryRepository.DeleteAsync(cateItem);
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return View();
         }
     }
 }

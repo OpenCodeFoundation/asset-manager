@@ -1,6 +1,5 @@
-﻿@model AssetManager.Core.Entities.Category
-@using AssetManager.Core.Entities
-
+﻿@model AssetManager.Web.ViewModels.CategoryViewModel
+@using AssetManager.Web.ViewModels
 @{
     ViewData["Title"] = "Create";
 }
@@ -32,7 +31,7 @@
                         <label asp-for="Type" class="control-label col-md-3"></label>
                         <div class="col-md-7">
 
-                            <select class="col-md-5" asp-for="Type" asp-items="Html.GetEnumSelectList<CatagoryType>()">
+                            <select class="col-md-5" asp-for="Type" asp-items="Html.GetEnumSelectList<CatagoryTypeVM>()">
                                 <option>--Select Type--</option>
                             </select>
                             <span asp-validation-for="Type" class="text-danger"></span>

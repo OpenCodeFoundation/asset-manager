@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AssetManager.Core.Entities.Location>
+﻿@model IEnumerable<AssetManager.Web.ViewModels.LocationViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -22,9 +22,6 @@
                                     @Html.DisplayNameFor(model => model.Name)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.LocationsId)
-                                </th>
-                                <th>
                                     @Html.DisplayNameFor(model => model.Manager)
                                 </th>
                                 <th>
@@ -44,7 +41,7 @@
                                     @Html.DisplayNameFor(model => model.Zip)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Image)
+                                    @Html.DisplayNameFor(model => model.ImageUri)
                                 </th>
 
                                 <th>Action</th>
@@ -56,9 +53,6 @@
                                 <tr>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Name)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.LocationsId)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Manager)
@@ -80,7 +74,7 @@
                                         @Html.DisplayFor(modelItem => item.Zip)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Image)
+                                        @Html.DisplayFor(modelItem => item.ImageUri)
                                     </td>
 
                                     <td>

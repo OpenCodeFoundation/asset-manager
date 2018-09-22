@@ -11,8 +11,7 @@ namespace AssetManager.Web.Controllers
     {
         // GET: Profile
         public ActionResult Index()
-        {
-       
+        {       
             return View();
         }
 
